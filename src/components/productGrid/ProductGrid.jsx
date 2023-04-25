@@ -3,10 +3,15 @@ import Card from '../card/Card';
 
 const ProductGrid = () => {
   return (
-    <>
-      <h1>Soy un productgrid component</h1>
-      <Card/>
-    </>
+    <div className='container-fluid'>
+      <div className='row justify-content-center'>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+      </div>
+    </div>
   );
 };
 
