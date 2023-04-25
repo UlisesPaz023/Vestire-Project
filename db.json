@@ -1,0 +1,274 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "categoria": "pantalones",
+      "subCategoria": "vestir",
+      "marca": "leyton",
+      "resumenDescripcion": "Pantalón Azul Marino",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 20.00,
+      "color": "negro",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 2,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 3,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 4,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 5,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 6,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 7,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 8,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 9,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 10,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 11,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 12,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 13,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 14,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    },
+    {
+      "id": 15,
+      "categoria": "pantalones",
+      "subCategoria": "sport",
+      "marca": "leyton",
+      "resumenDescripcion": "Lorem ipsum",
+      "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis non necessitatibus ab facilis modi provident possimus eos? Dolorum nesciunt pariatur ipsum quibusdam iure. A id harum eius saepe repellendus.",
+      "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
+      "precio": 35.00,
+      "color": "azul",
+      "cantidadPorTalle": {
+        "xs": null,
+        "s": null,
+        "m": null,
+        "l": null,
+        "xl": null
+      }
+    }
+  ]
+}
