@@ -4,9 +4,9 @@ import Footer from '../components/footer/Footer';
 
 const RootLayout = () => {
   return (
-    <div className = 'root-layout'>
+    <div className = 'root-layout' style={{fontFamily: 'Roboto, sans-serif'}}>
       <Navbar/>
-      <main className='vh-100'>
+      <main>
         <Outlet/>
       </main>
       <Footer/>

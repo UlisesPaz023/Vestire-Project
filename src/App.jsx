@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import RootLayout from './layout/RootLayout';
 import { routes } from './routes';
+import 'typeface-roboto';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

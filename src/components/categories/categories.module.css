@@ -1,0 +1,11 @@
+.color{
+  font-size: .8rem;
+}
+
+.categoryItem{
+  color:black;
+}
+
+.categoryItem:hover{
+  color: #d4af37;
+}

@@ -1,0 +1,23 @@
+.size{
+  height: 33rem;
+}
+
+.image{
+  height: 30rem;
+  overflow-y: hidden;
+}
+
+@media screen and (max-width:800px){
+  .size{
+    margin: 0;
+  }
+}
+
+@media screen and (min-width:800px){
+  .size{
+    width: 20rem;
+    height: fit-content;
+  }
+}
+
+
