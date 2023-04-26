@@ -20,20 +20,25 @@ const Categories = () => {
     getData();
   },[]);
 
+    const removeDuplicatesCategories = products.filter(
+      (obj, index, array) =>
+        index === array.findIndex((i) => i.categoria === obj.categoria
+        )
+    )
+
   return (
     <section className='container-fluid border'>
       <div className ='row'>
         <div className={`d-flex justify-content-center ${styles.color}`}>
-          
           <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >COLECCIÓN</a>
           <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >SASTRERÍA</a>
           <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >ACCESORIOS</a>
         </div>
         <div>
           <div className={`row ${styles.color}`}>
-            {
-              products.map((x, i)=>(
-                <CategoriesItem products={products} x={x}/>
+            {         
+              removeDuplicatesCategories.map((x, i)=>(
+                <CategoriesItem x = {x}/>
               ))
             }
           </div>
