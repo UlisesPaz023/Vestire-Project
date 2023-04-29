@@ -9,3 +9,11 @@
 .categoryItem:hover{
   color: #d4af37;
 }
+
+.menuSize{
+  min-height: 8rem;
+}
+
+.menuSize2{
+  width:95vw;
+}

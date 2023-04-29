@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import Card from '../card/Card';
 import axios from 'axios';
 import styles from '../categories/categories.module.css';
-import CategoriesItem from './CategoriesItem';
+import CategoriesMenu from './CategoriesMenu';
 
 const Categories = () => {
+
   const [products, setProducts] = useState([]);
 
   useEffect(()=>{
@@ -20,30 +20,29 @@ const Categories = () => {
     getData();
   },[]);
 
-    const removeDuplicatesCategories = products.filter(
-      (obj, index, array) =>
-        index === array.findIndex((i) => i.categoria === obj.categoria
-        )
-    )
+  const arrayClass = products.reduce((stack, prod) => {
+    return stack.concat(prod.clase);
+  }, []);
+
+  let trueArrayClass = arrayClass.filter((x, i) => {
+    return arrayClass.indexOf(x) === i;
+  });
+  
+  console.log(trueArrayClass);
+
+  const isNotUndefined = (products, trueArrayClass) => {
+    if(products !== undefined && trueArrayClass !== undefined){
+      return true;
+    }
+  }
 
   return (
     <section className='container-fluid border'>
-      <div className ='row'>
-        <div className={`d-flex justify-content-center ${styles.color}`}>
-          <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >COLECCIÓN</a>
-          <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >SASTRERÍA</a>
-          <a className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >ACCESORIOS</a>
-        </div>
-        <div>
-          <div className={`row ${styles.color}`}>
-            {         
-              removeDuplicatesCategories.map((x, i)=>(
-                <CategoriesItem x = {x}/>
-              ))
-            }
-          </div>
-        </div>
-      </div>
+      {
+        isNotUndefined(products, trueArrayClass)
+        &&
+        <CategoriesMenu products={products} trueArrayClass={trueArrayClass}/>
+      }
     </section>
   );
 };

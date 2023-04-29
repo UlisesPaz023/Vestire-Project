@@ -2,6 +2,7 @@
   "productos": [
     {
       "id": 1,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "vestir",
       "marca": "leyton",
@@ -20,6 +21,7 @@
     },
     {
       "id": 2,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "vestir",
       "marca": "leyton",
@@ -38,6 +40,7 @@
     },
     {
       "id": 3,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -56,6 +59,7 @@
     },
     {
       "id": 4,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -74,6 +78,7 @@
     },
     {
       "id": 5,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "camisas",
       "subCategoria": "manga larga",
       "marca": "leyton",
@@ -92,6 +97,7 @@
     },
     {
       "id": 6,
+      "clase":["coleccion", "accesorios", "sastreria","calzado"],
       "categoria": "camisas",
       "subCategoria": "manga larga",
       "marca": "leyton",
@@ -110,6 +116,7 @@
     },
     {
       "id": 7,
+      "clase":["coleccion", "accesorios", "sastreria","trajes"],
       "categoria": "camisas",
       "subCategoria": "manga corta",
       "marca": "leyton",
@@ -128,6 +135,7 @@
     },
     {
       "id": 8,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "camisas",
       "subCategoria": "manga corta",
       "marca": "leyton",
@@ -146,6 +154,7 @@
     },
     {
       "id": 9,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -164,6 +173,7 @@
     },
     {
       "id": 10,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -182,6 +192,7 @@
     },
     {
       "id": 11,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -200,6 +211,7 @@
     },
     {
       "id": 12,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -218,6 +230,7 @@
     },
     {
       "id": 13,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -236,6 +249,7 @@
     },
     {
       "id": 14,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -254,6 +268,7 @@
     },
     {
       "id": 15,
+      "clase":["coleccion", "accesorios", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",

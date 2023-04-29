@@ -1,15 +1,43 @@
 import React from 'react';
-import styles from '../categories/categories.module.css'
 
-const CategoriesItem = (props) => {
+const CategoriesItem = ({products, clase}) => {
+  const arrayCategories = products.reduce((stack, prod) => {
+    return stack.concat(prod.categoria);
+  }, []);
 
-  const {id, categoria, subCategoria} = props.x;
+  let trueArrayCategories = arrayCategories.filter((x, i) => {
+    return arrayCategories.indexOf(x) === i;
+  });
 
+  const arraySubcategories = products.reduce((stack, prod)=>{
+    return stack.concat(prod.subcategories);
+  })
+
+  
+  // let removeDuplicatesCategories = trueArrayCategories.map((x,i)=> {
+  //   if(products[i].clase.includes(x)){
+  //     return x;
+  //   }
+  // })
+
+  console.log(trueArrayCategories)
+  
   return (
-    <div className='mx-5 col-3 d-flex flex-column'>  
-      <a className={`mt-4 mb-1 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >{categoria.toUpperCase()}</a>
-      <a className={`ms-1 mb-1 text-decoration-none fw-light ${styles.categoryItem}`} href='/#' >{subCategoria}</a>
-      <a className={`ms-1 mb-1 text-decoration-none fw-light ${styles.categoryItem}`} href='/#' >{subCategoria}</a>       
+    <div>
+      {
+      trueArrayCategories.map((x,i)=> (
+        products.forEach((x,i)=> (
+          products[i].clase.includes(x)
+        ))
+        &&
+        x.categoria
+      ))
+      // products.map((x,i)=> (
+      //   x.clase.includes(clase)
+      //   &&
+      //   x.categoria
+      // ))
+      }
     </div>
   );
 };
