@@ -2,6 +2,7 @@
   "productos": [
     {
       "id": 1,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "vestir",
       "marca": "leyton",
@@ -20,7 +21,8 @@
     },
     {
       "id": 2,
-      "categoria": "pantalones",
+      "clase":["coleccion", "sastreria","trajes"],
+      "categoria": "remeras",
       "subCategoria": "vestir",
       "marca": "leyton",
       "resumenDescripcion": "Lorem ipsum",
@@ -38,9 +40,10 @@
     },
     {
       "id": 3,
-      "categoria": "pantalones",
-      "subCategoria": "sport",
-      "marca": "leyton",
+      "clase":["coleccion", "accesorios"],
+      "categoria": "relojes",
+      "subCategoria": "analogico",
+      "marca": "rolex",
       "resumenDescripcion": "Lorem ipsum",
       "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "imagen": "https://i.pinimg.com/564x/e2/6a/9f/e26a9f10f349d5464f67cae90efc0a5f.jpg",
@@ -56,6 +59,7 @@
     },
     {
       "id": 4,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -74,8 +78,9 @@
     },
     {
       "id": 5,
+      "clase":["coleccion", "sastreria"],
       "categoria": "camisas",
-      "subCategoria": "manga larga",
+      "subCategoria": "sport",
       "marca": "leyton",
       "resumenDescripcion": "Lorem ipsum",
       "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -92,8 +97,9 @@
     },
     {
       "id": 6,
-      "categoria": "camisas",
-      "subCategoria": "manga larga",
+      "clase":["coleccion","calzado"],
+      "categoria": "zapatos",
+      "subCategoria": "cuero",
       "marca": "leyton",
       "resumenDescripcion": "Lorem ipsum",
       "descripcion": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
@@ -110,7 +116,8 @@
     },
     {
       "id": 7,
-      "categoria": "camisas",
+      "clase":["coleccion", "sastreria","trajes"],
+      "categoria": "remeras",
       "subCategoria": "manga corta",
       "marca": "leyton",
       "resumenDescripcion": "Lorem ipsum",
@@ -128,6 +135,7 @@
     },
     {
       "id": 8,
+      "clase":["coleccion", "trajes"],
       "categoria": "camisas",
       "subCategoria": "manga corta",
       "marca": "leyton",
@@ -146,6 +154,7 @@
     },
     {
       "id": 9,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -164,6 +173,7 @@
     },
     {
       "id": 10,
+      "clase":["coleccion"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -182,6 +192,7 @@
     },
     {
       "id": 11,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -200,6 +211,7 @@
     },
     {
       "id": 12,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -218,6 +230,7 @@
     },
     {
       "id": 13,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -236,6 +249,7 @@
     },
     {
       "id": 14,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",
@@ -254,6 +268,7 @@
     },
     {
       "id": 15,
+      "clase":["coleccion", "sastreria"],
       "categoria": "pantalones",
       "subCategoria": "sport",
       "marca": "leyton",

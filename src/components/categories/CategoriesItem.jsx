@@ -1,15 +1,37 @@
 import React from 'react';
-import styles from '../categories/categories.module.css'
+import styles from '../categories/categories.module.css';
 
-const CategoriesItem = (props) => {
+const CategoriesItem = ({products, title, clase}) => {
 
-  const {id, categoria, subCategoria} = props.x;
+  const uniqueCategories = (products, category) => {
+    const trueUniqueCategories = products.map((x,i)=>{
+      if (category !== undefined  && x.categoria !== undefined){        
+        if(x.clase.includes(clase)){
+          if(x.categoria.toUpperCase() === category){
+            return x.subCategoria;
+          }
+        }
+      }
+    });
+    return [...new Set(trueUniqueCategories)];
+  };
 
   return (
-    <div className='mx-5 col-3 d-flex flex-column'>  
-      <a className={`mt-4 mb-1 text-decoration-none fw-bold ${styles.categoryItem}`} href='/#' >{categoria.toUpperCase()}</a>
-      <a className={`ms-1 mb-1 text-decoration-none fw-light ${styles.categoryItem}`} href='/#' >{subCategoria}</a>
-      <a className={`ms-1 mb-1 text-decoration-none fw-light ${styles.categoryItem}`} href='/#' >{subCategoria}</a>       
+    <div className= {`${styles.categoriesItem} d-${title!=undefined ? 'flex' : 'none'} mx-5 col-1 flex-column`}>
+      {
+        <div className='fw-bold'>
+          {title}
+        </div>
+      }
+      {
+        uniqueCategories(products, title).map((x,i)=>(
+          <div key = {x}>
+            {
+              x
+            }
+          </div>
+        ))
+      }
     </div>
   );
 };
