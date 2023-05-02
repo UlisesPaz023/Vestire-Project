@@ -27,14 +27,12 @@ const Categories = () => {
   let trueArrayClass = arrayClass.filter((x, i) => {
     return arrayClass.indexOf(x) === i;
   });
-  
-  console.log(trueArrayClass);
 
   const isNotUndefined = (products, trueArrayClass) => {
     if(products !== undefined && trueArrayClass !== undefined){
       return true;
     }
-  }
+  };
 
   return (
     <section className='container-fluid border'>

@@ -10,10 +10,24 @@
   color: #d4af37;
 }
 
+.active{
+  color: #d4af37;
+}
+
 .menuSize{
-  min-height: 8rem;
+  width: 100%;
 }
 
 .menuSize2{
-  width:95vw;
+  font-size: .8rem;
+}
+
+.collapseOpacity{
+}
+
+.collapseOpacityParent{
+}
+
+.categoriesItem{
+  margin: 0;
 }

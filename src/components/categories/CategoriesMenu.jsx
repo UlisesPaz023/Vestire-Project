@@ -1,37 +1,54 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styles from '../categories/categories.module.css';
 import CategoriesItems from './CategoriesItems';
 
 const CategoriesMenu = (props) => {
   const clase = props.trueArrayClass;
   const {products} = props;
+  const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
+
+  const handleButtonClick = (index) => {
+    setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
+  };
 
   return (
     <>
-      <div className ='row'>
-        <div className={`d-flex justify-content-center ${styles.color}`}>
+      <div className ='row border'>
+        <div className={`d-flex flex-column flex-md-row align-items-center justify-content-center ${styles.color} my-3`}>
           {
-            clase.map((x,i)=>( 
-              <div>
+            clase.map((x,i)=>(
+              <>              
                 <a 
-                  className={`mx-4 mt-4 mb-5 text-decoration-none fw-bold ${styles.categoryItem}`}
+                  className={`col col-md-2 col-xl-1 my-3 text-center text-decoration-none fw-bold ${styles.categoryItem} ${`multiCollapseExample${i+1}` === selectedButtonIndex ? styles.active : ''}`}
+                  // aria-current = {`${i === selectedButtonIndex ? 'true': 'false'}`}
                   role="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#multiCollapseExample${i+1}`}
                   aria-expanded="false"
-                  aria-controls={`multiCollapseExample${i+1}`}>
+                  aria-controls={`multiCollapseExample${i+1}`}
+                  onClick={() => handleButtonClick(`multiCollapseExample${i+1}`)}
+                >
                   {
                     x.toUpperCase()
                   }
                 </a>
-              </div>
+                <div key={i} className={`col-3 d-sm-flex d-md-none flex-column justify-content-center ${styles.menuSize}`}>
+                  {
+                    <CategoriesItems clase={x} selectedButtonIndex={selectedButtonIndex} multiCollapseExample= {`multiCollapseExample${i+1}`} products={products}/>
+                  }
+                </div>
+              </>
             ))
-         }
+          }
         </div>
       </div>
       {
         clase.map((x,i)=> (
-          <CategoriesItems clase={x} multiCollapseExample= {`multiCollapseExample${i+1}`} products={products}/>
+          <div key={i} className={`d-none d-md-flex flex-column justify-content-center ${styles.menuSize}`}>
+            {
+              <CategoriesItems clase={x} selectedButtonIndex={selectedButtonIndex} multiCollapseExample= {`multiCollapseExample${i+1}`} products={products}/>
+            }
+          </div>
         ))
       }
     </>

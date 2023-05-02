@@ -1,23 +1,36 @@
 import React from 'react';
+import styles from '../categories/categories.module.css';
 
-const CategoriesItem = ({products, clase}) => {
-  // const arrayCategories = products.reduce((stack, prod) => {
-  //   return stack.concat(prod.categoria);
-  // }, []);
+const CategoriesItem = ({products, title, clase}) => {
 
-  // let trueArrayCategories = arrayCategories.filter((x, i) => {
-  //   return arrayCategories.indexOf(x) === i;
-  // });
-  
+  const uniqueCategories = (products, category) => {
+    const trueUniqueCategories = products.map((x,i)=>{
+      if (category !== undefined  && x.categoria !== undefined){        
+        if(x.clase.includes(clase)){
+          if(x.categoria.toUpperCase() === category){
+            return x.subCategoria;
+          }
+        }
+      }
+    });
+    return [...new Set(trueUniqueCategories)];
+  };
+
   return (
-    <div>
+    <div className= {`${styles.categoriesItem} d-${title!=undefined ? 'flex' : 'none'} mx-5 col-1 flex-column`}>
       {
-      products.map((x,i)=> (
-        
-        x.clase.includes(clase)
-        &&
-        x.categoria
-      ))
+        <div className='fw-bold'>
+          {title}
+        </div>
+      }
+      {
+        uniqueCategories(products, title).map((x,i)=>(
+          <div key = {x}>
+            {
+              x
+            }
+          </div>
+        ))
       }
     </div>
   );
