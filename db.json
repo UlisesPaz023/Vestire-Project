@@ -1,0 +1,134 @@
+{
+  "productos": [
+    {
+      "clase": [
+        "coleccion",
+        "sastreria"
+      ],
+      "categoria": "Camisa",
+      "subCategoria": "Vestir",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 1
+    },
+    {
+      "clase": [
+        "coleccion"
+      ],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 2
+    },
+    {
+      "clase": [],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 3
+    },
+    {
+      "clase": [
+        "coleccion",
+        "sastreria"
+      ],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 4
+    },
+    {
+      "clase": [],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": true,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 5
+    },
+    {
+      "clase": [
+        "coleccion"
+      ],
+      "categoria": "",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 6
+    }
+  ]
+}
