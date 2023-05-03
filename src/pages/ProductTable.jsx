@@ -35,20 +35,7 @@ const ProductTable = () => {
       }
     };
     getData();
-    // console.log(db);
-    // let idNewRow = db[db.length - 1]._id;
-    // let newRow = document.getElementById(idNewRow);
-    // console.log(newRow);
   }, []);
-
-  // useEffect(() => {
-  //   if (newRow.current) {
-  //     newRow.current.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "center",
-  //     });
-  //   }
-  // }, [newRow]);
 
   const createData = async (data) => {
     try {
