@@ -5,11 +5,11 @@ import Categories from '../components/categories/Categories';
 
 const HomePage = () => {
   return (
-    <>    
-    <Slider/>
-    <ProductGrid/>
-    <Categories/>
-    </>
+    <section>    
+      <Categories/>
+      <Slider/>
+      <ProductGrid/>
+    </section>
   );
 };
 

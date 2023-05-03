@@ -1,0 +1,33 @@
+.color{
+  font-size: .8rem;
+}
+
+.categoryItem{
+  color:black;
+}
+
+.categoryItem:hover{
+  color: #d4af37;
+}
+
+.active{
+  color: #d4af37;
+}
+
+.menuSize{
+  width: 100%;
+}
+
+.menuSize2{
+  font-size: .8rem;
+}
+
+.collapseOpacity{
+}
+
+.collapseOpacityParent{
+}
+
+.categoriesItem{
+  margin: 0;
+}
