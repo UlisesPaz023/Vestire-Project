@@ -110,7 +110,6 @@ const ProductTable = () => {
 
   let dbCategorias = [...dbCamisas, ...dbPantalones, ...dbAmbos];
 
-  console.log(prueba);
   return (
     <>
       <h2 className="text-center">Listado de Productos Registrados</h2>
