@@ -52,3 +52,15 @@
 .text{
   transform:translateX(.2rem)
 }
+
+.sliderImage{
+}
+.sliderContainer{
+  margin: 0 5rem
+}
+
+.sliderBtn{
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2rem;
+}
