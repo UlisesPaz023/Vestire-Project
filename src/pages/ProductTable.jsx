@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import TableByCategories from "../components/TableByCategories";
 import { CircularProgress } from "@mui/material";
 import { useRef } from "react";
-
+import "./styles/productTable.css";
 const ProductTable = () => {
   const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -15,7 +15,6 @@ const ProductTable = () => {
   const [loading, setLoading] = useState(false);
   const [modalForm, setModalForm] = useState(null);
   const url = "https://vestire.onrender.com/product";
-  const newRow = useRef(null);
 
   useEffect(() => {
     setModalForm(new bootstrap.Modal(document.getElementById("exampleModal")));
@@ -26,9 +25,9 @@ const ProductTable = () => {
         const resp = await axios.get(endpoint);
         setDb(resp.data);
         setError("");
-        //console.log(resp.data);
+        // console.log(resp.data);
+        // console.log(db);
         setLoading(false);
-        //console.log(db);
       } catch (error) {
         console.log(error.message);
         setLoading(false);
@@ -36,6 +35,10 @@ const ProductTable = () => {
       }
     };
     getData();
+    // console.log(db);
+    // let idNewRow = db[db.length - 1]._id;
+    // let newRow = document.getElementById(idNewRow);
+    // console.log(newRow);
   }, []);
 
   // useEffect(() => {
@@ -55,13 +58,25 @@ const ProductTable = () => {
       setDb([...db, resp.data]);
       Swal.fire("Éxito", "El registro se creó correctamente", "success");
       console.log(resp.data._id);
-      const element = document.getElementById(resp.data._id); // Reemplaza 'mi-elemento' con el identificador o atributo único de tu elemento
-      console.log(element);
+      let idNewRow = resp.data._id;
+      let newRow = document.getElementById(idNewRow);
+      console.log(newRow);
       modalForm.hide();
     } catch (error) {
       console.log(error.message);
     }
-
+    let fila = await axios.get(`${url}/get-products`);
+    console.log(fila.data[fila.data.length - 1]._id);
+    console.log(document.getElementById(fila.data[fila.data.length - 1]._id));
+    let newRow = document.getElementById(fila.data[fila.data.length - 1]._id);
+    newRow.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+    newRow.classList.add("resaltada");
+    setTimeout(() => {
+      newRow.classList.remove("resaltada");
+    }, 4000);
     //location.reload();
   };
 
