@@ -4,6 +4,7 @@ import Subcat from "../components/Subcat";
 
 const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const initProduct = {
+    clase: [],
     categoria: "",
     subCategoria: "",
     marca: "",
@@ -24,6 +25,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 
   const [product, setProduct] = useState(initProduct);
   const {
+    clase,
     categoria,
     subCategoria,
     marca,
@@ -35,6 +37,8 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     cantidadPorTalle,
     precio,
   } = product;
+
+  let [coleccion, sastreria, calzado, accesorios] = clase;
 
   useEffect(() => {
     if (dataToEdit) setProduct(dataToEdit);
@@ -52,6 +56,17 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     setProduct({ ...product, [e.target.name]: e.target.checked });
   };
 
+  const handleCheckedClase = (e) => {
+    if (e.target.checked) {
+      if (!clase.includes(e.target.name)) clase.push(e.target.name);
+    } else {
+      const index = clase.indexOf(e.target.name);
+      if (index > -1) clase.splice(index, 1);
+    }
+    // console.log(clase);
+    setProduct({ ...product, ["clase"]: clase });
+  };
+
   const handleChange = (e) => {
     if (e.target.name === "cantidadPorTalle") {
       cantidadPorTalle[e.target.id] = Number(e.target.value);
@@ -61,15 +76,73 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!product.id) createData(product);
-    else updateData(product);
+
+    if (!product._id) createData(product);
+    else {
+      console.log("por editar", product);
+      updateData(product);
+    }
     setProduct(initProduct);
     setDataToEdit(null);
   };
-
+  // let flag = false;
+  // if (clase.contains("coleccion")) flag = true;
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div className="row ">
+          <span className="mb-1">Seleccione la/s clase/s del producto</span>
+          <div className="card card-body mb-3">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="Coleccion"
+              value={coleccion}
+              checked={clase.includes("Coleccion")}
+              id="coleccion"
+              onChange={handleCheckedClase}
+            />
+            <label className="form-check-label" htmlFor="coleccion">
+              Colección
+            </label>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="sastreria"
+              value={sastreria}
+              checked={clase.includes("sastreria")}
+              id="sastreria"
+              onChange={handleCheckedClase}
+            />
+            <label className="form-check-label" htmlFor="sastreria">
+              Sastrería
+            </label>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="accesorios"
+              value={accesorios}
+              checked={clase.includes("accesorios")}
+              id="accesorios"
+              onChange={handleCheckedClase}
+            />
+            <label className="form-check-label" htmlFor="accesorios">
+              Accesorios
+            </label>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              name="calzado"
+              value={calzado}
+              checked={clase.includes("calzado")}
+              id="calzado"
+              onChange={handleCheckedClase}
+            />
+            <label className="form-check-label" htmlFor="calzado">
+              Calzado
+            </label>
+          </div>
+        </div>
         <div className="row">
           <select
             className="form-select mb-2"

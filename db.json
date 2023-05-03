@@ -1,13 +1,17 @@
 {
   "productos": [
     {
-      "categoria": "ambo",
-      "subCategoria": "Clasico",
+      "clase": [
+        "coleccion",
+        "sastreria"
+      ],
+      "categoria": "Camisa",
+      "subCategoria": "Vestir",
       "marca": "",
       "resumenDescripcion": "",
       "descripcion": "",
       "imagen": "",
-      "color": "blanco",
+      "color": "",
       "destacado": false,
       "cantidadPorTalle": {
         "xs": 0,
@@ -16,17 +20,83 @@
         "l": 0,
         "xl": 0
       },
-      "precio": 2000,
-      "id": 9
+      "precio": 0,
+      "id": 1
     },
     {
-      "categoria": "camisa",
-      "subCategoria": "Mangas cortas",
+      "clase": [
+        "coleccion"
+      ],
+      "categoria": "Pantalon",
+      "subCategoria": "",
       "marca": "",
       "resumenDescripcion": "",
       "descripcion": "",
       "imagen": "",
-      "color": "blanco",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 2
+    },
+    {
+      "clase": [],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 3
+    },
+    {
+      "clase": [
+        "coleccion",
+        "sastreria"
+      ],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
+      "destacado": false,
+      "cantidadPorTalle": {
+        "xs": 0,
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0
+      },
+      "precio": 0,
+      "id": 4
+    },
+    {
+      "clase": [],
+      "categoria": "Pantalon",
+      "subCategoria": "",
+      "marca": "",
+      "resumenDescripcion": "",
+      "descripcion": "",
+      "imagen": "",
+      "color": "",
       "destacado": true,
       "cantidadPorTalle": {
         "xs": 0,
@@ -36,218 +106,12 @@
         "xl": 0
       },
       "precio": 0,
-      "id": 10
+      "id": 5
     },
     {
-      "categoria": "pantalon",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "gris",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 11
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "verde",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 12
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 13
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 14
-    },
-    {
-      "categoria": "ambo",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 15
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 16
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "rojo",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 17
-    },
-    {
-      "categoria": "ambo",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 18
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 19
-    },
-    {
-      "categoria": "ambo",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 20
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 21
-    },
-    {
+      "clase": [
+        "coleccion"
+      ],
       "categoria": "",
       "subCategoria": "",
       "marca": "",
@@ -264,216 +128,7 @@
         "xl": 0
       },
       "precio": 0,
-      "id": 22
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 23
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 24
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 25
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 26
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "Jeans",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "verde",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 27
-    },
-    {
-      "categoria": "ambo",
-      "subCategoria": "Clasico",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 28
-    },
-    {
-      "categoria": "pantalon",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 29
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "rojo",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 30
-    },
-    {
-      "categoria": "camisa",
-      "subCategoria": "Vestir",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "negro",
-      "destacado": true,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 4000,
-      "id": 31
-    },
-    {
-      "categoria": "Pantalon",
-      "subCategoria": "Jeans",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "azul",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 32
-    },
-    {
-      "categoria": "Camisa",
-      "subCategoria": "Mangas cortas",
-      "marca": "",
-      "resumenDescripcion": "",
-      "descripcion": "",
-      "imagen": "",
-      "color": "Verde",
-      "destacado": false,
-      "cantidadPorTalle": {
-        "xs": 0,
-        "s": 0,
-        "m": 0,
-        "l": 0,
-        "xl": 0
-      },
-      "precio": 0,
-      "id": 33
+      "id": 6
     }
   ]
 }

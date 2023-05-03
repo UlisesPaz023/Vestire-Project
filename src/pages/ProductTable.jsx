@@ -3,27 +3,34 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProductTableRow from "../components/ProductTableRow";
 import ProductForm from "./ProductForm";
+import Swal from "sweetalert2";
+import TableByCategories from "../components/TableByCategories";
+import { CircularProgress } from "@mui/material";
+import { useRef } from "react";
 
 const ProductTable = () => {
-  const [db, setDb] = useState(null);
+  const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [modalForm, setModalForm] = useState(null);
-  const url = "http://localhost:3000/productos";
+  const url = "https://vestire.onrender.com/product";
+  const newRow = useRef(null);
 
   useEffect(() => {
     setModalForm(new bootstrap.Modal(document.getElementById("exampleModal")));
     setLoading(true);
     const getData = async () => {
       try {
-        const resp = await axios.get(url);
+        let endpoint = `${url}/get-products`;
+        const resp = await axios.get(endpoint);
         setDb(resp.data);
         setError("");
+        //console.log(resp.data);
         setLoading(false);
-        console.log(db);
+        //console.log(db);
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
         setLoading(false);
         setError("Ha ocurrido un error, intente más tarde");
       }
@@ -31,57 +38,79 @@ const ProductTable = () => {
     getData();
   }, []);
 
+  // useEffect(() => {
+  //   if (newRow.current) {
+  //     newRow.current.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "center",
+  //     });
+  //   }
+  // }, [newRow]);
+
   const createData = async (data) => {
     try {
-      // let options = {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-type": "application/json; charset=utf-8",
-      //     },
-      //     data: JSON.stringify(data),
-      //   },
-      let resp = await axios.post(url, data);
-      console.log(resp);
-      //   json = await resp.data;
-      // setDb([...db, json]);
+      let endpoint = `${url}/create-product`;
+      let resp = await axios.post(endpoint, data);
+      console.log(resp.data);
+      setDb([...db, resp.data]);
+      Swal.fire("Éxito", "El registro se creó correctamente", "success");
+      console.log(resp.data._id);
+      const element = document.getElementById(resp.data._id); // Reemplaza 'mi-elemento' con el identificador o atributo único de tu elemento
+      console.log(element);
+      modalForm.hide();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
-    console.log(db);
-    modalForm.hide();
-    location.reload();
+
+    //location.reload();
   };
 
   const updateData = async (data) => {
     try {
-      let endpoint = `${url}/${data.id}`;
-      let resp = await axios.put(endpoint);
+      console.log(data._id);
+      let endpoint = `${url}/edit-product/${data._id}`;
+      let resp = await axios.patch(endpoint);
       if (!resp.err) {
-        let newProduct = db.map((el) => (el.id === data.id ? data : el));
+        let newProduct = db.map((el) => (el._id === data._id ? data : el));
         modalForm.hide();
         setDb(newProduct);
+        Swal.fire("Éxito", "El registro se editó correctamente", "success");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteData = async (id) => {
-    let isDelete = window.confirm(
-      `¿Estás seguro de eliminar el producto con el id '${id}'?`
-    );
-
-    if (isDelete) {
-      let endpoint = `${url}/${id}`;
-      let resp = await axios.delete(endpoint);
-      if (!resp.err) {
-        let newData = db.filter((el) => el.id !== id);
-        setDb(newData);
-      } else {
-        setError(resp);
+  const deleteData = async (_id) => {
+    Swal.fire({
+      title: "Advertencia",
+      text: `¿Está seguro que desea eliminar el producto con el id ${_id}?`,
+      icon: "error",
+      showDenyButton: true,
+      denyButtonText: "No",
+      confirmButtonText: "Sí",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        let endpoint = `${url}/delete-product/${_id}`;
+        let resp = axios.delete(endpoint);
+        if (!resp.err) {
+          let newData = db.filter((el) => el._id !== _id);
+          setDb(newData);
+          Swal.fire("Éxito", "El registro se eliminó correctamente", "success");
+        } else {
+          setError(resp);
+        }
       }
-    }
+    });
   };
+
+  let dbCamisas = db.filter((el) => el.categoria === "Camisa");
+  let dbPantalones = db.filter((el) => el.categoria === "Pantalon");
+  let dbAmbos = db.filter((el) => el.categoria === "Ambo");
+
+  let dbCategorias = [...dbCamisas, ...dbPantalones, ...dbAmbos];
+
+  console.log(prueba);
   return (
     <>
       <h2 className="text-center">Listado de Productos Registrados</h2>
@@ -99,59 +128,32 @@ const ProductTable = () => {
           </div>
         </div>
         <div className="row mt-3">
-          <table className="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">CATEGORIA</th>
-                <th scope="col">SUB-CATEGORIA</th>
-                <th scope="col">MARCA</th>
-                <th scope="col">RESUMEN DESCRIPCION</th>
-                <th scope="col">DESCRIPCION</th>
-                <th scope="col">COLOR</th>
-                <th scope="col">DESTACADO</th>
-                <th scope="col" colSpan={5}>
-                  CANT. POR TALLE
-                </th>
-                <th scope="col">PRECIO</th>
-                <th scope="col">ACCIONES</th>
-              </tr>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">xS</th>
-                <th scope="col">S</th>
-                <th scope="col">M</th>
-                <th scope="col">L</th>
-                <th scope="col">xL</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {db ? (
-                db.map((el) => (
-                  <ProductTableRow
-                    key={el.id}
-                    el={el}
-                    setDataToEdit={setDataToEdit}
-                    deleteData={deleteData}
-                    modalForm={modalForm}
-                  />
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="3">Sin datos</td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+          {loading ? (
+            <CircularProgress />
+          ) : (
+            <>
+              <TableByCategories
+                db={dbCamisas}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+              <hr />
+              <TableByCategories
+                db={dbPantalones}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+              <hr />
+              <TableByCategories
+                db={dbAmbos}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+            </>
+          )}
         </div>
       </div>
       <div
