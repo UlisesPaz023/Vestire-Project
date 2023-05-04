@@ -9,12 +9,6 @@ const RootLayout = () => {
       <Navbar/>
       <main>
         <Outlet/>
-=======
-    <div className="root-layout">
-      <Navbar />
-      <main>
-        <Outlet />
->>>>>>> f4f13996b3607e6c7ce5e129782bf5dcfddad3d0
       </main>
       <Footer />
     </div>
