@@ -6,12 +6,13 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
-} from "react-router-dom";
-import RootLayout from "./layout/RootLayout";
-import { routes } from "./routes";
-import "typeface-roboto";
-import RootLayout from "./layout/RootLayout";
-import { routes } from "./routes";
+} from 'react-router-dom';
+import RootLayout from './layout/RootLayout';
+import { routes } from './routes';
+import 'typeface-roboto';
+// import NavBar from "./components/navbar/Navbar";
+import Body from "./components/body/Body";
+import Footer from "./components/footer/Footer";
 
 // import NavBar from "./components/navbar/Navbar";
 import Body from "./components/body/Body";
