@@ -1,0 +1,66 @@
+.image{
+  overflow-y: hidden;
+}
+
+.containerInfo{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title{
+  font-family: 'Mina', sans-serif;
+  font-size: 1.5rem;
+}
+
+.description{
+  font-size: .8rem;
+  margin: .5rem 0;
+}
+
+.button{
+  width: 6rem;
+  border: solid black .1rem;
+  transition: width .25s ease-in-out;
+}
+
+.buttonPoint{
+  width: 0;
+  height: 0;
+  background-color: black;
+  transition: transform .25s ease-out;
+}
+
+.text{
+  font-size: .75rem;
+  transition: transform .5s ease-out;
+}
+
+.button:hover{
+  width: 6.5rem;
+  border: solid black .1rem;
+}
+
+.button:hover >
+.buttonPoint{
+  width: .25rem;
+  height: .25rem;
+  transform: scale(2);
+}
+
+.button:hover >
+.text{
+  transform:translateX(.2rem)
+}
+
+.sliderImage{
+}
+.sliderContainer{
+  margin: 0 5rem
+}
+
+.sliderBtn{
+  width: 1rem;
+  height: 1rem;
+  border-radius: 2rem;
+}
