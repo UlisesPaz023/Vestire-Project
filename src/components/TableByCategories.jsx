@@ -4,7 +4,6 @@ import ProductTableRow from "./ProductTableRow";
 const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
   return (
     <div>
-      {/* {db ? console.log(db) : console.log("db vacia")} */}
       {db[0] ? (
         <h4>Categoria: {db[0].categoria}</h4>
       ) : (
@@ -13,7 +12,6 @@ const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
       <table className="table table-striped table-bordered">
         <thead>
           <tr>
-            {/* <th scope="col">ID</th> */}
             <th scope="col">CLASE/S</th>
             <th scope="col">CATEGORIA</th>
             <th scope="col">SUB-CATEGORIA</th>
@@ -29,7 +27,6 @@ const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
             <th scope="col">ACCIONES</th>
           </tr>
           <tr>
-            {/* <th scope="col"></th> */}
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -60,7 +57,7 @@ const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="3">Sin datos</td>
+              <td colSpan="11">Sin datos</td>
             </tr>
           )}
         </tbody>

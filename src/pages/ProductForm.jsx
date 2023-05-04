@@ -63,7 +63,6 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       const index = clase.indexOf(e.target.name);
       if (index > -1) clase.splice(index, 1);
     }
-    // console.log(clase);
     setProduct({ ...product, ["clase"]: clase });
   };
 
@@ -85,8 +84,6 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     setProduct(initProduct);
     setDataToEdit(null);
   };
-  // let flag = false;
-  // if (clase.contains("coleccion")) flag = true;
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -108,9 +105,9 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <input
               className="form-check-input"
               type="checkbox"
-              name="sastreria"
+              name="Sastreria"
               value={sastreria}
-              checked={clase.includes("sastreria")}
+              checked={clase.includes("Sastreria")}
               id="sastreria"
               onChange={handleCheckedClase}
             />
@@ -120,9 +117,9 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <input
               className="form-check-input"
               type="checkbox"
-              name="accesorios"
+              name="Accesorios"
               value={accesorios}
-              checked={clase.includes("accesorios")}
+              checked={clase.includes("Accesorios")}
               id="accesorios"
               onChange={handleCheckedClase}
             />
@@ -132,9 +129,9 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <input
               className="form-check-input"
               type="checkbox"
-              name="calzado"
+              name="Calzado"
               value={calzado}
-              checked={clase.includes("calzado")}
+              checked={clase.includes("Calzado")}
               id="calzado"
               onChange={handleCheckedClase}
             />

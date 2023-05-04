@@ -15,10 +15,9 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
     cantidadPorTalle,
   } = el;
   const { xs, s, m, l, xl } = cantidadPorTalle;
-  // console.log(clase);
+
   return (
     <tr id={_id ? _id : ""}>
-      {/* <td>{_id}</td> */}
       <td>
         {clase.map((text, idx) =>
           idx !== clase.length - 1 ? <div>{text}-</div> : <div>{text}</div>
@@ -36,7 +35,6 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
         )}
       </td>
       <td>{color}</td>
-      {/* <td>{destacado}</td> */}
       <td className="text-center">
         <input type="checkbox" checked={destacado} disabled />
       </td>
@@ -45,10 +43,10 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
       <td>{m}</td>
       <td>{l}</td>
       <td>{xl}</td>
-      <td>$ {precio}</td>
+      <td>${precio}</td>
       <td>
         <button className="btn btn-primary btn-sm">Vista previa</button>
-        {/* {console.log(el)} */}
+
         <button
           className="btn btn-warning btn-sm"
           onClick={() => {
