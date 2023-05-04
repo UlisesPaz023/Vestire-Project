@@ -9,9 +9,7 @@ import {
 import RootLayout from './layout/RootLayout';
 import { routes } from './routes';
 import 'typeface-roboto';
-// import NavBar from "./components/navbar/Navbar";
 import Body from "./components/body/Body";
-import Footer from "./components/footer/Footer";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,9 +25,7 @@ function App() {
   return (
     <>
       <Body />
-      {/* <NavBar /> */}
       <RouterProvider router={router} />
-      <Footer />
     </>
   );
 }
