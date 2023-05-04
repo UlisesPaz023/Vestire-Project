@@ -6,8 +6,8 @@ import ProductForm from "./ProductForm";
 import Swal from "sweetalert2";
 import TableByCategories from "../components/TableByCategories";
 import { CircularProgress } from "@mui/material";
-import { useRef } from "react";
-
+import "./styles/productTable.css";
+import ScrollButton from "../components/scrollbutton/ScrollButton";
 const ProductTable = () => {
   const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
@@ -15,7 +15,6 @@ const ProductTable = () => {
   const [loading, setLoading] = useState(false);
   const [modalForm, setModalForm] = useState(null);
   const url = "https://vestire.onrender.com/product";
-  const newRow = useRef(null);
 
   useEffect(() => {
     setModalForm(new bootstrap.Modal(document.getElementById("exampleModal")));
@@ -26,9 +25,7 @@ const ProductTable = () => {
         const resp = await axios.get(endpoint);
         setDb(resp.data);
         setError("");
-        //console.log(resp.data);
         setLoading(false);
-        //console.log(db);
       } catch (error) {
         console.log(error.message);
         setLoading(false);
@@ -38,30 +35,28 @@ const ProductTable = () => {
     getData();
   }, []);
 
-  // useEffect(() => {
-  //   if (newRow.current) {
-  //     newRow.current.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "center",
-  //     });
-  //   }
-  // }, [newRow]);
-
   const createData = async (data) => {
     try {
       let endpoint = `${url}/create-product`;
       let resp = await axios.post(endpoint, data);
-      console.log(resp.data);
       setDb([...db, resp.data]);
       Swal.fire("Éxito", "El registro se creó correctamente", "success");
       console.log(resp.data._id);
-      const element = document.getElementById(resp.data._id); // Reemplaza 'mi-elemento' con el identificador o atributo único de tu elemento
-      console.log(element);
+      let idNewRow = resp.data._id;
       modalForm.hide();
     } catch (error) {
       console.log(error.message);
     }
-
+    let fila = await axios.get(`${url}/get-products`);
+    let newRow = document.getElementById(fila.data[fila.data.length - 1]._id);
+    newRow.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+    newRow.classList.add("resaltada");
+    setTimeout(() => {
+      newRow.classList.remove("resaltada");
+    }, 4000);
     //location.reload();
   };
 
@@ -108,53 +103,51 @@ const ProductTable = () => {
   let dbPantalones = db.filter((el) => el.categoria === "Pantalon");
   let dbAmbos = db.filter((el) => el.categoria === "Ambo");
 
-  let dbCategorias = [...dbCamisas, ...dbPantalones, ...dbAmbos];
-
   return (
     <>
       <h2 className="text-center">Listado de Productos Registrados</h2>
-      <div className="container">
-        <div className="row mt-3">
-          <div className="col-xs-3 px-0">
-            <button
-              className="btn btn-primary mx-0"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Agregar Producto
-            </button>
+      {loading ? (
+        <div className="row">
+          <div className="col text-center">
+            <CircularProgress />
           </div>
         </div>
-        <div className="row mt-3">
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            <>
-              <TableByCategories
-                db={dbCamisas}
-                setDataToEdit={setDataToEdit}
-                deleteData={deleteData}
-                modalForm={modalForm}
-              />
-              <hr />
-              <TableByCategories
-                db={dbPantalones}
-                setDataToEdit={setDataToEdit}
-                deleteData={deleteData}
-                modalForm={modalForm}
-              />
-              <hr />
-              <TableByCategories
-                db={dbAmbos}
-                setDataToEdit={setDataToEdit}
-                deleteData={deleteData}
-                modalForm={modalForm}
-              />
-            </>
-          )}
+      ) : (
+        <div className="container">
+          <div className="row mt-3">
+            <div className="col-xs-3 px-0">
+              <button
+                className="btn btn-primary ms-2"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Agregar Producto
+              </button>
+            </div>
+          </div>
+          <TableByCategories
+            db={dbCamisas}
+            setDataToEdit={setDataToEdit}
+            deleteData={deleteData}
+            modalForm={modalForm}
+          />
+          <hr />
+          <TableByCategories
+            db={dbPantalones}
+            setDataToEdit={setDataToEdit}
+            deleteData={deleteData}
+            modalForm={modalForm}
+          />
+          <hr />
+          <TableByCategories
+            db={dbAmbos}
+            setDataToEdit={setDataToEdit}
+            deleteData={deleteData}
+            modalForm={modalForm}
+          />
         </div>
-      </div>
+      )}
       <div
         className="modal fade"
         id="exampleModal"
@@ -203,6 +196,7 @@ const ProductTable = () => {
           </div>
         </div>
       </div>
+      <ScrollButton />
     </>
   );
 };
