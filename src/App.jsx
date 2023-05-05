@@ -5,12 +5,13 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
-} from 'react-router-dom';
-import RootLayout from './layout/RootLayout';
-import { routes } from './routes';
-import 'typeface-roboto';
+} from "react-router-dom";
+import RootLayout from "./layout/RootLayout";
+import { routes } from "./routes";
+import "typeface-roboto";
+import NavBar from "./components/navbar/Navbar";
 import Body from "./components/body/Body";
-
+import Footer from "./components/footer/Footer";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<RootLayout />}>
@@ -24,8 +25,10 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
+      <NavBar />
       <Body />
       <RouterProvider router={router} />
+      <Footer />
     </>
   );
 }
