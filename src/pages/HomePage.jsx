@@ -2,6 +2,7 @@ import React from 'react';
 import ProductGrid from '../components/productGrid/ProductGrid';
 import Slider from '../components/slider/Slider';
 import Categories from '../components/categories/Categories';
+import Publicidad from '../components/publicidad/Publicidad';
 
 const HomePage = () => {
   return (
@@ -9,6 +10,7 @@ const HomePage = () => {
       <Categories/>
       <Slider/>
       <ProductGrid/>
+      <Publicidad/>
     </section>
   );
 };
