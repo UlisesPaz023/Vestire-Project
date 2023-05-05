@@ -39,11 +39,11 @@ const ProductTable = () => {
     try {
       let endpoint = `${url}/create-product`;
       let resp = await axios.post(endpoint, data);
+      modalForm.hide();
       setDb([...db, resp.data]);
       Swal.fire("Éxito", "El registro se creó correctamente", "success");
       console.log(resp.data._id);
       let idNewRow = resp.data._id;
-      modalForm.hide();
     } catch (error) {
       console.log(error.message);
     }

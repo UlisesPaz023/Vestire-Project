@@ -1,14 +1,12 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import {
   createBrowserRouter,
   RouterProvider,
   createRoutesFromElements,
   Route,
-} from 'react-router-dom';
-import RootLayout from './layout/RootLayout';
-import { routes } from './routes';
-import 'typeface-roboto';
+} from "react-router-dom";
+import RootLayout from "./layout/RootLayout";
+import { routes } from "./routes";
+import "typeface-roboto";
 import Body from "./components/body/Body";
 
 const router = createBrowserRouter(
