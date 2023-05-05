@@ -1,0 +1,117 @@
+.navbar {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.navbar > .nav-logo {
+  font-weight: 600px;
+  font-size: 40px;
+  margin: 15px;
+  color: #1b2638;
+}
+/* <----EX .navbar > .navbar-items ----> a */
+.nav-items .a {
+  color: #1b2638;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 15px;
+  position: relative;
+  opacity: 0.9;
+}
+
+.nav-items .a:hover {
+  opacity: 1;
+  color: #d4af37;
+}
+
+.nav-items .a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background-color: #d4af37;
+  height: 2px;
+  transition: all 0.45s;
+}
+
+.nav-items .a:hover::before {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: flex;
+}
+
+@media (max-width: 700px) {
+  .navbar > .nav-items {
+    position: absolute;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1b2638;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: all 0.45s;
+  }
+
+  .navbar > .nav-items .open {
+    transform: rotateX(0);
+  }
+
+  .navbar > .nav-toggle {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .nav-toggle > .bar {
+    position: relative;
+    width: 32px;
+    height: 2px;
+    background-color: #1b2638;
+  }
+
+  .nav-toggle > .bar::before,
+  .nav-toggle > .bar::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background-color: #d4af37;
+    border-radius: 2px;
+    transition: all 0.45s ease-in-out;
+  }
+
+  .nav-toggle > .bar::before {
+    width: 25px;
+    transform: translateY(-8px);
+    right: 0;
+  }
+
+  .nav-toggle > .bar::after {
+    width: 32px;
+    transform: rotateY(8px);
+  }
+
+  .nav-toggle .open > .bar {
+    transform: rotateX(-40px);
+    background: transparent;
+  }
+
+  .nav-toggle .open > .bar::before {
+    width: 32px;
+    transform: rotate(-45deg) translate(26px, -26px);
+  }
+
+  .nav-toggle .open > .bar::after {
+    transform: rotate(-45deg) translate(26px, 26px);
+  }
+}
