@@ -120,6 +120,11 @@ a {
   margin: 0.5rem 0;
   cursor: pointer;
   font-family: "Lato", sans-serif;
+  text-decoration: none;
+}
+
+p {
+  text-decoration: none;
 }
 
 .sb_footer-below {
