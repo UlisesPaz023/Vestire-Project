@@ -19,25 +19,37 @@ const Slider = () => {
     getData();
   },[]);
 
-  console.log(products)
+  const productGroups = [];
+  for (let i = 0; i < products.length; i++) {
+    if (i % 4 === 0) {
+      productGroups.push(products.slice(i, i + 4));
+    }
+  }
 
   return (
-    <div className='container-flex'>
+    <div className='container-flex my-5'>
       <div className='row col-12 m-0'>
-        <div id="carouselExampleIndicators" className="carousel carousel-dark slide p-0">
-          <div className="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className={`${styles.sliderBtn} rounded active`} aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" className={`${styles.sliderBtn} rounded`} aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" className={`${styles.sliderBtn} rounded`} aria-label="Slide 3"></button>
-          </div>
-          <div className={`justify-content-center ${styles.sliderContainer}`}>
+        <div id="carouselExampleIndicators" className="position-static carousel carousel-dark slide p-0">
+          <div className={`d-none d-md-flex position-static ${styles.sliderContainer}`}>
               {
-                products.map((x, i)=>(
-                  x.id < 4
-                  &&
-                  <CardSlider x = {x}/>
+                productGroups.map((x, i)=>(
+                  <CardSlider x={x} i={i} key = {i}/>
                 ))
               }
+          </div>
+          <div className={`d-flex d-md-none ${styles.sliderContainer}`}>
+              {
+                products.map((x, i)=>(
+                  <CardSlider x={x} i={i} key = {i}/>
+                ))
+              }
+          </div>
+          <div className={`col d-flex carousel-indicators position-static ${styles.sliderBtns}`}>
+            {
+              productGroups.map((x, i)=>(
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={`${i}`} className={`${styles.sliderBtn} ${i===0 ? 'active':''}`} aria-current={`${i===0 ? 'true':'false'}`} aria-label={`Slide ${i+1}`}></button>
+              ))
+            }
           </div>
         </div>
       </div>
