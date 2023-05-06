@@ -3,6 +3,7 @@ import { React, useEffect, useState } from "react";
 const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
   const {
     _id,
+    codigo,
     clase,
     categoria,
     subCategoria,
@@ -18,12 +19,12 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
 
   return (
     <tr id={_id ? _id : ""}>
+      <td>{codigo}</td>
       <td>
         {clase.map((text, idx) =>
           idx !== clase.length - 1 ? <div>{text}-</div> : <div>{text}</div>
         )}
       </td>
-      <td>{categoria}</td>
       <td>{subCategoria}</td>
       <td>{marca}</td>
       <td>{resumenDescripcion}</td>

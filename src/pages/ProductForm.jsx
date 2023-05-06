@@ -4,6 +4,7 @@ import Subcat from "../components/Subcat";
 
 const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const initProduct = {
+    codigo: "",
     clase: [],
     categoria: "",
     subCategoria: "",
@@ -25,6 +26,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 
   const [product, setProduct] = useState(initProduct);
   const {
+    codigo,
     clase,
     categoria,
     subCategoria,
@@ -70,7 +72,10 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     if (e.target.name === "cantidadPorTalle") {
       cantidadPorTalle[e.target.id] = Number(e.target.value);
       setProduct({ ...product, cantidadPorTalle });
-    } else setProduct({ ...product, [e.target.name]: e.target.value });
+    } else {
+      console.log(e.target.name, e.target.value);
+      setProduct({ ...product, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
@@ -87,6 +92,20 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div className="row mb-2">
+          <label htmlFor="codigo" className="form-label">
+            Código
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="codigo"
+            placeholder="Ingrese código del producto"
+            name="codigo"
+            value={codigo}
+            onChange={handleChange}
+          ></input>
+        </div>
         <div className="row ">
           <span className="mb-1">Seleccione la/s clase/s del producto</span>
           <div className="card card-body mb-3">
@@ -126,18 +145,6 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <label className="form-check-label" htmlFor="accesorios">
               Accesorios
             </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              name="Calzado"
-              value={calzado}
-              checked={clase.includes("Calzado")}
-              id="calzado"
-              onChange={handleCheckedClase}
-            />
-            <label className="form-check-label" htmlFor="calzado">
-              Calzado
-            </label>
           </div>
         </div>
         <div className="row">
@@ -152,6 +159,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <option value="Camisa">Camisa</option>
             <option value="Pantalon">Pantalon</option>
             <option value="Ambo">Ambo</option>
+            <option value="Accesorios">Accesorios</option>
           </select>
         </div>
         <div className="row">
@@ -235,6 +243,10 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <option value="Azul">Azul</option>
             <option value="Rojo">Rojo</option>
             <option value="Verde">Verde</option>
+            <option value="Rosa">Rosa</option>
+            <option value="Celeste">Celeste</option>
+            <option value="Verde agua">Verde agua</option>
+            <option value="Jean">Jean</option>
           </select>
         </div>
         <div className="row mb-2">

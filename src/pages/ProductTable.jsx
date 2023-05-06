@@ -102,6 +102,7 @@ const ProductTable = () => {
   let dbCamisas = db.filter((el) => el.categoria === "Camisa");
   let dbPantalones = db.filter((el) => el.categoria === "Pantalon");
   let dbAmbos = db.filter((el) => el.categoria === "Ambo");
+  let dbAccesorios = db.filter((el) => el.categoria === "Accesorios");
 
   return (
     <>
@@ -126,26 +127,39 @@ const ProductTable = () => {
               </button>
             </div>
           </div>
-          <TableByCategories
-            db={dbCamisas}
-            setDataToEdit={setDataToEdit}
-            deleteData={deleteData}
-            modalForm={modalForm}
-          />
-          <hr />
-          <TableByCategories
-            db={dbPantalones}
-            setDataToEdit={setDataToEdit}
-            deleteData={deleteData}
-            modalForm={modalForm}
-          />
-          <hr />
-          <TableByCategories
-            db={dbAmbos}
-            setDataToEdit={setDataToEdit}
-            deleteData={deleteData}
-            modalForm={modalForm}
-          />
+          {db[0] ? (
+            <>
+              <TableByCategories
+                db={dbCamisas}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+              <hr />
+              <TableByCategories
+                db={dbPantalones}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+              <hr />
+              <TableByCategories
+                db={dbAmbos}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+              <hr />
+              <TableByCategories
+                db={dbAccesorios}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+                modalForm={modalForm}
+              />
+            </>
+          ) : (
+            <h4 className="mt-2">No hay productos registrados</h4>
+          )}
         </div>
       )}
       <div
