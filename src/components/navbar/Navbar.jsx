@@ -1,15 +1,19 @@
+import "./navbar.css";
 import Button from "react-bootstrap/Button";
+import Button2 from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import logo from "../img/vestiree.png";
 
-function Navbar() {
+function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <img src={logo} alt="" />
+        <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -18,29 +22,24 @@ function Navbar() {
             navbarScroll
           >
             <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
+            <Nav.Link href="#action2">Favortios</Nav.Link>
+            <Nav.Link href="#action3">Contacto</Nav.Link>
+            <NavDropdown title="V" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action4">Login</NavDropdown.Item>
+              <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
+              <NavDropdown.Item href="#action6">Cerrar sesion</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="Buscar producto"
               className="me-2"
               aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success">Buscar</Button>
+            <Button2 variant="outline-success2">Carrito</Button2>
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -48,7 +47,7 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavBar;
 
 // import React, { useState } from "react";
 // import "../navbar/navbar.css";
@@ -58,7 +57,7 @@ export default Navbar;
 
 //   const navToggle = () => {
 //     active === "nav_menu"
-//       ? setActive("nav_menu nav_active")
+// ? setActive("nav_menu nav_active")
 //       : setActive("nav_manu");
 
 //     ToggleIcon === "nav_toggler"

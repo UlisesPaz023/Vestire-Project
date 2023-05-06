@@ -1,3 +1,74 @@
+.navbar {
+  color: #fff;
+  box-shadow: 0 5px 10px;
+}
+
+.navbar-nav .nav-link:hover {
+  opacity: 1;
+  color: #d4af37;
+}
+
+.navbar-nav .nav-link::before {
+  color: #1b2638;
+  position: relative;
+  content: "";
+  margin: 1rem;
+  bottom: 0;
+  left: 0;
+  width: 1rem;
+  background-color: #d4af37;
+  height: 2px;
+  transition: all 0.45s;
+}
+
+a.nav-link {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar-nav .nav-link:hover::before {
+  width: 100%;
+}
+
+.navbar .dropdown-menu {
+  background-color: #fff;
+}
+
+.navbar .dropdown-menu:hover {
+  color: #d4af37;
+}
+
+.dropdown-item {
+  color: #1b2638;
+}
+
+.navbar-collapse {
+  margin: 0.5rem;
+}
+
+.navbar .dropdown-toggle::after {
+  color: #d4af37;
+}
+
+.form.control {
+  color: #fff;
+}
+
+.navbar .btn-outline-success {
+  background-color: #1b2638;
+  border-color: transparent;
+  color: #fff;
+}
+
+.navbar .btn-outline-success:hover {
+  color: #fff;
+  background-color: #d4af37;
+  border-color: #1b2638;
+}
+
+.navbar .btn-outline-success2 {
+  color: blue;
+}
 /* li {
   list-style: none;
 }
