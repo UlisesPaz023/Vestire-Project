@@ -1,25 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Card from "../card/Card";
-import axios from "axios";
 import style from "../productGrid/productgrid.module.css";
 
-const ProductGrid = ({ products }) => {
-  // const url = "https://vestire.onrender.com/product";
-  // const [product, setProduct] = useState([]);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     let endpoint = `${url}/get-products`;
-  //     try {
-  //       const { data } = await axios.get(endpoint);
-  //       setProduct(data);
-  //     } catch (error) {
-  //       alert("Ha ocurrido un problema.");
-  //     }
-  //   };
-  //   getData();
-  // }, []);
-  console.log(products);
+const ProductGrid = ({ products, productsToShow }) => {
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
@@ -28,8 +11,8 @@ const ProductGrid = ({ products }) => {
             Nueva Colección
           </h1>
         </div>
-        {products.map((product) => (
-          <Card product={product} quantity={products.length} />
+        {productsToShow.map((product) => (
+          <Card product={product} quantity={productsToShow.length} />
         ))}
       </div>
     </div>

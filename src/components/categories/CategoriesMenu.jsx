@@ -5,8 +5,10 @@ import CategoriesItems from "./CategoriesItems";
 const CategoriesMenu = (props) => {
   const clase = props.trueArrayClass;
   const { products } = props;
+  const { setProducts } = props;
+  const { setProductsToShow } = props;
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
-
+  console.log(clase);
   const handleButtonClick = (index) => {
     setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
   };
@@ -48,6 +50,8 @@ const CategoriesMenu = (props) => {
                     selectedButtonIndex={selectedButtonIndex}
                     multiCollapseExample={`multiCollapseExample${i + 1}`}
                     products={products}
+                    setProducts={setProducts}
+                    setProductsToShow={setProductsToShow}
                   />
                 }
               </div>
@@ -66,6 +70,8 @@ const CategoriesMenu = (props) => {
               selectedButtonIndex={selectedButtonIndex}
               multiCollapseExample={`multiCollapseExample${i + 1}`}
               products={products}
+              setProducts={setProducts}
+              setProductsToShow={setProductsToShow}
             />
           }
         </div>

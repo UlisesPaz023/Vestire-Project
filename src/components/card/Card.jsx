@@ -20,16 +20,12 @@ const Card = (props) => {
 
   return (
     <div
-      className={`card col-6 col-md-3 col-lg-2 rounded-0 border-0 p-0 my-3 mx-md-2 shadow ${cardAmount(
+      className={`card rounded-2 col-6 col-md-3 col-lg-2 rounded-0 border-0 p-0 my-3 mx-md-2 shadow ${cardAmount(
         props.quantity
       )}`}
     >
       <div className={`${styles.image}`}>
-        <img
-          src={imagen}
-          className="card-img-top rounded-2"
-          alt={resumenDescripcion}
-        />
+        <img src={imagen} className="card-img-top " alt={resumenDescripcion} />
       </div>
       <div
         className={` card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-4 mb-lg-3 justify-content-between`}

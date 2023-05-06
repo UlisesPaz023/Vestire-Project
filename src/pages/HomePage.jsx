@@ -8,13 +8,14 @@ const url = "https://vestire.onrender.com/product";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [productsToShow, setProductsToShow] = useState([]);
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-products`;
       try {
         const { data } = await axios.get(endpoint);
-        console.log(data);
         setProducts(data);
+        setProductsToShow(data);
       } catch (error) {
         alert("Ha ocurrido un problema.");
       }
@@ -22,12 +23,15 @@ const HomePage = () => {
     getData();
   }, []);
 
-  console.log(products);
   return (
     <section>
-      <Categories />
+      <Categories
+        products={products}
+        setProducts={setProducts}
+        setProductsToShow={setProductsToShow}
+      />
       {/* <Slider /> */}
-      <ProductGrid products={products} />
+      <ProductGrid productsToShow={productsToShow} />
     </section>
   );
 };
