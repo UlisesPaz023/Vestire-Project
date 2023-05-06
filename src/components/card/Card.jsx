@@ -2,7 +2,9 @@ import React from "react";
 import styles from "../card/card.module.css";
 
 const Card = (props) => {
-  const { _id, resumenDescripcion, descripcion, imagen } = props.x;
+  const { _id, resumenDescripcion, descripcion, imagen } = props.product;
+  console.log(resumenDescripcion);
+  console.log(imagen);
   const cardAmount = (amount) => {
     if (amount <= 15) {
       if (amount > 10) {
