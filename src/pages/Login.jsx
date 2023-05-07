@@ -6,7 +6,8 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const body = { email, password };
+    const username = e.target.username.value;
+    const body = { email, password, username };
     login(body);
   };
 
@@ -26,8 +27,9 @@ const Login = () => {
   const handleRegister = async (e) => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const username = document.getElementById("username").value;
     console.log(email, password);
-    const body = { email, password };
+    const body = { email, password, username };
     try {
       const { data } = await axios.post(
         "https://vestire.onrender.com/users/create-user",
@@ -43,7 +45,7 @@ const Login = () => {
     if (localStorage.getItem("userToken")) {
       const token = localStorage.getItem("userToken");
       const headers = { Authorization: `Bearer ${token}` };
-      const resp = await axios.get("https://vestire.onrender.com/info", {
+      const resp = await axios.get("https://vestire.onrender.com/users/info", {
         headers,
       });
       console.log(resp);
@@ -64,6 +66,21 @@ const Login = () => {
             class="form-control"
             name="email"
             id="email"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">
+            User Name
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="username"
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" class="form-text">

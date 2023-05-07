@@ -26,6 +26,7 @@ const HomePage = () => {
 
   return (
     <section>
+      <Login />
       <Categories
         products={products}
         setProducts={setProducts}

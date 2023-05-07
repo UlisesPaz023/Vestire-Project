@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 //import ProductTable from "./components/ProductTable";
 import axios from "axios";
@@ -7,6 +7,33 @@ import axios from "axios";
 // import LoadProductForm from "./components/LoadProductForm";
 
 const Admin = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isAdmin = async () => {
+      try {
+        if (localStorage.getItem("userToken")) {
+          const token = localStorage.getItem("userToken");
+          const headers = { Authorization: `Bearer ${token}` };
+          const resp = await axios.get(
+            "https://vestire.onrender.com/users/check-user-admin",
+            { headers }
+          );
+          if (!resp.data) {
+            alert("Acceso denegado");
+            navigate("/");
+          }
+          console.log(resp);
+        } else {
+          //alert("Usuario no logeado");
+          navigate("/");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    isAdmin();
+  }, []);
+
   return (
     <div>
       <div className="container">

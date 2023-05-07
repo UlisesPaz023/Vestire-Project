@@ -4,6 +4,8 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
+const isAdmin = () => {};
+
 const routes = [
   {
     path: "/register",
