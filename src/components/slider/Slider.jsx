@@ -1,43 +1,52 @@
-import React, {useState, useEffect} from 'react';
-import CardSlider from './CardSlider';
-import axios from 'axios';
-import styles from '../card/card.module.css';
+import React, { useState, useEffect } from "react";
+import CardSlider from "./CardSlider";
+import axios from "axios";
+import styles from "../card/card.module.css";
 
-const Slider = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(()=>{
-    const getData = async () => {
-      const urlBase = `http://localhost:3000/productos`;
-      try {
-        const {data} = await axios.get(urlBase);
-        setProducts(data);
-      } catch (error) {
-        alert('Ha ocurrido un problema');
-      }
-    };
-    getData();
-  },[]);
-
-  console.log(products)
+const Slider = ({ products }) => {
+  const productsSlider = products.filter(
+    (product) => product.destacado === true
+  );
+  console.log(productsSlider);
+  const productGroups = [];
+  for (let i = 0; i < productsSlider.length; i++) {
+    if (i % 4 === 0) {
+      productGroups.push(productsSlider.slice(i, i + 4));
+    }
+  }
 
   return (
-    <div className='container-flex'>
-      <div className='row col-12 m-0'>
-        <div id="carouselExampleIndicators" className="carousel carousel-dark slide p-0">
-          <div className="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className={`${styles.sliderBtn} rounded active`} aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" className={`${styles.sliderBtn} rounded`} aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" className={`${styles.sliderBtn} rounded`} aria-label="Slide 3"></button>
+    <div className="container-flex my-5">
+      <div className="row col-12 m-0">
+        <div
+          id="carouselExampleIndicators"
+          className="position-static carousel carousel-dark slide p-0"
+        >
+          <div
+            className={`d-none d-md-flex position-static ${styles.sliderContainer}`}
+          >
+            {productGroups.map((x, i) => (
+              <CardSlider x={x} i={i} key={i} />
+            ))}
           </div>
-          <div className={`justify-content-center ${styles.sliderContainer}`}>
-              {
-                products.map((x, i)=>(
-                  x.id < 4
-                  &&
-                  <CardSlider x = {x}/>
-                ))
-              }
+          <div className={`d-flex d-md-none ${styles.sliderContainer}`}>
+            {productsSlider.map((x, i) => (
+              <CardSlider x={x} i={i} key={i} />
+            ))}
+          </div>
+          <div
+            className={`col d-flex carousel-indicators position-static ${styles.sliderBtns}`}
+          >
+            {productGroups.map((x, i) => (
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to={`${i}`}
+                className={`${styles.sliderBtn} ${i === 0 ? "active" : ""}`}
+                aria-current={`${i === 0 ? "true" : "false"}`}
+                aria-label={`Slide ${i + 1}`}
+              ></button>
+            ))}
           </div>
         </div>
       </div>

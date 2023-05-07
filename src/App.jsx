@@ -7,7 +7,12 @@ import {
 import RootLayout from "./layout/RootLayout";
 import { routes } from "./routes";
 import "typeface-roboto";
-import Body from "./components/body/Body";
+// import Body from "./components/body/Body";
+
+import Footer from "./components/footer/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import Error from "./components/error404/Error";
+import NavBar from "./components/navbar/Navbar";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,8 +27,11 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <Body />
+      <NavBar />
+      {/* <Error /> */}
+      {/* <Body /> */}
       <RouterProvider router={router} />
+      <Footer />
     </>
   );
 }

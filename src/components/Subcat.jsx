@@ -14,6 +14,9 @@ const Subcat = ({ categoria, handleChange, subCategoria }) => {
       case "Ambo":
         setSubcat(["Clasico", "Slim Fit"]);
         break;
+      case "Accesorios":
+        setSubcat(["Corbatas", "Cinturones"]);
+        break;
       default:
         break;
     }
