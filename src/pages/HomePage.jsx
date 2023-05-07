@@ -31,7 +31,7 @@ const HomePage = () => {
         setProducts={setProducts}
         setProductsToShow={setProductsToShow}
       />
-      <Slider />
+      <Slider products={products} />
       <ProductGrid
         productsToShow={productsToShow}
         setProductsToShow={setProductsToShow}

@@ -9,8 +9,16 @@ const CategoriesMenu = (props) => {
   const { setProductsToShow } = props;
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
   console.log(clase);
+  // const handleButtonClick = (index) => {
+  //   setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
+  // };
+
   const handleButtonClick = (index) => {
-    setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
+    let aux = null;
+    if (index === "multiCollapseExample1") aux = null;
+    else aux = index;
+    setSelectedButtonIndex(aux);
+    setProductsToShow(products);
   };
   return (
     <>
