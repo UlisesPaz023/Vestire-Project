@@ -10,7 +10,7 @@ const Categories = ({ products, setProducts, setProductsToShow }) => {
   let trueArrayClass = arrayClass.filter((x, i) => {
     return arrayClass.indexOf(x) === i;
   });
-
+  trueArrayClass.unshift("Todos");
   const isNotUndefined = (products, trueArrayClass) => {
     if (products !== undefined && trueArrayClass !== undefined) {
       return true;
