@@ -1,0 +1,22 @@
+/* .resaltada {
+  opacity: 0.8;
+  background-color: red;
+} */
+
+.resaltada {
+  animation: resaltar 2s infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: ease 0.3;
+}
+
+@keyframes resaltar {
+  0% {
+    background-color: greenyellow;
+  }
+  50% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: greenyellow;
+  }
+}
