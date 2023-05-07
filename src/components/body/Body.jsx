@@ -6,7 +6,7 @@ const Body = () => {
     <>
       <div className="body">
         <div className="body-tittle">
-          <h1>holiS</h1>
+          <h1></h1>
         </div>
       </div>
     </>
