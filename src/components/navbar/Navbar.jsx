@@ -25,7 +25,7 @@ function NavBar() {
             <Nav.Link href="#action2">Favortios</Nav.Link>
             <Nav.Link href="#action3">Contacto</Nav.Link>
             <NavDropdown title="V" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action4">Login</NavDropdown.Item>
+              <NavDropdown.Item as Link to= "Login">Login</NavDropdown.Item>
               <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action6">Cerrar sesion</NavDropdown.Item>

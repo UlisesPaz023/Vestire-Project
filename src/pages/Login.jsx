@@ -2,21 +2,23 @@ import React from "react";
 import axios from "axios";
 
 const Login = () => {
+
   const handleLogin = (e) => {
     e.preventDefault();
+    const username = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    const body = { email, password };
-    login(body);
+    const body = { username, email, password };
   };
 
   const login = async (body) => {
     try {
+      console.log(body)
       const { data } = await axios.post(
         "https://vestire.onrender.com/users/login",
         body
       );
-      console.log(data.data.token);
+      //console.log(data.data.token);
       localStorage.setItem("userToken", data.data.token);
     } catch (error) {
       console.log(error);
@@ -24,10 +26,11 @@ const Login = () => {
   };
 
   const handleRegister = async (e) => {
+    const username = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    console.log(email, password);
-    const body = { email, password };
+    console.log(username, email, password);
+    const body = { username, email, password };
     try {
       const { data } = await axios.post(
         "https://vestire.onrender.com/users/create-user",
@@ -43,7 +46,7 @@ const Login = () => {
     if (localStorage.getItem("userToken")) {
       const token = localStorage.getItem("userToken");
       const headers = { Authorization: `Bearer ${token}` };
-      const resp = await axios.get("https://vestire.onrender.com/info", {
+      const resp = await axios.get("https://vestire.onrender.com/users/info", {
         headers,
       });
       console.log(resp);
@@ -55,6 +58,12 @@ const Login = () => {
   return (
     <div className="container">
       <form onSubmit={handleLogin}>
+        <div class="mb-3">
+          <label for="exampleInputName1" class="form-label">
+            Nombre de usuario
+          </label>
+          <input type="text" class="form-control" name="name" id="name" />
+        </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             Email address
@@ -81,8 +90,9 @@ const Login = () => {
             id="password"
           />
         </div>
-        <button type="submit" class="btn btn-primary">
-          Submit
+
+        <button type="submit" className="btn btn-success mx-2">
+          Login
         </button>
         <button
           type="button"
