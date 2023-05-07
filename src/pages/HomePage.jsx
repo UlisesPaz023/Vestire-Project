@@ -18,7 +18,7 @@ const HomePage = () => {
         setProducts(data);
         setProductsToShow(data);
       } catch (error) {
-        alert("Ha ocurrido un problema.");
+        console.log(error);
       }
     };
     getData();
@@ -26,14 +26,12 @@ const HomePage = () => {
 
   return (
     <section>
-      <button className="btn btn-primary"></button>
-      <Login />
       <Categories
         products={products}
         setProducts={setProducts}
         setProductsToShow={setProductsToShow}
       />
-      {/* <Slider /> */}
+      <Slider />
       <ProductGrid
         productsToShow={productsToShow}
         setProductsToShow={setProductsToShow}
