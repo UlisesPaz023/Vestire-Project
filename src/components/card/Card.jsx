@@ -13,9 +13,10 @@ const Card = (props) => {
         }
         return `d-none d-md-flex`;
       }
-    } else {
-      return `d-none`;
     }
+    // } else {
+    //   return `d-none`;
+    // }
   };
 
   return (

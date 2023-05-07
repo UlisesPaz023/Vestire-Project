@@ -3,6 +3,7 @@ import ProductGrid from "../components/productGrid/ProductGrid";
 import Slider from "../components/slider/Slider";
 import Categories from "../components/categories/Categories";
 import axios from "axios";
+import Login from "./Login";
 
 const url = "https://vestire.onrender.com/product";
 
@@ -25,13 +26,18 @@ const HomePage = () => {
 
   return (
     <section>
+      <button className="btn btn-primary"></button>
+      <Login />
       <Categories
         products={products}
         setProducts={setProducts}
         setProductsToShow={setProductsToShow}
       />
       {/* <Slider /> */}
-      <ProductGrid productsToShow={productsToShow} />
+      <ProductGrid
+        productsToShow={productsToShow}
+        setProductsToShow={setProductsToShow}
+      />
     </section>
   );
 };
