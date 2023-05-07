@@ -1,8 +1,9 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import styles from "../card/card.module.css";
 
 const Card = (props) => {
-  const { _id, resumenDescripcion, descripcion, imagen } = props.product;
+  const { _id, resumenDescripcion, imagen } = props.product;
   console.log(resumenDescripcion);
   console.log(imagen);
   const cardAmount = (amount) => {
@@ -19,15 +20,20 @@ const Card = (props) => {
     // }
   };
 
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/product-page/${_id}`, { state: props.product });
+  };
+
   return (
     <div
       className={`card rounded-2 col-6 col-md-3 col-lg-2 rounded-0 border-0 p-0 my-3 mx-md-2 shadow ${cardAmount(
         props.quantity
       )}`}
     >
-      <div className={`${styles.image}`}>
+      <button onClick={handleClick} className={`${styles.image}`}>
         <img src={imagen} className="card-img-top " alt={resumenDescripcion} />
-      </div>
+      </button>
       <div
         className={` card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-4 mb-lg-3 justify-content-between`}
       >
@@ -39,6 +45,7 @@ const Card = (props) => {
         {/* <a href="/#" className="btn p-0 fw-bold">COMPRAR AHORA</a> */}
         <div className="text-center">
           <button
+            onClick={handleClick}
             className={`${styles.button} d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
           >
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>

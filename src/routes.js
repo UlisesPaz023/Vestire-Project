@@ -2,8 +2,10 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
+import ProductPage from "./pages/ProductPage";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
+
 const routes = [
   {
     path: "/register",
@@ -29,6 +31,10 @@ const routes = [
     path: "/admin/product-form",
     Element: ProductForm,
   },
+  {
+    path: '/product-page/:id',
+    Element: ProductPage
+  }
 ];
 
 export { routes };
