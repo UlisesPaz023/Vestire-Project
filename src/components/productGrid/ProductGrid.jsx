@@ -8,6 +8,8 @@ const ProductGrid = ({ products, productsToShow, setProductsToShow }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(15);
   const totalProducts = productsToShow.length;
+  const lastIndex = productsPerPage * currentPage;
+  const firstIndex = lastIndex - productsPerPage;
 
   return (
     <div className="container-fluid">
@@ -17,9 +19,11 @@ const ProductGrid = ({ products, productsToShow, setProductsToShow }) => {
             Nueva Colección
           </h1>
         </div>
-        {productsToShow.map((product) => (
-          <Card product={product} quantity={productsToShow.length} />
-        ))}
+        {productsToShow
+          .map((product) => (
+            <Card product={product} quantity={productsToShow.length} />
+          ))
+          .slice(firstIndex, lastIndex)}
       </div>
       <Pagination
         totalProducts={totalProducts}
