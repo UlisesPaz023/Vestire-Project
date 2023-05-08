@@ -41,7 +41,16 @@
   color: #fff;
 }
 
+.socialmedia .qr img {
+  width: 90px;
+  height: 90px;
+  border-radius: 0;
+}
+
 @media screen and (max-width: 414px) {
+  .socialmedia .qr img:nth-child(0) {
+    display: none;
+  }
   .sb_footer-links {
     display: flex;
     flex-wrap: wrap;
@@ -77,13 +86,12 @@ a {
 
 .socialmedia {
   display: flex;
-  flex-direction: row;
+  margin-top: -15px;
 }
 
 .socialmedia img {
   width: 30px;
-  padding: 1px;
-
+  margin: 3px;
   border-radius: 50%;
   transition-property: outline-offset outline-color background-color;
   transition: 0.25s;
@@ -113,6 +121,15 @@ a {
   font-size: 20px;
   line-height: 17px;
   margin-bottom: 1rem;
+}
+
+.v {
+  text-decoration: none;
+  color: #fff;
+}
+
+.v:hover {
+  color: #d4af37;
 }
 
 .sb_footer-links_div p {

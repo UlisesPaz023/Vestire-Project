@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+
 import logo from "../img/vestiree.png";
 
 function NavBar() {
@@ -13,6 +14,7 @@ function NavBar() {
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <img src={logo} alt="" />
+
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -21,7 +23,9 @@ function NavBar() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link to="home" href="#action1">
+              Home
+            </Nav.Link>
             <Nav.Link href="#action2">Favortios</Nav.Link>
             <Nav.Link href="#action3">Contacto</Nav.Link>
             <NavDropdown title="V" id="navbarScrollingDropdown">
@@ -34,7 +38,7 @@ function NavBar() {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Buscar producto"
+              placeholder="Buscar productos"
               className="me-2"
               aria-label="Search"
             />
