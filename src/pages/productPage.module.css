@@ -1,23 +1,84 @@
-.button{
-  font-size: .75rem;
+.button {
+  font-size: 0.75rem;
 }
 
-.desc{
-  font-size: .85rem;
+.desc {
+  font-size: 0.85rem;
 }
 
-.color{
-  width: .75rem;
-  height: .75rem;
+.color {
+  width: 0.75rem;
+  height: 0.75rem;
 }
 
-.talle{
+.talle {
   width: 2rem;
   height: 2rem;
   padding: 1rem;
-  border: solid black .1rem;
+  border: solid black 0.1rem;
 }
 
-.desContainer{
-  border-bottom: solid black .1rem;
+.desContainer {
+  border-bottom: solid black 0.1rem;
+}
+
+/* [type="checkbox"] {
+  display: none;
+}
+
+[type="checkbox"]:checked {
+  display: block;
+  background-color: red;
+} */
+
+/* Estilo base para el label */
+label {
+  display: inline-block;
+  position: relative;
+  padding-left: 0.5rem;
+  padding-top: 0.4rem;
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/* Estilo del checkbox sin seleccionar */
+input[type="checkbox"] {
+  /* position: absolute; */
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 2rem;
+}
+
+/* Estilo del icono X */
+label:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid black;
+  background-color: transparent;
+  text-align: center;
+  line-height: 2rem;
+  margin-right: 2rem;
+}
+
+/* Estilo del checkbox seleccionado */
+input[type="checkbox"]:checked + label {
+  background-color: black;
+  color: white;
+}
+
+.disabled {
+  background-color: #eee;
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: red;
 }

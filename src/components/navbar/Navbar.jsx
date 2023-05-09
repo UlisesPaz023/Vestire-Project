@@ -10,10 +10,20 @@ import logo from "../img/vestiree.png";
 import { useState } from "react";
 
 import ModalLogin from "../modal/ModalLogin";
+import Cart from "../cart/Cart";
 
-function NavBar() {
+function NavBar({
+  allproducts,
+  productsToCart,
+  setProductsToCart,
+  quantity,
+  setQuantity,
+  priceCartItem,
+  setPriceCartItem,
+  totalCartPrice,
+  setTotalCartPrice,
+}) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -29,9 +39,9 @@ function NavBar() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Favortios</Nav.Link>
-              <Nav.Link href="#action3">Contacto</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="">Favortios</Nav.Link>
+              <Nav.Link href="/contacto">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
                 <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>
@@ -49,7 +59,16 @@ function NavBar() {
                 aria-label="Search"
               />
               <Button variant="outline-success">Buscar</Button>
-              <Button2 variant="outline-success2">Carrito</Button2>
+              <Cart
+                productsToCart={productsToCart}
+                setProductsToCart={setProductsToCart}
+                quantity={quantity}
+                setQuantity={setQuantity}
+                priceCartItem={priceCartItem}
+                setPriceCartItem={setPriceCartItem}
+                totalCartPrice={totalCartPrice}
+                setTotalCartPrice={setTotalCartPrice}
+              />
             </Form>
           </Navbar.Collapse>
         </Container>
