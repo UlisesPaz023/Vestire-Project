@@ -5,6 +5,7 @@ import Admin from "./pages/Admin";
 import ProductPage from "./pages/ProductPage";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
+import ContactPage from "./pages/ContactPage";
 
 const routes = [
   {
@@ -34,6 +35,10 @@ const routes = [
   {
     path: '/product-page/:id',
     Element: ProductPage
+  },
+  {
+    path: '/contact-page',
+    Element: ContactPage
   }
 ];
 
