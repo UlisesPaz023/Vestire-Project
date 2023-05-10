@@ -8,7 +8,39 @@ import TableByCategories from "../components/TableByCategories";
 import { CircularProgress } from "@mui/material";
 import "./styles/productTable.css";
 import ScrollButton from "../components/scrollbutton/ScrollButton";
+
+const isAdmin = async () => {
+  if (localStorage.getItem("userToken")) {
+    const token = localStorage.getItem("userToken");
+    const headers = { Authorization: `Bearer ${token}` };
+    try {
+      const resp = await axios.get(
+        "https://vestire.onrender.com/users/check-user-admin",
+        {
+          headers,
+        }
+      );
+      // if(resp)
+      console.log(resp);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    Swal.fire(
+      "Acceso denegado",
+      "Debe ser administrador para ingresar",
+      "error"
+    );
+    setTimeout(() => {
+      location.href = "/";
+    }, 3000);
+  }
+};
+
 const ProductTable = () => {
+  useEffect(() => {
+    isAdmin();
+  }, []);
   const [db, setDb] = useState([]);
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
