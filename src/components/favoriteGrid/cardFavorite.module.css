@@ -1,0 +1,10 @@
+.button{
+  height: 2rem !important;
+  width: 2rem !important;
+  border: 0;
+  background-color: white;
+}
+
+.button:hover{
+  background-color:  #e3e3e1;
+}
