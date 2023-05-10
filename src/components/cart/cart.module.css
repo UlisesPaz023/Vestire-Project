@@ -1,0 +1,27 @@
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-container svg {
+  width: 50px;
+  height: 50px;
+}
+
+.number-circle {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: yellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-circle span {
+  font-size: 12px;
+  color: black;
+}
