@@ -13,6 +13,7 @@ import Admin from "./pages/Admin";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
+import AboutUs from "./pages/AboutUs";
 
 const url = "https://vestire.onrender.com/product";
 function App() {
@@ -76,6 +77,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/product-table" element={<ProductTable />} />
         <Route path="/admin/product-form" element={<ProductForm />} />
+        <Route path="/sobre-nosotros" element={<AboutUs />} />
         <Route
           path="/product-page/:id"
           element={
