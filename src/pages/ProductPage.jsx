@@ -214,20 +214,24 @@ const ProductPage = ({
                   <div className="col-sm-6 d-inline-flex align-items-center ">
                     <button
                       className="text-white bg-black fw-bold"
-                      style={{ border: "none" }}
+                      style={{ border: "none", width: "30px", height: "30px" }}
                       onClick={handleSubsProduct}
                     >
                       -
                     </button>
                     <span
                       className="text-white bg-black fw-bold"
-                      style={{ border: "none" }}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        textAlign: "center",
+                      }}
                     >
                       {quantity}
                     </span>
                     <button
                       className="text-white bg-black fw-bold"
-                      style={{ border: "none" }}
+                      style={{ border: "none", width: "30px", height: "30px" }}
                       onClick={handleAddProduct}
                     >
                       +
