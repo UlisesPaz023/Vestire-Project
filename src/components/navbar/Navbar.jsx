@@ -30,7 +30,7 @@ function NavBar() {
               navbarScroll
             >
               <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Favortios</Nav.Link>
+              <Nav.Link href="/favorite-page">Favortios</Nav.Link>
               <Nav.Link href="#action3">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
