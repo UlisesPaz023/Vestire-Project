@@ -31,7 +31,7 @@ function NavBar() {
             >
               <Nav.Link href="#action1">Home</Nav.Link>
               <Nav.Link href="/favorite-page">Favortios</Nav.Link>
-              <Nav.Link href="#action3">Contacto</Nav.Link>
+              <Nav.Link href="/contact-page">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
                 <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>

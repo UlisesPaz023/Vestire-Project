@@ -6,6 +6,7 @@ import ProductPage from "./pages/ProductPage";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
 import FavoritePage from "./pages/FavoritePage";
+import ContactPage from "./pages/ContactPage";
 
 const routes = [
   {
@@ -39,7 +40,12 @@ const routes = [
   {
     path: '/favorite-page',
     Element: FavoritePage
+  },
+  {
+    path: '/contact-page',
+    Element: ContactPage
   }
+
 ];
 
 export { routes };
