@@ -104,6 +104,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             name="codigo"
             value={codigo}
             onChange={handleChange}
+            required
           ></input>
         </div>
         <div className="row ">
@@ -117,6 +118,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               checked={clase.includes("Coleccion")}
               id="coleccion"
               onChange={handleCheckedClase}
+              required
             />
             <label className="form-check-label" htmlFor="coleccion">
               Colección

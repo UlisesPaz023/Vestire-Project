@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import Login from "../../pages/Login";
 
 const ModalLogin = ({ show, handleClose }) => {
@@ -13,14 +12,7 @@ const ModalLogin = ({ show, handleClose }) => {
         <Modal.Body>
           <Login />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

@@ -55,6 +55,13 @@ function NavBar({
     });
     setProductsToShow(searchResault);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("userToken");
+    location.href = "/";
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top">
@@ -73,9 +80,8 @@ function NavBar({
               <Nav.Link href="/contact-page">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
-                <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action6">
+                <NavDropdown.Item onClick={handleLogout}>
                   Cerrar sesion
                 </NavDropdown.Item>
               </NavDropdown>

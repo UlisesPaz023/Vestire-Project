@@ -1,5 +1,5 @@
-import React , { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "../card/card.module.css";
 import styles2 from "../favoriteGrid/cardFavorite.module.css";
@@ -9,14 +9,14 @@ const url = "https://vestire.onrender.com/users";
 
 const Card = (props) => {
   const { _id, resumenDescripcion, imagen, precio } = props.product;
-  const [isActive,setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const [user, setUser] = useState();
-  
+
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
       try {
-        const {data} = await axios.get(endpoint);
+        const { data } = await axios.get(endpoint);
         setUser(data);
       } catch (error) {
         console.log(error);
@@ -27,12 +27,12 @@ const Card = (props) => {
 
   useEffect(() => {
     if (user && user.favorites !== undefined) {
-      const foundFavorite = user.favorites.find((favorite) => favorite._id === _id);
+      const foundFavorite = user.favorites.find(
+        (favorite) => favorite._id === _id
+      );
       setIsActive(foundFavorite !== undefined);
     }
   }, [user, _id]);
-
-  console.log(user);
 
   const handleFavButton = async () => {
     const addToFavorites = !isActive;
@@ -40,13 +40,13 @@ const Card = (props) => {
     try {
       if (addToFavorites) {
         const updatedFavorites = user.favorites.filter(
-          favorite => favorite._id !== _id.toString()
-          );
-          await axios.patch(endpoint, { favorites: updatedFavorites });
-          setUser({ ...user, favorites: updatedFavorites });
-      } else{
-        const {data} = await axios.patch(endpoint, {
-          favorites : [...user.favorites, props.product]
+          (favorite) => favorite._id !== _id.toString()
+        );
+        await axios.patch(endpoint, { favorites: updatedFavorites });
+        setUser({ ...user, favorites: updatedFavorites });
+      } else {
+        const { data } = await axios.patch(endpoint, {
+          favorites: [...user.favorites, props.product],
         });
         setUser(data);
       }
@@ -54,8 +54,7 @@ const Card = (props) => {
     } catch (error) {
       console.log(error);
     }
-  }
-  console.log(user)
+  };
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/product-page/${_id}`, { state: props.product });
@@ -74,7 +73,7 @@ const Card = (props) => {
     //   return `d-none`;
     // }
   };
-  
+
   return (
     <div
       className={`card rounded-2 col-6 col-md-3 col-lg-2 rounded-0 border-0 p-0 my-3 mx-md-2 shadow ${cardAmount(
@@ -110,11 +109,11 @@ const Card = (props) => {
           </button>
 
           <p>${precio}</p>
-          <button 
+          <button
             onClick={handleFavButton}
             className={`${styles2.button} me-2 rounded-5`}
           >
-            <i class={`bi bi-heart${isActive ? '-fill' : ''}`}></i>
+            <i class={`bi bi-heart${isActive ? "-fill" : ""}`}></i>
           </button>
         </div>
       </div>
