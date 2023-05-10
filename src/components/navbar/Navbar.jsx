@@ -69,7 +69,7 @@ function NavBar({
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="">Favortios</Nav.Link>
+              <Nav.Link href="/favorite-page">Favortios</Nav.Link>
               <Nav.Link href="/contacto">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
