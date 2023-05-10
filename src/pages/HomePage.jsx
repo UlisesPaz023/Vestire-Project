@@ -8,24 +8,30 @@ import { CircularProgress } from "@mui/material";
 
 const url = "https://vestire.onrender.com/product";
 
-const HomePage = () => {
-  const [products, setProducts] = useState([]);
-  const [productsToShow, setProductsToShow] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const getData = async () => {
-      let endpoint = `${url}/get-products`;
-      try {
-        const { data } = await axios.get(endpoint);
-        setProducts(data);
-        setProductsToShow(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
+const HomePage = ({
+  products,
+  setProducts,
+  productsToShow,
+  setProductsToShow,
+  loading,
+}) => {
+  // const [products, setProducts] = useState([]);
+  // const [productsToShow, setProductsToShow] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     let endpoint = `${url}/get-products`;
+  //     try {
+  //       const { data } = await axios.get(endpoint);
+  //       setProducts(data);
+  //       setProductsToShow(data);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   return loading ? (
     <div className="row">

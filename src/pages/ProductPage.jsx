@@ -1,7 +1,8 @@
 import { React, useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "../pages/productPage.module.css";
-import axios from "axios";
+import "./styles/productPage.css";
+import Swal from "sweetalert2";
 const url = "https://vestire.onrender.com/product";
 const ProductPage = ({
   productsToCart,
@@ -60,7 +61,12 @@ const ProductPage = ({
   };
 
   const handleAddProduct = () => {
-    if (quantity >= stock.current) alert("no hay suficiente stock");
+    if (!talle.current) {
+      Swal.fire("Atención", "Primero debe seleccionar un talle.", "warning");
+      return;
+    }
+    if (quantity >= stock.current)
+      Swal.fire("Atención", "No hay suficiente stock.", "warning");
     else setQuantity(quantity + 1);
   };
 
@@ -74,13 +80,10 @@ const ProductPage = ({
       return setProductsToCart([...products]);
     }
     setProductsToCart((prevState) => [...prevState, initProductToCart]);
-    //console.log(productsToCart.length);
-    // productsToCart.map((product) =>
-    //   setTotalCartItems(product.cantidad + totalCartItems)
-    // );
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setQuantity(0);
   }, []);
 
@@ -106,7 +109,7 @@ const ProductPage = ({
             <div className={`${styles.desContainer} pb-4 mb-4`}>
               <div className="d-flex align-items-center">
                 <p className={`${styles.desc} m-0 me-1`}>Color:</p>
-                <div className={`${styles.color} bg-black m-0 me-1`}></div>
+                {/* <div className={`${styles.color} bg-black m-0 me-1`}></div> */}
                 <p className={`${styles.desc} m-0`}>{color.toUpperCase()}</p>
               </div>
 
@@ -117,7 +120,7 @@ const ProductPage = ({
                 > 
                  </div>  */}
               <div className="row">
-                <div className="col-6 col-xs-12 d-flex justify-content-evenly">
+                <div className="col-6  d-flex flex-row justify-content-evenly">
                   {xs ? (
                     <>
                       <input
@@ -126,8 +129,11 @@ const ProductPage = ({
                         onClick={handleCheck}
                         value={xs}
                         name="xS"
+                        className="checkTalle"
                       />
-                      <label htmlFor="talleXs">xS</label>
+                      <label htmlFor="talleXs" className="labelTalle">
+                        xS
+                      </label>
                     </>
                   ) : (
                     ""
@@ -140,8 +146,11 @@ const ProductPage = ({
                         onClick={handleCheck}
                         value={s}
                         name="s"
+                        className="checkTalle"
                       />
-                      <label htmlFor="talleS">S</label>
+                      <label htmlFor="talleS" className="labelTalle">
+                        S
+                      </label>
                     </>
                   ) : (
                     ""
@@ -154,8 +163,11 @@ const ProductPage = ({
                         onClick={handleCheck}
                         value={m}
                         name="m"
+                        className="checkTalle"
                       />
-                      <label htmlFor="talleM">M</label>
+                      <label htmlFor="talleM" className="labelTalle">
+                        M
+                      </label>
                     </>
                   ) : (
                     ""
@@ -168,8 +180,11 @@ const ProductPage = ({
                         onClick={handleCheck}
                         value={l}
                         name="l"
+                        className="checkTalle"
                       />
-                      <label htmlFor="talleL">L</label>
+                      <label htmlFor="talleL" className="labelTalle">
+                        L
+                      </label>
                     </>
                   ) : (
                     ""
@@ -182,8 +197,11 @@ const ProductPage = ({
                         onClick={handleCheck}
                         value={xl}
                         name="xL"
+                        className="checkTalle"
                       />
-                      <label htmlFor="talleXl">xL</label>
+                      <label htmlFor="talleXl" className="labelTalle">
+                        xL
+                      </label>
                     </>
                   ) : (
                     ""
@@ -191,9 +209,9 @@ const ProductPage = ({
                 </div>
               </div>
 
-              <div className="mt-4 row">
-                <div className="col d-flex">
-                  <div className="bg-black">
+              <div className="container">
+                <div className="mt-4 row">
+                  <div className="col-sm-6 d-inline-flex align-items-center ">
                     <button
                       className="text-white bg-black fw-bold"
                       style={{ border: "none" }}
@@ -201,7 +219,10 @@ const ProductPage = ({
                     >
                       -
                     </button>
-                    <span className="text-white bg-black fw-bold">
+                    <span
+                      className="text-white bg-black fw-bold"
+                      style={{ border: "none" }}
+                    >
                       {quantity}
                     </span>
                     <button
@@ -212,13 +233,17 @@ const ProductPage = ({
                       +
                     </button>
                   </div>
-                  <button
-                    className="border-0 bg-black text-white fw-bold py-2 px-4 ms-5"
-                    onClick={hanldeAddToCart}
-                    disabled={!disableCartButton}
-                  >
-                    <p className={`m-0 ${styles.button}`}>AGREGAR AL CARRITO</p>
-                  </button>
+                  <div className="col-sm-6">
+                    <button
+                      className="border-0 bg-black text-white fw-bold py-2  ms-5"
+                      onClick={hanldeAddToCart}
+                      disabled={!disableCartButton}
+                    >
+                      <p className={`m-0 ${styles.button}`}>
+                        AGREGAR AL CARRITO
+                      </p>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

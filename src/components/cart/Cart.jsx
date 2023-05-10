@@ -31,6 +31,7 @@ const Cart = ({
 
     setTotalCartPrice(precioTotal);
     setTotalCartItems(total);
+    localStorage.setItem("shopingCart", JSON.stringify(productsToCart));
   }, [productsToCart]);
 
   const deleteItem = (product) => {
@@ -41,7 +42,7 @@ const Cart = ({
   };
 
   const handleBuy = () => {
-    localStorage.setItem("cart", JSON.stringify(productsToCart));
+    // localStorage.setItem("cart", JSON.stringify(productsToCart));
     setShow(false);
     navigate(`/buying-page`);
   };

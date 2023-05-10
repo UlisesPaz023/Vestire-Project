@@ -24,13 +24,40 @@ function NavBar({
   setTotalCartPrice,
   totalCartItems,
   setTotalCartItems,
+  productsToShow,
+  setProductsToShow,
+  productsToShowAux,
+  setProductsToShowAux,
 }) {
+  const [search, setSearch] = useState();
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleSearch = (e) => {
+    if (e.target.value.length > 3) {
+      setSearch(e.target.value);
+      searchFilter(e.target.value);
+    } else {
+      setSearch(e.target.value);
+    }
+    if (e.target.value === "") setProductsToShow(productsToShowAux);
+  };
+  const searchFilter = (item) => {
+    let searchResault = productsToShowAux.filter((elem) => {
+      if (
+        elem.resumenDescripcion
+          .toString()
+          .toLowerCase()
+          .includes(item.toLowerCase().trim())
+      )
+        return elem;
+    });
+    setProductsToShow(searchResault);
+  };
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" sticky="top">
         <Container fluid>
           <img src={logo} alt="" />
           <Navbar.Brand href="#"></Navbar.Brand>
@@ -59,6 +86,8 @@ function NavBar({
                 placeholder="Buscar producto"
                 className="me-2"
                 aria-label="Search"
+                value={search}
+                onChange={handleSearch}
               />
               <Button variant="outline-success">Buscar</Button>
               <Cart

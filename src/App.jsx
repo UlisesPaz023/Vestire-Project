@@ -9,16 +9,25 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import axios from "axios";
 import BuyingPage from "./pages/BuyingPage";
+import Admin from "./pages/Admin";
+import ProductForm from "./pages/ProductForm";
+import ProductTable from "./pages/ProductTable";
 
 const url = "https://vestire.onrender.com/product";
 function App() {
-  const [allProducts, setAllProducts] = useState();
+  const [products, setProducts] = useState([]);
+  const [productsToShow, setProductsToShow] = useState([]);
+  const [productsToShowAux, setProductsToShowAux] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-products`;
       try {
         const { data } = await axios.get(endpoint);
-        setAllProducts(data);
+        setProducts(data);
+        setProductsToShow(data);
+        setProductsToShowAux(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -34,7 +43,6 @@ function App() {
   return (
     <>
       <NavBar
-        allProducts={allProducts}
         productsToCart={productsToCart}
         setProductsToCart={setProductsToCart}
         quantity={quantity}
@@ -45,9 +53,28 @@ function App() {
         setTotalCartPrice={setTotalCartPrice}
         totalCartItems={totalCartItems}
         setTotalCartItems={setTotalCartItems}
+        productsToShow={productsToShow}
+        setProductsToShow={setProductsToShow}
+        productsToShowAux={productsToShowAux}
+        setProductsToShowAux={setProductsToShowAux}
       />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <HomePage
+              products={products}
+              setProducts={setProducts}
+              productsToShow={productsToShow}
+              setProductsToShow={setProductsToShow}
+              loading={loading}
+            />
+          }
+        />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/product-table" element={<ProductTable />} />
+        <Route path="/admin/product-form" element={<ProductForm />} />
         <Route
           path="/product-page/:id"
           element={

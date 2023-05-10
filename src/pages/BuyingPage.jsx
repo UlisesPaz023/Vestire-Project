@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 let finalCart = [];
 let totalToPay = 0;
 const BuyingPage = () => {
-  finalCart = localStorage.getItem("cart");
+  finalCart = localStorage.getItem("shopingCart");
   finalCart = JSON.parse(finalCart);
   finalCart.map((item) => {
     totalToPay = totalToPay + item.precio * item.cantidad;
@@ -10,7 +10,7 @@ const BuyingPage = () => {
 
   const handleBuy = (e) => {
     e.preventDefault();
-    localStorage.removeItem("cart");
+    localStorage.removeItem("shopingCart");
     Swal.fire("Éxito", "MUCHAS GRACIAS POR SU COMPRA", "success");
     setTimeout(() => {
       location.href = "/";
