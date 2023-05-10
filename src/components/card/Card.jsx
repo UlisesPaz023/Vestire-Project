@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+
 import styles from "../card/card.module.css";
 import styles2 from "../favoriteGrid/cardFavorite.module.css";
 import axios from "axios";
@@ -7,8 +8,7 @@ import axios from "axios";
 const url = "https://vestire.onrender.com/users";
 
 const Card = (props) => {
-  const { _id, resumenDescripcion, imagen } = props.product;
-
+  const { _id, resumenDescripcion, imagen, precio } = props.product;
   const [isActive,setIsActive] = useState(false);
   const [user, setUser] = useState();
   
@@ -55,8 +55,6 @@ const Card = (props) => {
       console.log(error);
     }
   }
-
-
   console.log(user)
   const navigate = useNavigate();
   const handleClick = () => {
@@ -83,7 +81,14 @@ const Card = (props) => {
         props.quantity
       )}`}
     >
-      <button onClick={handleClick} className={`${styles.image}`}>
+      <button
+        onClick={handleClick}
+        className={`${styles.image}`}
+        style={{
+          border: "none",
+          backgroundColor: "white",
+        }}
+      >
         <img src={imagen} className="card-img-top " alt={resumenDescripcion} />
       </button>
       <div
@@ -103,6 +108,8 @@ const Card = (props) => {
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
             <p className={`m-0 ${styles.text}`}>EXPLORAR</p>
           </button>
+
+          <p>${precio}</p>
           <button 
             onClick={handleFavButton}
             className={`${styles2.button} me-2 rounded-5`}

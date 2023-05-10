@@ -46,22 +46,22 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
       <td>{xl}</td>
       <td>${precio}</td>
       <td>
-        <button className="btn btn-primary btn-sm">Vista previa</button>
-
-        <button
-          className="btn btn-warning btn-sm"
-          onClick={() => {
-            setDataToEdit(el), modalForm.show(), console.log(el);
-          }}
-        >
-          Editar
-        </button>
-        <button
-          className="btn btn-danger btn-sm"
-          onClick={() => deleteData(_id)}
-        >
-          Eliminar
-        </button>
+        <div className="d-flex">
+          <button
+            className="btn btn-warning btn-sm me-2"
+            onClick={() => {
+              setDataToEdit(el), modalForm.show(), console.log(el);
+            }}
+          >
+            Editar
+          </button>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => deleteData(_id)}
+          >
+            Eliminar
+          </button>
+        </div>
       </td>
     </tr>
   );

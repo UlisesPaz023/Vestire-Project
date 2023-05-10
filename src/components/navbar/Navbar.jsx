@@ -10,15 +10,54 @@ import logo from "../img/vestiree.png";
 import { useState } from "react";
 
 import ModalLogin from "../modal/ModalLogin";
+import Cart from "../cart/Cart";
 
-function NavBar() {
+function NavBar({
+  allproducts,
+  productsToCart,
+  setProductsToCart,
+  quantity,
+  setQuantity,
+  priceCartItem,
+  setPriceCartItem,
+  totalCartPrice,
+  setTotalCartPrice,
+  totalCartItems,
+  setTotalCartItems,
+  productsToShow,
+  setProductsToShow,
+  productsToShowAux,
+  setProductsToShowAux,
+}) {
+  const [search, setSearch] = useState();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleSearch = (e) => {
+    if (e.target.value.length > 3) {
+      setSearch(e.target.value);
+      searchFilter(e.target.value);
+    } else {
+      setSearch(e.target.value);
+    }
+    if (e.target.value === "") setProductsToShow(productsToShowAux);
+  };
+  const searchFilter = (item) => {
+    let searchResault = productsToShowAux.filter((elem) => {
+      if (
+        elem.resumenDescripcion
+          .toString()
+          .toLowerCase()
+          .includes(item.toLowerCase().trim())
+      )
+        return elem;
+    });
+    setProductsToShow(searchResault);
+  };
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" sticky="top">
         <Container fluid>
           <img src={logo} alt="" />
           <Navbar.Brand href="#"></Navbar.Brand>
@@ -29,9 +68,9 @@ function NavBar() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/favorite-page">Favortios</Nav.Link>
-              <Nav.Link href="#action3">Contacto</Nav.Link>
+              <Nav.Link href="/contacto">Contacto</Nav.Link>
               <NavDropdown title="V" id="navbarScrollingDropdown">
                 <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
                 <NavDropdown.Item href="#action5">Carrito ()</NavDropdown.Item>
@@ -47,9 +86,22 @@ function NavBar() {
                 placeholder="Buscar producto"
                 className="me-2"
                 aria-label="Search"
+                value={search}
+                onChange={handleSearch}
               />
               <Button variant="outline-success">Buscar</Button>
-              <Button2 variant="outline-success2">Carrito</Button2>
+              <Cart
+                productsToCart={productsToCart}
+                setProductsToCart={setProductsToCart}
+                quantity={quantity}
+                setQuantity={setQuantity}
+                priceCartItem={priceCartItem}
+                setPriceCartItem={setPriceCartItem}
+                totalCartPrice={totalCartPrice}
+                setTotalCartPrice={setTotalCartPrice}
+                totalCartItems={totalCartItems}
+                setTotalCartItems={setTotalCartItems}
+              />
             </Form>
           </Navbar.Collapse>
         </Container>
