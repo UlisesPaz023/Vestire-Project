@@ -1,16 +1,5 @@
-import {
-  // createBrowserRouter,
-  // RouterProvider,
-  // createRoutesFromElements,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
-// import RootLayout from "./layout/RootLayout";
-// import { routes } from "./routes";
+import { Routes, Route } from "react-router-dom";
 import "typeface-roboto";
-// import Body from "./components/body/Body";
-
 import Footer from "./components/footer/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import Error from "./components/error404/Error";
@@ -19,26 +8,8 @@ import { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import axios from "axios";
+import BuyingPage from "./pages/BuyingPage";
 
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route element={<RootLayout />}>
-//       {routes.map(({ Element, path, index }) => (
-//         <Route
-//           key={index}
-//           path={path}
-//           element={
-//             <Element
-//               prueba={100000}
-//               productsToCart={productsToCart}
-//               setProductsToCart={setProductsToCart}
-//             />
-//           }
-//         />
-//       ))}
-//     </Route>
-//   )
-// );
 const url = "https://vestire.onrender.com/product";
 function App() {
   const [allProducts, setAllProducts] = useState();
@@ -55,13 +26,11 @@ function App() {
     getData();
   }, []);
 
-  //const initProductsToCart = { _id, resumenDescripcion, precio, talle };
-
   const [productsToCart, setProductsToCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [priceCartItem, setPriceCartItem] = useState(0);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
-  //console.log(productsToCart);
+  const [totalCartItems, setTotalCartItems] = useState(0);
   return (
     <>
       <NavBar
@@ -74,9 +43,11 @@ function App() {
         setPriceCartItem={setPriceCartItem}
         totalCartPrice={totalCartPrice}
         setTotalCartPrice={setTotalCartPrice}
+        totalCartItems={totalCartItems}
+        setTotalCartItems={setTotalCartItems}
       />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />} />
         <Route
           path="/product-page/:id"
           element={
@@ -89,13 +60,12 @@ function App() {
               setPriceCartItem={setPriceCartItem}
               totalCartPrice={totalCartPrice}
               setTotalCartPrice={setTotalCartPrice}
+              totalCartItems={totalCartItems}
+              setTotalCartItems={setTotalCartItems}
             />
           }
         />
-
-        {/* <Error /> */}
-        {/* <Body /> */}
-        {/* <RouterProvider router={router} /> */}
+        <Route path="/buying-page" element={<BuyingPage />} />
       </Routes>
       <Footer />
     </>

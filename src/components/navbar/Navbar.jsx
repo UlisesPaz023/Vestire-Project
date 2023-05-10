@@ -22,6 +22,8 @@ function NavBar({
   setPriceCartItem,
   totalCartPrice,
   setTotalCartPrice,
+  totalCartItems,
+  setTotalCartItems,
 }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -68,6 +70,8 @@ function NavBar({
                 setPriceCartItem={setPriceCartItem}
                 totalCartPrice={totalCartPrice}
                 setTotalCartPrice={setTotalCartPrice}
+                totalCartItems={totalCartItems}
+                setTotalCartItems={setTotalCartItems}
               />
             </Form>
           </Navbar.Collapse>

@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "../pages/productPage.module.css";
 import axios from "axios";
@@ -12,6 +12,8 @@ const ProductPage = ({
   setPriceCartItem,
   totalCartPrice,
   setTotalCartPrice,
+  totalCartItems,
+  setTotalCartItems,
 }) => {
   const location = useLocation();
   const {
@@ -63,8 +65,24 @@ const ProductPage = ({
   };
 
   const hanldeAddToCart = () => {
+    if (productsToCart.find((item) => item.talle === talle.current)) {
+      const products = productsToCart.map((item) =>
+        item.talle === talle.current
+          ? { ...item, cantidad: item.cantidad + quantity }
+          : item
+      );
+      return setProductsToCart([...products]);
+    }
     setProductsToCart((prevState) => [...prevState, initProductToCart]);
+    //console.log(productsToCart.length);
+    // productsToCart.map((product) =>
+    //   setTotalCartItems(product.cantidad + totalCartItems)
+    // );
   };
+
+  useEffect(() => {
+    setQuantity(0);
+  }, []);
 
   const [disableCartButton, setDisableCartButton] = useState(false);
   return (
@@ -74,7 +92,7 @@ const ProductPage = ({
           {categoria} / {subCategoria} / {resumenDescripcion}
         </div>
         <div className="row col m-0">
-          <div className="m-0 p-0 col">
+          <div className="m-0 pb-5 col">
             <img className="col-12" src={imagen} alt={resumenDescripcion} />
           </div>
           <div className="col-6 py-0 px-5">

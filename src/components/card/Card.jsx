@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import styles from "../card/card.module.css";
 
 const Card = (props) => {
-  const { _id, resumenDescripcion, imagen } = props.product;
+  const { _id, resumenDescripcion, imagen, precio } = props.product;
   console.log(resumenDescripcion);
   console.log(imagen);
   const cardAmount = (amount) => {
@@ -31,7 +31,14 @@ const Card = (props) => {
         props.quantity
       )}`}
     >
-      <button onClick={handleClick} className={`${styles.image}`}>
+      <button
+        onClick={handleClick}
+        className={`${styles.image}`}
+        style={{
+          border: "none",
+          backgroundColor: "white",
+        }}
+      >
         <img src={imagen} className="card-img-top " alt={resumenDescripcion} />
       </button>
       <div
@@ -51,6 +58,7 @@ const Card = (props) => {
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
             <p className={`m-0 ${styles.text}`}>EXPLORAR</p>
           </button>
+          <p>${precio}</p>
         </div>
       </div>
     </div>

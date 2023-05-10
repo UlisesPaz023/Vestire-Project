@@ -16,41 +16,44 @@ const Slider = ({ products }) => {
   }
 
   return (
-    <div className="container-flex my-5">
-      <div className="row col-12 m-0">
-        <div
-          id="carouselExampleIndicators"
-          className="position-static carousel carousel-dark slide p-0"
-        >
+    <>
+      <h3 className="text-center">DESTACADOS DEL MES</h3>
+      <div className="container-flex my-3">
+        <div className="row col-12 m-0">
           <div
-            className={`d-none d-md-flex position-static ${styles.sliderContainer}`}
+            id="carouselExampleIndicators"
+            className="position-static carousel carousel-dark slide p-0"
           >
-            {productGroups.map((x, i) => (
-              <CardSlider x={x} i={i} key={i} />
-            ))}
-          </div>
-          <div className={`d-flex d-md-none ${styles.sliderContainer}`}>
-            {productsSlider.map((x, i) => (
-              <CardSlider x={x} i={i} key={i} />
-            ))}
-          </div>
-          <div
-            className={`col d-flex carousel-indicators position-static ${styles.sliderBtns}`}
-          >
-            {productGroups.map((x, i) => (
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to={`${i}`}
-                className={`${styles.sliderBtn} ${i === 0 ? "active" : ""}`}
-                aria-current={`${i === 0 ? "true" : "false"}`}
-                aria-label={`Slide ${i + 1}`}
-              ></button>
-            ))}
+            <div
+              className={`d-none d-md-flex position-static ${styles.sliderContainer}`}
+            >
+              {productGroups.map((x, i) => (
+                <CardSlider x={x} i={i} key={i} />
+              ))}
+            </div>
+            <div className={`d-flex d-md-none ${styles.sliderContainer}`}>
+              {productsSlider.map((x, i) => (
+                <CardSlider x={x} i={i} key={i} />
+              ))}
+            </div>
+            <div
+              className={`col d-flex carousel-indicators position-static ${styles.sliderBtns}`}
+            >
+              {productGroups.map((x, i) => (
+                <button
+                  type="button"
+                  data-bs-target="#carouselExampleIndicators"
+                  data-bs-slide-to={`${i}`}
+                  className={`${styles.sliderBtn} ${i === 0 ? "active" : ""}`}
+                  aria-current={`${i === 0 ? "true" : "false"}`}
+                  aria-label={`Slide ${i + 1}`}
+                ></button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
