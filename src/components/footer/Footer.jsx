@@ -96,7 +96,7 @@ import qr from "../img/data-fiscal.png";
 const Footer = () => {
   return (
     // <div className="container-fluid">
-    <footer>
+    <footer className="container-fluid px-0">
       <div className="sb_footer section_padding">
         <div className="sb_footer-links">
           <div className="logo">
