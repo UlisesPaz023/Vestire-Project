@@ -10,7 +10,7 @@ const Card = (props) => {
   const { _id, resumenDescripcion, imagen } = props.product;
 
   const [isActive,setIsActive] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({favorites:[]});
   
   useEffect(() => {
     const getData = async () => {
@@ -23,41 +23,61 @@ const Card = (props) => {
       }
     };
     getData();
-  }, []);
+  }, [user.favorites]);
 
   useEffect(() => {
     if (user && user.favorites !== undefined) {
-      const foundFavorite = user.favorites.find((favorite) => favorite._id === _id);
-      setIsActive(foundFavorite !== undefined);
+      if (user.favorites.some((favorite) => favorite._id === _id)) {
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
     }
-  }, [user, _id]);
+  }, [user.favorites, props.product]);
 
-  console.log(user);
+  console.log(user.favorites);
+  const removeDuplicates = (favorites) => {
+    const uniqueFavorites = [];
+    const idTracker = {};
+
+    for (const favorite of favorites) {
+      if (!idTracker[favorite._id]) {
+        idTracker[favorite._id] = true;
+        uniqueFavorites.push(favorite);
+      }
+    }
+    return uniqueFavorites;
+  };
 
   const handleFavButton = async () => {
     const addToFavorites = !isActive;
+    setIsActive(!isActive);
     let endpoint = `${url}/edit-user/6457aacf12996dc64bfdc4d2`;
+    
     try {
+      const updatedFavorites = [...user.favorites];
       if (addToFavorites) {
-        const updatedFavorites = user.favorites.filter(
-          favorite => favorite._id !== _id.toString()
-          );
-          await axios.patch(endpoint, { favorites: updatedFavorites });
-          setUser({ ...user, favorites: updatedFavorites });
-      } else{
-        const {data} = await axios.patch(endpoint, {
-          favorites : [...user.favorites, props.product]
-        });
-        setUser(data);
+        updatedFavorites.push(props.product);  
+      } else {
+        const index = updatedFavorites.findIndex(
+          (favorite) => favorite._id === _id
+        );
+        if (index !== -1) {
+          updatedFavorites.splice(index, 1);
+        }
       }
+
+      const uniqueFavorites = removeDuplicates(updatedFavorites);
+
+      await axios.patch(endpoint, { favorites: uniqueFavorites });
+      setUser({ ...user, favorites: uniqueFavorites });
       setIsActive(addToFavorites);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  console.log(user)
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/product-page/${_id}`, { state: props.product });

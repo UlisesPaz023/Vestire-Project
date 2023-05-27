@@ -5,7 +5,9 @@ import axios from 'axios';
 const url = "https://vestire.onrender.com/users";
 
 const FavoritePage = () => {
-    const [userFavorites, setUserFavorites] = useState();
+
+    const [userFavorites, setUserFavorites] = useState({favorites:[]});
+
     useEffect(() => {
       const getData = async () => {
         let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
@@ -17,7 +19,7 @@ const FavoritePage = () => {
         }
       };
       getData();
-    }, []);
+    }, [userFavorites.favorites]);
 
   return (
     <section>
