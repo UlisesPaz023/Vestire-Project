@@ -14,25 +14,11 @@ const HomePage = ({
   productsToShow,
   setProductsToShow,
   loading,
+  logedUserId,
+  setLogedUserId,
+  favList,
+  setFavList,
 }) => {
-  // const [products, setProducts] = useState([]);
-  // const [productsToShow, setProductsToShow] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     let endpoint = `${url}/get-products`;
-  //     try {
-  //       const { data } = await axios.get(endpoint);
-  //       setProducts(data);
-  //       setProductsToShow(data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getData();
-  // }, []);
-
   return loading ? (
     <div className="row">
       <div className="col text-center">
@@ -50,6 +36,10 @@ const HomePage = ({
       <ProductGrid
         productsToShow={productsToShow}
         setProductsToShow={setProductsToShow}
+        logedUserId={logedUserId}
+        setLogedUserId={setLogedUserId}
+        favList={favList}
+        setFavList={setFavList}
       />
     </section>
   );

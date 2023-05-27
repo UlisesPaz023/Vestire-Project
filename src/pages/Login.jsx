@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const Login = () => {
+const Login = ({ setLogedUserId }) => {
   const loginIn = async (body) => {
     try {
       //console.log(body)
@@ -10,6 +10,7 @@ const Login = () => {
         "https://vestire.onrender.com/users/login",
         body
       );
+      console.log(data);
       console.log(data.data.token);
       localStorage.setItem("userToken", data.data.token);
       localStorage.setItem("userName", document.getElementById("name").value);
@@ -60,6 +61,15 @@ const Login = () => {
         text: msgErrors,
       });
     }
+    // try {
+    //   const { data } = await axios.get(
+    //     `https://vestire.onrender.com/users/get-user-by-email/${email}`,
+    //     body
+    //   );
+    //   console.log(`el id del usuario logeado es ${data._id}`);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const handleLogin = (e) => {

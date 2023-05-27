@@ -9,52 +9,23 @@ const url = "https://vestire.onrender.com/users";
 
 const Card = (props) => {
   const { _id, resumenDescripcion, imagen, precio } = props.product;
-  const [isActive, setIsActive] = useState(false);
-  const [user, setUser] = useState();
+  const { logedUserId, setLogedUserId, setFavList, setAuxFav, auxFav } = props;
+  const [isFav, setIsFav] = useState(false);
 
-  useEffect(() => {
-    const getData = async () => {
-      let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
-      try {
-        const { data } = await axios.get(endpoint);
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
-
-  useEffect(() => {
-    if (user && user.favorites !== undefined) {
-      const foundFavorite = user.favorites.find(
-        (favorite) => favorite._id === _id
-      );
-      setIsActive(foundFavorite !== undefined);
-    }
-  }, [user, _id]);
-
-  const handleFavButton = async () => {
-    const addToFavorites = !isActive;
-    let endpoint = `${url}/edit-user/6457aacf12996dc64bfdc4d2`;
-    try {
-      if (addToFavorites) {
-        const updatedFavorites = user.favorites.filter(
-          (favorite) => favorite._id !== _id.toString()
-        );
-        await axios.patch(endpoint, { favorites: updatedFavorites });
-        setUser({ ...user, favorites: updatedFavorites });
-      } else {
-        const { data } = await axios.patch(endpoint, {
-          favorites: [...user.favorites, props.product],
-        });
-        setUser(data);
-      }
-      setIsActive(addToFavorites);
-    } catch (error) {
-      console.log(error);
+  const handleFavButton = (e) => {
+    if (localStorage.getItem("userName")) {
+      setIsFav(!isFav);
+      if (isFav) setFavList((prevState) => [...prevState, _id]);
+      setAuxFav(!auxFav);
+    } else {
+      alert("Debe iniciar sesión para guardar favoritos");
     }
   };
+
+  // useEffect(() => {
+  //   if (isFav) setFavList((prevState) => [...prevState, _id]);
+  // }, [isFav]);
+
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/product-page/${_id}`, { state: props.product });
@@ -113,7 +84,7 @@ const Card = (props) => {
             onClick={handleFavButton}
             className={`${styles2.button} me-2 rounded-5`}
           >
-            <i class={`bi bi-heart${isActive ? "-fill" : ""}`}></i>
+            <i class={`bi bi-heart${isFav ? "-fill" : ""}`} id={_id}></i>
           </button>
         </div>
       </div>

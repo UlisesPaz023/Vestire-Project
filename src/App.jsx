@@ -14,6 +14,7 @@ import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
 import AboutUs from "./pages/AboutUs";
+import FavoritePage from "./pages/FavoritePage";
 
 const url = "https://vestire.onrender.com/product";
 function App() {
@@ -21,6 +22,15 @@ function App() {
   const [productsToShow, setProductsToShow] = useState([]);
   const [productsToShowAux, setProductsToShowAux] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [productsToCart, setProductsToCart] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  const [priceCartItem, setPriceCartItem] = useState(0);
+  const [totalCartPrice, setTotalCartPrice] = useState(0);
+  const [totalCartItems, setTotalCartItems] = useState(0);
+  const [logedUserId, setLogedUserId] = useState("");
+  const [favList, setFavList] = useState([]);
+
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-products`;
@@ -35,13 +45,39 @@ function App() {
       }
     };
     getData();
+
+    if (localStorage.getItem("userName")) {
+      const userLoged = localStorage.getItem("userName");
+      const getUser = async () => {
+        try {
+          const { data } = await axios.get(
+            `https://vestire.onrender.com/users/get-user-by-username/${userLoged}`
+          );
+          setLogedUserId(data._id);
+          console.log(data._id);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      getUser();
+    }
   }, []);
 
-  const [productsToCart, setProductsToCart] = useState([]);
-  const [quantity, setQuantity] = useState(0);
-  const [priceCartItem, setPriceCartItem] = useState(0);
-  const [totalCartPrice, setTotalCartPrice] = useState(0);
-  const [totalCartItems, setTotalCartItems] = useState(0);
+  useEffect(() => {
+    console.log(logedUserId);
+    const getFavFromUser = async () => {
+      let endpoint = `https://vestire.onrender.com/users/get-user-by-id/${logedUserId}`;
+      try {
+        const { data } = await axios.get(endpoint);
+        console.log(data);
+        setFavList(data.favorites);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFavFromUser();
+  }, [logedUserId]);
+
   return (
     <>
       <NavBar
@@ -59,7 +95,9 @@ function App() {
         setProductsToShow={setProductsToShow}
         productsToShowAux={productsToShowAux}
         setProductsToShowAux={setProductsToShowAux}
+        setLogedUserId={setLogedUserId}
       />
+      {/* {console.log(logedUserId)} */}
       <Routes>
         <Route
           exact
@@ -71,6 +109,10 @@ function App() {
               productsToShow={productsToShow}
               setProductsToShow={setProductsToShow}
               loading={loading}
+              setLogedUserId={setLogedUserId}
+              logedUserId={logedUserId}
+              favList={favList}
+              setFavList={setFavList}
             />
           }
         />
@@ -97,6 +139,10 @@ function App() {
         />
         <Route path="/buying-page" element={<BuyingPage />} />
         <Route path="/contact-page" element={<ContactPage />} />
+        <Route
+          path="/favorite-page"
+          element={<FavoritePage favList={favList} />}
+        />
       </Routes>
       <Footer />
     </>

@@ -24,7 +24,6 @@ const Cart = ({
   useEffect(() => {
     if (localStorage.getItem("cart")) {
       const cartOnLocalStorage = JSON.parse(localStorage.getItem("cart"));
-      console.log(cartOnLocalStorage);
       setProductsToCart(cartOnLocalStorage);
     }
   }, []);

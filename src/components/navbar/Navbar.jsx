@@ -28,6 +28,7 @@ function NavBar({
   setProductsToShow,
   productsToShowAux,
   setProductsToShowAux,
+  setLogedUserId,
 }) {
   const [search, setSearch] = useState();
   const [show, setShow] = useState(false);
@@ -116,6 +117,7 @@ function NavBar({
         handleShow={handleShow}
         show={show}
         handleClose={handleClose}
+        setLogedUserId={setLogedUserId}
       />
     </>
   );

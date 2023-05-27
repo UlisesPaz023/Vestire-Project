@@ -8,7 +8,6 @@ const CategoriesMenu = (props) => {
   const { setProducts } = props;
   const { setProductsToShow } = props;
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
-  console.log(clase);
   // const handleButtonClick = (index) => {
   //   setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
   // };

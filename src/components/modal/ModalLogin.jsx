@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Login from "../../pages/Login";
 
-const ModalLogin = ({ show, handleClose }) => {
+const ModalLogin = ({ show, handleClose, setLogedUserId }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -10,7 +10,7 @@ const ModalLogin = ({ show, handleClose }) => {
           <Modal.Title>Login/Registro</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Login />
+          <Login setLogedUserId={setLogedUserId} />
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>

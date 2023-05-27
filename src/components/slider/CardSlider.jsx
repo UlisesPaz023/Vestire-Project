@@ -3,7 +3,6 @@ import CardSliderItem from "./CardSliderItem";
 
 const CardSlider = (props) => {
   const { x, key, i } = props;
-  console.log(x);
 
   return (
     <>
