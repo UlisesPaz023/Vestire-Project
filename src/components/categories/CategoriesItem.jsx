@@ -30,6 +30,16 @@ const CategoriesItem = ({
     setProductsToShow(filteredProducts);
   };
 
+  const handleFilterSubCategory = (e) => {
+    const subCategoryToFilter =
+      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
+
+    const filteredProducts = products.filter(
+      (product) => product.subCategoria === subCategoryToFilter
+    );
+    setProductsToShow(filteredProducts);
+  };
+
   return (
     <div
       className={`${styles.categoriesItem} d-${
@@ -47,7 +57,14 @@ const CategoriesItem = ({
         </div>
       }
       {uniqueCategories(products, title).map((x, i) => (
-        <div key={x}>{x}</div>
+        <div
+          id={x}
+          key={x}
+          style={{ cursor: "pointer" }}
+          onClick={handleFilterSubCategory}
+        >
+          {x}
+        </div>
       ))}
     </div>
   );
