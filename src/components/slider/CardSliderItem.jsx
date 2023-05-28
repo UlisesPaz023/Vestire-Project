@@ -35,6 +35,7 @@ const CardSliderItem = (props) => {
               className={`col m-0 img-fluid ${styles.sliderImage}`}
               alt={resumenDescripcion}
             />
+            <section id="product-grid"></section>
             <p
               className={`position-absolute ${styles.price} rounded-5 d-flex justify-content-center align-items-center col text-white ${styles.priceText}`}
             >

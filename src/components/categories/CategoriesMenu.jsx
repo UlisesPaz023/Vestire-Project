@@ -7,18 +7,20 @@ const CategoriesMenu = (props) => {
   const { products } = props;
   const { setProducts } = props;
   const { setProductsToShow } = props;
+  const { productsToShow } = props;
+  const { setGridTitle } = props;
   const [selectedButtonIndex, setSelectedButtonIndex] = useState(null);
-  console.log(clase);
   // const handleButtonClick = (index) => {
   //   setSelectedButtonIndex(index === selectedButtonIndex ? null : index);
   // };
 
-  const handleButtonClick = (index) => {
-    let aux = null;
-    if (index === "multiCollapseExample1") aux = null;
-    else aux = index;
-    setSelectedButtonIndex(aux);
-    setProductsToShow(products);
+  const handleButtonClick = (index, e) => {
+    //let aux = null;
+    if (index === "multiCollapseExample1") setSelectedButtonIndex(null);
+    else setSelectedButtonIndex(index);
+    //setSelectedButtonIndex(aux);
+    if (e.target.id === "Todos") window.scrollTo(0, 0);
+    //setProductsToShow(products);
   };
   return (
     <>
@@ -42,9 +44,10 @@ const CategoriesMenu = (props) => {
                 data-bs-target={`#multiCollapseExample${i + 1}`}
                 aria-expanded="false"
                 aria-controls={`multiCollapseExample${i + 1}`}
-                onClick={() =>
-                  handleButtonClick(`multiCollapseExample${i + 1}`)
+                onClick={(event) =>
+                  handleButtonClick(`multiCollapseExample${i + 1}`, event)
                 }
+                id={x}
               >
                 {x.toUpperCase()}
               </a>
@@ -60,6 +63,9 @@ const CategoriesMenu = (props) => {
                     products={products}
                     setProducts={setProducts}
                     setProductsToShow={setProductsToShow}
+                    productsToShow={productsToShow}
+                    setSelectedButtonIndex={setSelectedButtonIndex}
+                    setGridTitle={setGridTitle}
                   />
                 }
               </div>
@@ -80,6 +86,8 @@ const CategoriesMenu = (props) => {
               products={products}
               setProducts={setProducts}
               setProductsToShow={setProductsToShow}
+              setSelectedButtonIndex={setSelectedButtonIndex}
+              setGridTitle={setGridTitle}
             />
           }
         </div>

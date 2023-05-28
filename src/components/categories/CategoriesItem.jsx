@@ -1,13 +1,19 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import styles from "../categories/categories.module.css";
 
 const CategoriesItem = ({
   products,
   setProducts,
   setProductsToShow,
+  productsToShow,
   title,
   clase,
+  setSelectedButtonIndex,
+  setGridTitle,
 }) => {
+  const [showSubCat, setShowSubCat] = useState(false);
+  const [categoryToFilter, setCategoryToFilter] = useState("");
+
   const uniqueCategories = (products, category) => {
     const trueUniqueCategories = products.map((x, i) => {
       if (category !== undefined && x.categoria !== undefined) {
@@ -21,23 +27,40 @@ const CategoriesItem = ({
     return [...new Set(trueUniqueCategories)];
   };
   const handleFilterCategory = (e) => {
-    const categoryToFilter =
-      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
+    setCategoryToFilter(
+      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase()
+    );
+    setShowSubCat(!showSubCat);
+    setGridTitle(
+      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase()
+    );
+    setSelectedButtonIndex(null);
+    //console.log(filteredProducts[0].categoria);
+  };
 
+  useEffect(() => {
     const filteredProducts = products.filter(
       (product) => product.categoria === categoryToFilter
     );
+    console.log(filteredProducts);
     setProductsToShow(filteredProducts);
-  };
+  }, [categoryToFilter]);
 
   const handleFilterSubCategory = (e) => {
-    const subCategoryToFilter =
-      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
+    const subCategoryToFilter = e.target.id;
+    // e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
 
     const filteredProducts = products.filter(
-      (product) => product.subCategoria === subCategoryToFilter
+      (product) =>
+        product.subCategoria === subCategoryToFilter &&
+        product.categoria === categoryToFilter
     );
     setProductsToShow(filteredProducts);
+    setSelectedButtonIndex(null);
+    console.log(subCategoryToFilter);
+    setGridTitle(
+      `${filteredProducts[0].categoria} | ${filteredProducts[0].subCategoria}`
+    );
   };
 
   return (
@@ -47,15 +70,36 @@ const CategoriesItem = ({
       } mx-5 col-1 flex-column`}
     >
       {
-        <div
-          className="fw-bold"
-          id={title}
-          onClick={handleFilterCategory}
-          style={{ cursor: "pointer" }}
+        <a
+          href="#product-grid"
+          style={{
+            textDecoration: "none",
+            color: "black",
+          }}
         >
-          {title}
-        </div>
+          <div
+            className="fw-bold"
+            id={title}
+            onClick={handleFilterCategory}
+            style={{ cursor: "pointer" }}
+          >
+            {title}
+          </div>
+        </a>
       }
+
+      {showSubCat &&
+        uniqueCategories(products, title).map((x, i) => (
+          <div
+            id={x}
+            key={x}
+            style={{ cursor: "pointer" }}
+            onClick={handleFilterSubCategory}
+          >
+            {x}
+          </div>
+        ))}
+      {/* 
       {uniqueCategories(products, title).map((x, i) => (
         <div
           id={x}
@@ -65,7 +109,7 @@ const CategoriesItem = ({
         >
           {x}
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };
