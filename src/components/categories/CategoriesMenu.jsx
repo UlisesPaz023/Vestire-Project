@@ -26,7 +26,7 @@ const CategoriesMenu = (props) => {
     <>
       <div className="row border">
         <div
-          className={`d-flex flex-column flex-md-row align-items-center justify-content-center ${styles.color} my-3`}
+          className={`d-flex flex-column flex-md-row align-items-center justify-content-center ${styles.color} my-0`}
         >
           {clase.map((x, i) => (
             <>

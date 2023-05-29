@@ -12,6 +12,7 @@ const HomePage = ({
   loading,
 }) => {
   const [gridTitle, setGridTitle] = useState("Nueva Colección");
+  console.log(window.innerWidth);
   return loading ? (
     <div className="row">
       <div className="col text-center">

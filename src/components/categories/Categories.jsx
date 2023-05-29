@@ -27,7 +27,7 @@ const Categories = ({
       className="container-fluid border"
       style={{
         position: "sticky",
-        top: "78px",
+        top: "60px",
         zIndex: "999",
         backgroundColor: "white",
         opacity: "0.9",

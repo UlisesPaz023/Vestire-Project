@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../img/vestiree.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ModalLogin from "../modal/ModalLogin";
 import Cart from "../cart/Cart";
@@ -28,7 +28,9 @@ function NavBar({
   setProductsToShow,
   productsToShowAux,
   setProductsToShowAux,
+  //productGrid,
 }) {
+  const productGrid = document.getElementById("product-grid");
   const [search, setSearch] = useState();
   const [show, setShow] = useState(false);
 
@@ -36,6 +38,9 @@ function NavBar({
   const handleShow = () => setShow(true);
   const handleSearch = (e) => {
     if (e.target.value.length > 3) {
+      productGrid.scrollIntoView({ behavior: "smooth" });
+
+      console.log(productGrid);
       setSearch(e.target.value);
       searchFilter(e.target.value);
     } else {
@@ -43,7 +48,13 @@ function NavBar({
     }
     if (e.target.value === "") setProductsToShow(productsToShowAux);
   };
+  console.log(productGrid);
+  // useEffect(() => {
+  //   window.scrollTo(0, 450);
+  // }, [search]);
+
   const searchFilter = (item) => {
+    productGrid.scrollIntoView({ behavior: "smooth" });
     let searchResault = productsToShowAux.filter((elem) => {
       if (
         elem.resumenDescripcion
@@ -95,7 +106,14 @@ function NavBar({
                 value={search}
                 onChange={handleSearch}
               />
-              <Button variant="outline-success">Buscar</Button>
+              <Button
+                variant="outline-success"
+                onClick={() =>
+                  productGrid.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Buscar
+              </Button>
               <Cart
                 productsToCart={productsToCart}
                 setProductsToCart={setProductsToCart}

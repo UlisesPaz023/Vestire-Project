@@ -14,7 +14,7 @@ import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
 import AboutUs from "./pages/AboutUs";
-
+//const productGrid = document.getElementById("product-grid");
 const url = "https://vestire.onrender.com/product";
 function App() {
   const [products, setProducts] = useState([]);
@@ -59,6 +59,7 @@ function App() {
         setProductsToShow={setProductsToShow}
         productsToShowAux={productsToShowAux}
         setProductsToShowAux={setProductsToShowAux}
+        //productGrid={productGrid}
       />
       <Routes>
         <Route
