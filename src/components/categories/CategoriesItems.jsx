@@ -9,6 +9,9 @@ const CategoriesItems = ({
   multiCollapseExample,
   selectedButtonIndex,
   setProductsToShow,
+  productsToShow,
+  setSelectedButtonIndex,
+  setGridTitle,
 }) => {
   const showCategories = (array) => {
     const categoriesArray = array.map((x, i) => {
@@ -34,8 +37,11 @@ const CategoriesItems = ({
       >
         {showTrueCategories.map((category, i) => (
           <CategoriesItem
+            setGridTitle={setGridTitle}
+            setSelectedButtonIndex={setSelectedButtonIndex}
             setProducts={setProducts}
             setProductsToShow={setProductsToShow}
+            productsToShow={productsToShow}
             key={i}
             title={category}
             {...{ products, clase, title: category }}

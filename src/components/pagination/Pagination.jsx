@@ -1,4 +1,5 @@
 import React from "react";
+import "./pagination.module.css";
 
 const Pagination = ({
   totalProducts,
@@ -27,7 +28,7 @@ const Pagination = ({
   return (
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item">
+        <li class="page-item text-dark">
           <a
             class={`page-link ${currentPage === 1 ? "disabled" : ""}`}
             aria-label="Previous"
