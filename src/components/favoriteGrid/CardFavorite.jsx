@@ -9,9 +9,7 @@ const url = "https://vestire.onrender.com/users";
 const CardFavorite = (props) => {
   const { _id, resumenDescripcion, imagen } = props.product;
   const usuario = props.user;
-  let setUsuario = props.setUser;
 
-  console.log(usuario)
   const cardAmount = (amount) => {
     if (amount <= 15) {
       if (amount > 10) {
@@ -26,16 +24,17 @@ const CardFavorite = (props) => {
     // }
   };
 
-
-
   const handleDeleteButton = async () => {
-    let endpoint = `${url}/edit-user/6457aacf12996dc64bfdc4d2`;
+    let endpoint = `${url}/edit-user/645bf7a074039838f83349d0`;
     try {
-      const updatedFavorites = usuario.favorites.filter(
-        favorite => favorite._id !== usuario._id
-        );
-        await axios.patch(endpoint, { favorites: updatedFavorites });
-        setUsuario = { ...usuario, favorites: updatedFavorites };
+      const updatedFavorites = [...usuario.favorites];
+      const index = updatedFavorites.findIndex(
+        (favorite) => favorite._id === _id
+      );
+      if (index !== -1) {
+        updatedFavorites.splice(index, 1);
+      }
+      await axios.patch(endpoint, { favorites: updatedFavorites });
     } catch (error) {
       console.log(error);
     }
@@ -74,7 +73,7 @@ const CardFavorite = (props) => {
             <p className={`m-0 ${styles.text}`}>EXPLORAR</p>
           </button>
           <button onClick={handleDeleteButton} className={`${styles2.button} me-2 rounded-5`}>
-            <i class="bi bi-trash-fill"></i>
+            <i className="bi bi-trash-fill"></i>
           </button>
         </div>
       </div>

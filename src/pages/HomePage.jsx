@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import ProductGrid from "../components/productGrid/ProductGrid";
-import Slider from "../components/slider/Slider";
+import CustomSlider from "../components/slider/CustomSlider";
 import Categories from "../components/categories/Categories";
 import axios from "axios";
 import Login from "./Login";
@@ -46,7 +46,7 @@ const HomePage = ({
         setProducts={setProducts}
         setProductsToShow={setProductsToShow}
       />
-      <Slider products={products} />
+      <CustomSlider products={products} />
       <ProductGrid
         productsToShow={productsToShow}
         setProductsToShow={setProductsToShow}
