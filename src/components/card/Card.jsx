@@ -11,15 +11,34 @@ const Card = (props) => {
 
   const [isActive,setIsActive] = useState(false);
   const [user, setUser] = useState({favorites:[]});
-  
+
   useEffect(() => {
     const getData = async () => {
-      let endpoint = `${url}/get-user-by-id/645bf7a074039838f83349d0`;
-      try {
-        const {data} = await axios.get(endpoint);
-        setUser(data);
-      } catch (error) {
-        console.log(error);
+      let endpoint = `${url}/get-user-by-token`;
+      if (localStorage.getItem("userToken")) {
+        const token = localStorage.getItem("userToken");
+        const headers = { Authorization: `Bearer ${token}` };
+        try {
+          const resp = await axios.get(
+            endpoint,
+            {
+              headers,
+            }
+          );
+          setUser(resp.data);
+          // if(resp)
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        Swal.fire(
+          "Acceso denegado",
+          "Debe ser administrador para ingresar",
+          "error"
+        );
+        setTimeout(() => {
+          location.href = "/";
+        }, 3000);
       }
     };
     getData();
@@ -51,7 +70,7 @@ const Card = (props) => {
   const handleFavButton = async () => {
     const addToFavorites = !isActive;
     setIsActive(!isActive);
-    let endpoint = `${url}/edit-user/645bf7a074039838f83349d0`;
+    let endpoint = `${url}/edit-user/${user._id}`;
     
     try {
       const updatedFavorites = [...user.favorites];

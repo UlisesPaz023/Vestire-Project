@@ -25,7 +25,7 @@ const CardFavorite = (props) => {
   };
 
   const handleDeleteButton = async () => {
-    let endpoint = `${url}/edit-user/645bf7a074039838f83349d0`;
+    let endpoint = `${url}/edit-user/${usuario._id}`;
     try {
       const updatedFavorites = [...usuario.favorites];
       const index = updatedFavorites.findIndex(
