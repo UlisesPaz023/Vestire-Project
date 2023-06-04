@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import ProductGrid from "../components/productGrid/ProductGrid";
-import Slider from "../components/slider/Slider";
+import CustomSlider from "../components/slider/CustomSlider";
 import Categories from "../components/categories/Categories";
 import { CircularProgress } from "@mui/material";
 
@@ -28,8 +28,7 @@ const HomePage = ({
         productsToShow={productsToShow}
         setGridTitle={setGridTitle}
       />
-      <Slider products={products} />
-
+      <CustomSlider products={products} />
       <ProductGrid
         productsToShow={productsToShow}
         setProductsToShow={setProductsToShow}

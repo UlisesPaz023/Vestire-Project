@@ -45,7 +45,6 @@ const routes = [
     path: '/contact-page',
     Element: ContactPage
   }
-
 ];
 
 export { routes };
