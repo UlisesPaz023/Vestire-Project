@@ -19,12 +19,15 @@ const CategoriesMenu = (props) => {
     if (index === "multiCollapseExample1") setSelectedButtonIndex(null);
     else setSelectedButtonIndex(index);
     //setSelectedButtonIndex(aux);
-    if (e.target.id === "Todos") window.scrollTo(0, 0);
-    //setProductsToShow(products);
+    if (e.target.id === "Todos") {
+      window.scrollTo(0, 0);
+      setProductsToShow(products);
+      setGridTitle("Nueva Colección");
+    }
   };
   return (
     <>
-      <div className="row border">
+      <div className="row border d-flex flex-column">
         <div
           className={`d-flex flex-column flex-md-row align-items-center justify-content-center ${styles.color} my-0`}
         >
@@ -76,7 +79,7 @@ const CategoriesMenu = (props) => {
       {clase.map((x, i) => (
         <div
           key={i}
-          className={`d-none d-md-flex flex-column justify-content-center ${styles.menuSize}`}
+          className={`d-none d-md-flex flex-column justify-content-center d-flex flex-column ${styles.menuSize}`}
         >
           {
             <CategoriesItems
@@ -86,6 +89,7 @@ const CategoriesMenu = (props) => {
               products={products}
               setProducts={setProducts}
               setProductsToShow={setProductsToShow}
+              productsToShow={productsToShow}
               setSelectedButtonIndex={setSelectedButtonIndex}
               setGridTitle={setGridTitle}
             />

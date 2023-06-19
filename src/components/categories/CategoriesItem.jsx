@@ -12,7 +12,7 @@ const CategoriesItem = ({
   setGridTitle,
 }) => {
   const [showSubCat, setShowSubCat] = useState(false);
-  const [categoryToFilter, setCategoryToFilter] = useState("");
+  //const [categoryToFilter, setCategoryToFilter] = useState("");
 
   const uniqueCategories = (products, category) => {
     const trueUniqueCategories = products.map((x, i) => {
@@ -27,26 +27,30 @@ const CategoriesItem = ({
     return [...new Set(trueUniqueCategories)];
   };
   const handleFilterCategory = (e) => {
-    setCategoryToFilter(
-      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase()
-    );
+    //console.log(showSubCat);
+    const categoryToFilter =
+      e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
+    localStorage.setItem("category", categoryToFilter);
     setShowSubCat(!showSubCat);
     setGridTitle(
       e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase()
     );
-    setSelectedButtonIndex(null);
-    //console.log(filteredProducts[0].categoria);
-  };
-
-  useEffect(() => {
     const filteredProducts = products.filter(
       (product) => product.categoria === categoryToFilter
     );
-    console.log(filteredProducts);
     setProductsToShow(filteredProducts);
-  }, [categoryToFilter]);
+    //setSelectedButtonIndex(null);
+    //console.log(filteredProducts[0].categoria);
+  };
+
+  // useEffect(() => {
+  //   //console.log(filteredProducts);
+  //   setProductsToShow(filteredProducts);
+  //   //console.log(showSubCat);
+  // }, [categoryToFilter]);
 
   const handleFilterSubCategory = (e) => {
+    const categoryToFilter = localStorage.getItem("category");
     const subCategoryToFilter = e.target.id;
     // e.target.id[0] + e.target.id.slice(1, e.target.id.length).toLowerCase();
 
@@ -57,7 +61,7 @@ const CategoriesItem = ({
     );
     setProductsToShow(filteredProducts);
     setSelectedButtonIndex(null);
-    console.log(subCategoryToFilter);
+    console.log(filteredProducts);
     setGridTitle(
       `${filteredProducts[0].categoria} | ${filteredProducts[0].subCategoria}`
     );
@@ -93,7 +97,7 @@ const CategoriesItem = ({
           <div
             id={x}
             key={x}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", color: "black" }}
             onClick={handleFilterSubCategory}
           >
             {x}

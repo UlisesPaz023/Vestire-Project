@@ -7,7 +7,7 @@ const Slider = ({ products }) => {
   const productsSlider = products.filter(
     (product) => product.destacado === true
   );
-  console.log(productsSlider);
+
   const productGroups = [];
   for (let i = 0; i < productsSlider.length; i++) {
     if (i % 4 === 0) {

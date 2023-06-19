@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Card from "../card/Card";
 import style from "../productGrid/productgrid.module.css";
 import Pagination from "../pagination/Pagination";
@@ -9,6 +9,7 @@ const ProductGrid = ({
   productsToShow,
   setProductsToShow,
   gridTitle,
+  estadoPrueba,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(15);

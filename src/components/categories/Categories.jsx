@@ -8,6 +8,7 @@ const Categories = ({
   setProductsToShow,
   productsToShow,
   setGridTitle,
+  setEstadoPrueba,
 }) => {
   const arrayClass = products.reduce((stack, prod) => {
     return stack.concat(prod.clase);
@@ -24,7 +25,7 @@ const Categories = ({
   };
   return (
     <section
-      className="container-fluid border"
+      className="container-fluid border d-flex flex-column"
       style={{
         position: "sticky",
         top: "60px",

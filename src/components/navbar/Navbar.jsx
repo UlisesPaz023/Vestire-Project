@@ -1,4 +1,4 @@
-import "./navbar.css";
+import "./navbar.module.css";
 import Button from "react-bootstrap/Button";
 import Button2 from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -48,7 +48,6 @@ function NavBar({
     }
     if (e.target.value === "") setProductsToShow(productsToShowAux);
   };
-  console.log(productGrid);
   // useEffect(() => {
   //   window.scrollTo(0, 450);
   // }, [search]);
@@ -130,6 +129,10 @@ function NavBar({
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
+      <Button variant="secondary" className="d-lg-none">
+        Filtros
+      </Button>
       <ModalLogin
         handleShow={handleShow}
         show={show}

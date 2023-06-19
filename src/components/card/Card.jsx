@@ -12,18 +12,18 @@ const Card = (props) => {
   const [isActive, setIsActive] = useState(false);
   const [user, setUser] = useState();
 
-  useEffect(() => {
-    const getData = async () => {
-      let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
-      try {
-        const { data } = await axios.get(endpoint);
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
+  //     try {
+  //       const { data } = await axios.get(endpoint);
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getData();
+  // }, []);
 
   useEffect(() => {
     if (user && user.favorites !== undefined) {

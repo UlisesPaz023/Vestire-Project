@@ -16,11 +16,11 @@ import ContactPage from "./pages/ContactPage";
 import AboutUs from "./pages/AboutUs";
 //const productGrid = document.getElementById("product-grid");
 const url = "https://vestire.onrender.com/product";
-function App() {
+const App = () => {
   const [products, setProducts] = useState([]);
-  const [productsToShow, setProductsToShow] = useState([]);
   const [productsToShowAux, setProductsToShowAux] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [productsToShow, setProductsToShow] = useState([]);
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-products`;
@@ -30,6 +30,7 @@ function App() {
         setProductsToShow(data);
         setProductsToShowAux(data);
         setLoading(false);
+        setEstadoPrueba(["esto es una prueba"]);
       } catch (error) {
         console.log(error);
       }
@@ -42,6 +43,8 @@ function App() {
   const [priceCartItem, setPriceCartItem] = useState(0);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
+  const [estadoPrueba, setEstadoPrueba] = useState([]);
+
   return (
     <>
       <NavBar
@@ -72,6 +75,8 @@ function App() {
               productsToShow={productsToShow}
               setProductsToShow={setProductsToShow}
               loading={loading}
+              estadoPrueba={estadoPrueba}
+              setEstadoPrueba={estadoPrueba}
             />
           }
         />
@@ -102,6 +107,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;
