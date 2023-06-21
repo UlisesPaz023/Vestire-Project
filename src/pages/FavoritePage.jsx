@@ -5,19 +5,41 @@ import axios from 'axios';
 const url = "https://vestire.onrender.com/users";
 
 const FavoritePage = () => {
-    const [userFavorites, setUserFavorites] = useState();
+
+    const [userFavorites, setUserFavorites] = useState({favorites:[]});
+
     useEffect(() => {
       const getData = async () => {
-        let endpoint = `${url}/get-user-by-id/6457aacf12996dc64bfdc4d2`;
-        try {
-          const { data } = await axios.get(endpoint);
-          setUserFavorites(data);
-        } catch (error) {
-          console.log(error);
+        let endpoint = `${url}/get-user-by-token`;
+        if (localStorage.getItem("userToken")) {
+          const token = localStorage.getItem("userToken");
+          const headers = { Authorization: `Bearer ${token}` };
+          try {
+            const {data} = await axios.get(
+              endpoint,
+              {
+                headers,
+              }
+            );
+            setUserFavorites(data);
+            // if(resp)
+            
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          Swal.fire(
+            "Acceso denegado",
+            "Debe ser administrador para ingresar",
+            "error"
+          );
+          setTimeout(() => {
+            location.href = "/";
+          }, 3000);
         }
       };
       getData();
-    }, []);
+    }, [userFavorites.favorites]);
 
   return (
     <section>

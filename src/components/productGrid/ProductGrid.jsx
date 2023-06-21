@@ -21,7 +21,7 @@ const ProductGrid = ({
     <div className="container-fluid">
       <div className="row justify-content-center">
         <div className="p-0">
-          <h2 className={`fs-2  text-center col m-3 pb-1 border-bottom`}>
+          <h2 className={`fs-2  text-center col m-2 pb-1 border-bottom`}>
             {gridTitle}
           </h2>
         </div>
@@ -31,12 +31,16 @@ const ProductGrid = ({
           ))
           .slice(firstIndex, lastIndex)}
       </div>
-      <Pagination
-        totalProducts={totalProducts}
-        productsPerPage={productsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {gridTitle !== "Su búsqueda no produjo resultados" ? (
+        <Pagination
+          totalProducts={totalProducts}
+          productsPerPage={productsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      ) : (
+        <br />
+      )}
     </div>
   );
 };

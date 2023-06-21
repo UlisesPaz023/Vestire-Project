@@ -70,6 +70,15 @@ a.nav-link {
   color: blue;
 }
 
+.searchresultscontainer {
+  position: absolute;
+  top: 100%; /* Coloca el contenedor justo debajo del Navbar */
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
 /* li {
   list-style: none;
 }

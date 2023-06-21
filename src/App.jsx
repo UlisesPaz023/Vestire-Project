@@ -13,6 +13,7 @@ import Admin from "./pages/Admin";
 import ProductForm from "./pages/ProductForm";
 import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
+import FavoritePage from "./pages/FavoritePage";
 import AboutUs from "./pages/AboutUs";
 //const productGrid = document.getElementById("product-grid");
 const url = "https://vestire.onrender.com/product";
@@ -44,6 +45,7 @@ const App = () => {
   const [totalCartPrice, setTotalCartPrice] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
   const [estadoPrueba, setEstadoPrueba] = useState([]);
+  const [gridTitle, setGridTitle] = useState("Nueva Colección");
 
   return (
     <>
@@ -62,6 +64,7 @@ const App = () => {
         setProductsToShow={setProductsToShow}
         productsToShowAux={productsToShowAux}
         setProductsToShowAux={setProductsToShowAux}
+        setGridTitle={setGridTitle}
         //productGrid={productGrid}
       />
       <Routes>
@@ -77,6 +80,8 @@ const App = () => {
               loading={loading}
               estadoPrueba={estadoPrueba}
               setEstadoPrueba={estadoPrueba}
+              setGridTitle={setGridTitle}
+              gridTitle={gridTitle}
             />
           }
         />
@@ -103,6 +108,7 @@ const App = () => {
         />
         <Route path="/buying-page" element={<BuyingPage />} />
         <Route path="/contact-page" element={<ContactPage />} />
+        <Route path="/favorite-page" element={<FavoritePage />} />
       </Routes>
       <Footer />
     </>

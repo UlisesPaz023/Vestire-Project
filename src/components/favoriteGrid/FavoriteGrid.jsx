@@ -4,14 +4,13 @@ import Pagination from "../pagination/Pagination";
 import { useState } from "react";
 
 const FavoriteGrid = (props) => {
-  const {favorites} = props.userFavorites
+  const { favorites } = props.userFavorites;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(15);
   const totalProducts = favorites.length;
   const lastIndex = productsPerPage * currentPage;
   const firstIndex = lastIndex - productsPerPage;
-
   return (
     <div className="container-fluid">
       <div className="row justify-content-center">
@@ -20,11 +19,16 @@ const FavoriteGrid = (props) => {
             Favoritos
           </h1>
         </div>
-        {
-          favorites.map((product) => (
-            <CardFavorite user={props.userFavorites} setUser={props.setUserFavorites} product={product} quantity={favorites.length} />
-          )).slice(firstIndex, lastIndex)
-        }
+        {favorites
+          .map((product) => (
+            <CardFavorite
+              user={props.userFavorites}
+              setUser={props.setUserFavorites}
+              product={product}
+              quantity={favorites.length}
+            />
+          ))
+          .slice(firstIndex, lastIndex)}
       </div>
       <Pagination
         totalProducts={totalProducts}

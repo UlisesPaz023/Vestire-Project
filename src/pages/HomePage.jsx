@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from "react";
 import ProductGrid from "../components/productGrid/ProductGrid";
-import Slider from "../components/slider/Slider";
-import Categories from "../components/categories/Categories";
+import CustomSlider from "../components/slider/CustomSlider";
 import { CircularProgress } from "@mui/material";
-import Filter from "../components/filter/Filter";
+import FilterWithAcordion from "../components/filterWithAcordion/FilterWithAcordion";
 
 const HomePage = ({
   products,
@@ -12,10 +11,9 @@ const HomePage = ({
   setProductsToShow,
   loading,
   estadoPrueba,
-  setEstadoPrueba,
+  setGridTitle,
+  gridTitle,
 }) => {
-  const [gridTitle, setGridTitle] = useState("Nueva Colección");
-
   //console.log(window.innerWidth);
   return loading ? (
     <div className="row">
@@ -25,30 +23,28 @@ const HomePage = ({
     </div>
   ) : (
     <section>
-      {/* <Categories
-        products={products}
-        setProducts={setProducts}
-        setProductsToShow={setProductsToShow}
-        productsToShow={productsToShow}
-        setGridTitle={setGridTitle}
-      /> */}
-      <Filter
-        products={products}
-        setProducts={setProducts}
-        setProductsToShow={setProductsToShow}
-        productsToShow={productsToShow}
-        setGridTitle={setGridTitle}
-        setEstadoPrueba={setEstadoPrueba}
-      />
-      <Slider products={products} />
-      <ProductGrid
-        products={products}
-        productsToShow={productsToShow}
-        setProductsToShow={setProductsToShow}
-        setGridTitle={setGridTitle}
-        gridTitle={gridTitle}
-        estadoPrueba={estadoPrueba}
-      />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-3 col-md-2 d-flex flex-column">
+            <FilterWithAcordion
+              products={products}
+              setProductsToShow={setProductsToShow}
+              setGridTitle={setGridTitle}
+            />
+          </div>
+          <div className="col-9 col-md-10">
+            <CustomSlider products={products} />
+            <ProductGrid
+              products={products}
+              productsToShow={productsToShow}
+              setProductsToShow={setProductsToShow}
+              setGridTitle={setGridTitle}
+              gridTitle={gridTitle}
+              estadoPrueba={estadoPrueba}
+            />
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

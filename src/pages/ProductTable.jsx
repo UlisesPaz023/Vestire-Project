@@ -94,12 +94,15 @@ const ProductTable = () => {
 
   const updateData = async (data) => {
     try {
-      console.log(data._id);
+      console.log(data);
       let endpoint = `${url}/edit-product/${data._id}`;
-      let resp = await axios.patch(endpoint);
+      let resp = await axios.patch(endpoint, data);
+      //resp.data.headers["Content-Type"];
+      console.log(resp);
       if (!resp.err) {
         let newProduct = db.map((el) => (el._id === data._id ? data : el));
         modalForm.hide();
+        console.log(newProduct);
         setDb(newProduct);
         Swal.fire("Éxito", "El registro se editó correctamente", "success");
       }

@@ -1,5 +1,6 @@
 .image {
   overflow-y: hidden;
+  border: none;
 }
 
 .containerInfo {
@@ -57,6 +58,7 @@
 
 .sliderContainer {
   margin: 0rem;
+  width: 100%;
 }
 
 .sliderBtn {

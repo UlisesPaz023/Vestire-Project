@@ -1,6 +1,5 @@
-import "./navbar.module.css";
+import moduleStyles from "./navbar.module.css";
 import Button from "react-bootstrap/Button";
-import Button2 from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -28,42 +27,83 @@ function NavBar({
   setProductsToShow,
   productsToShowAux,
   setProductsToShowAux,
+  setGridTitle,
   //productGrid,
 }) {
   const productGrid = document.getElementById("product-grid");
   const [search, setSearch] = useState();
+  const [searchResault, setSearchResault] = useState();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleSearch = (e) => {
-    if (e.target.value.length > 3) {
-      productGrid.scrollIntoView({ behavior: "smooth" });
 
-      console.log(productGrid);
-      setSearch(e.target.value);
-      searchFilter(e.target.value);
-    } else {
-      setSearch(e.target.value);
+  const handleSearch = (e) => {
+    //console.log(e.target.value);
+    setSearch(e.target.value);
+    //console.log(search);
+    // let resault = productsToShow.filter(
+    //   (elem) =>
+    //     search.trim() ===
+    //     elem.resumenDescripcion.toString().toLowerCase().trim()
+    // );
+    //console.log(resault);
+    //searchFilter(e.target.value);
+
+    if (e.target.value === "") {
+      setProductsToShow(productsToShowAux);
+      setGridTitle("Nueva Colección");
     }
-    if (e.target.value === "") setProductsToShow(productsToShowAux);
   };
+
   // useEffect(() => {
-  //   window.scrollTo(0, 450);
+
+  //   let resault = productsToShow.filter((product) => product.includes(search));
+  //   console.log(resault);
   // }, [search]);
 
-  const searchFilter = (item) => {
-    productGrid.scrollIntoView({ behavior: "smooth" });
-    let searchResault = productsToShowAux.filter((elem) => {
-      if (
-        elem.resumenDescripcion
-          .toString()
-          .toLowerCase()
-          .includes(item.toLowerCase().trim())
-      )
-        return elem;
-    });
-    setProductsToShow(searchResault);
+  // const searchFilter = (item) => {
+  //   let searchResault = productsToShowAux.filter((elem) => {
+  //     if (
+  //       elem.resumenDescripcion
+  //         .toString()
+  //         .toLowerCase()
+  //         .includes(item.toLowerCase().trim())
+  //     )
+  //       return elem;
+  //   });
+  //   setProductsToShow(searchResault);
+  // };
+
+  const quitarTildes = (cadena) => {
+    const tildes = {
+      á: "a",
+      é: "e",
+      í: "i",
+      ó: "o",
+      ú: "u",
+      Á: "A",
+      É: "E",
+      Í: "I",
+      Ó: "O",
+      Ú: "U",
+    };
+
+    return cadena.replace(/[áéíóúÁÉÍÓÚ]/g, (match) => tildes[match]);
+  };
+
+  const showSearch = () => {
+    let resault = productsToShow.filter((product) =>
+      quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
+    );
+    console.log(resault);
+    if (resault.length > 0) {
+      setProductsToShow(resault);
+      setGridTitle("Resultados de su búsqueda");
+    } else {
+      setGridTitle("Su búsqueda no produjo resultados");
+      setProductsToShow([]);
+    }
   };
 
   const handleLogout = () => {
@@ -105,12 +145,7 @@ function NavBar({
                 value={search}
                 onChange={handleSearch}
               />
-              <Button
-                variant="outline-success"
-                onClick={() =>
-                  productGrid.scrollIntoView({ behavior: "smooth" })
-                }
-              >
+              <Button variant="outline-success" onClick={showSearch}>
                 Buscar
               </Button>
               <Cart
@@ -129,10 +164,6 @@ function NavBar({
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Button variant="secondary" className="d-lg-none">
-        Filtros
-      </Button>
       <ModalLogin
         handleShow={handleShow}
         show={show}

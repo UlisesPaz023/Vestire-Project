@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardSlider from "./CardSlider";
-import axios from "axios";
 import styles from "../card/card.module.css";
 
 const Slider = ({ products }) => {
