@@ -20,6 +20,7 @@ const isAdmin = async () => {
       );
       // if(resp)
       console.log(resp);
+      localStorage.setItem("isAdmin", resp.data);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +32,7 @@ const isAdmin = async () => {
     );
     setTimeout(() => {
       location.href = "/";
-    }, 3000);
+    }, 2000);
   }
 };
 
@@ -50,14 +51,21 @@ const Admin = () => {
         <div className="row text-center mt-5">
           <div className="col">
             <Link to="/admin/product-table">
-              <button className="btn btn-primary">ADMINISTRAR PRODUCTOS</button>
+              <button className="btn btn-primary mt-1">
+                ADMINISTRAR PRODUCTOS
+              </button>
             </Link>
           </div>
           <div className="col">
-            <button className="btn btn-primary">ADMINISTRAR USUARIOS</button>
+            <Link to="/admin/user-table">
+              <button className="btn btn-primary mt-1">
+                ADMINISTRAR USUARIOS
+              </button>
+            </Link>
           </div>
         </div>
       </div>
+      <div style={{ height: "40vh" }}></div>
     </div>
   );
 };

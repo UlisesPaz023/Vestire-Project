@@ -1,6 +1,4 @@
-import "./navbar.css";
 import Button from "react-bootstrap/Button";
-import Button2 from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -8,9 +6,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../img/vestiree.png";
 import { useState, useEffect } from "react";
-
+import { FaUser } from "react-icons/fa";
 import ModalLogin from "../modal/ModalLogin";
 import Cart from "../cart/Cart";
+import { useNavigate } from "react-router-dom";
 
 function NavBar({
   allproducts,
@@ -28,79 +27,153 @@ function NavBar({
   setProductsToShow,
   productsToShowAux,
   setProductsToShowAux,
+  setGridTitle,
   //productGrid,
 }) {
   const productGrid = document.getElementById("product-grid");
   const [search, setSearch] = useState();
+  const [searchResault, setSearchResault] = useState();
   const [show, setShow] = useState(false);
-
+  const [disableButton, setDisableButton] = useState(true);
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleSearch = (e) => {
-    if (e.target.value.length > 3) {
-      productGrid.scrollIntoView({ behavior: "smooth" });
 
-      console.log(productGrid);
-      setSearch(e.target.value);
-      searchFilter(e.target.value);
-    } else {
-      setSearch(e.target.value);
+  const handleSearch = (e) => {
+    //console.log(e.target.value);
+    setSearch(e.target.value);
+    //console.log(search);
+    // let resault = productsToShow.filter(
+    //   (elem) =>
+    //     search.trim() ===
+    //     elem.resumenDescripcion.toString().toLowerCase().trim()
+    // );
+    //console.log(resault);
+    //searchFilter(e.target.value);
+    setDisableButton(false);
+    if (e.target.value === "") {
+      setDisableButton(true);
+      setProductsToShow(productsToShowAux);
+      setGridTitle("Nueva Colección");
     }
-    if (e.target.value === "") setProductsToShow(productsToShowAux);
   };
-  console.log(productGrid);
+
   // useEffect(() => {
-  //   window.scrollTo(0, 450);
+
+  //   let resault = productsToShow.filter((product) => product.includes(search));
+  //   console.log(resault);
   // }, [search]);
 
-  const searchFilter = (item) => {
-    productGrid.scrollIntoView({ behavior: "smooth" });
-    let searchResault = productsToShowAux.filter((elem) => {
-      if (
-        elem.resumenDescripcion
-          .toString()
-          .toLowerCase()
-          .includes(item.toLowerCase().trim())
-      )
-        return elem;
-    });
-    setProductsToShow(searchResault);
+  // const searchFilter = (item) => {
+  //   let searchResault = productsToShowAux.filter((elem) => {
+  //     if (
+  //       elem.resumenDescripcion
+  //         .toString()
+  //         .toLowerCase()
+  //         .includes(item.toLowerCase().trim())
+  //     )
+  //       return elem;
+  //   });
+  //   setProductsToShow(searchResault);
+  // };
+
+  const quitarTildes = (cadena) => {
+    const tildes = {
+      á: "a",
+      é: "e",
+      í: "i",
+      ó: "o",
+      ú: "u",
+      Á: "A",
+      É: "E",
+      Í: "I",
+      Ó: "O",
+      Ú: "U",
+    };
+
+    return cadena.replace(/[áéíóúÁÉÍÓÚ]/g, (match) => tildes[match]);
+  };
+
+  const showSearch = () => {
+    let resault = productsToShow.filter((product) =>
+      quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
+    );
+    console.log(resault);
+    if (resault.length > 0) {
+      setProductsToShow(resault);
+      setGridTitle("Resultados de su búsqueda");
+    } else {
+      setGridTitle("Su búsqueda no produjo resultados");
+      setProductsToShow([]);
+    }
   };
 
   const handleLogout = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userToken");
-    location.href = "/";
+    localStorage.removeItem("isAdmin");
+    navigate("/");
   };
 
+  let userLoged = localStorage.getItem("userName");
   return (
     <>
       <Navbar bg="light" expand="lg" sticky="top">
         <Container fluid>
-          <img src={logo} alt="" />
-          <Navbar.Brand href="#"></Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img src={logo} alt="" />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/favorite-page">Favortios</Nav.Link>
-              <Nav.Link href="/contact-page">Contacto</Nav.Link>
-              <NavDropdown title="V" id="navbarScrollingDropdown">
-                <NavDropdown.Item onClick={handleShow}>Login</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleLogout}>
-                  Cerrar sesion
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
+            <div className="container">
+              <div className="row">
+                <Nav
+                  className="me-auto my-2 my-lg-0"
+                  style={{ maxHeight: "100px" }}
+                  navbarScroll
+                >
+                  <Nav.Link href="/favorite-page">Favortios</Nav.Link>
+                  <Nav.Link href="/contact-page">Contacto</Nav.Link>
+                  {userLoged ? (
+                    <NavDropdown
+                      className="me-auto"
+                      title={
+                        <>
+                          <FaUser className="me-1" />
+                          {userLoged}
+                        </>
+                      }
+                      id="navbarScrollingDropdown"
+                    >
+                      {localStorage.getItem("isAdmin") ? (
+                        <>
+                          <Nav.Link href="/admin">
+                            Ir al sitio Administrador
+                          </Nav.Link>
+
+                          <NavDropdown.Divider />
+                          <NavDropdown.Item onClick={handleLogout}>
+                            Cerrar sesión
+                          </NavDropdown.Item>
+                        </>
+                      ) : (
+                        <NavDropdown.Item onClick={handleLogout}>
+                          Cerrar sesión
+                        </NavDropdown.Item>
+                      )}
+                    </NavDropdown>
+                  ) : (
+                    <Nav.Link href="" onClick={handleShow}>
+                      Login | Registrarse
+                    </Nav.Link>
+                  )}
+                </Nav>
+              </div>
+            </div>
             <Form className="d-flex">
               <Form.Control
                 type="search"
-                placeholder="Buscar producto"
+                placeholder="Buscar..."
                 className="me-2"
                 aria-label="Search"
                 value={search}
@@ -108,9 +181,9 @@ function NavBar({
               />
               <Button
                 variant="outline-success"
-                onClick={() =>
-                  productGrid.scrollIntoView({ behavior: "smooth" })
-                }
+                onClick={showSearch}
+                disabled={disableButton}
+                href="#product-grid-section"
               >
                 Buscar
               </Button>

@@ -27,10 +27,10 @@ const Pagination = ({
 
   return (
     <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center">
-        <li class="page-item text-dark">
+      <ul className="pagination justify-content-center">
+        <li className="page-item text-dark">
           <a
-            class={`page-link ${currentPage === 1 ? "disabled" : ""}`}
+            className={`page-link ${currentPage === 1 ? "disabled" : ""}`}
             aria-label="Previous"
             onClick={onPreviousPage}
           >
@@ -39,18 +39,18 @@ const Pagination = ({
         </li>
         {pageNumbers.map((noPage) => (
           <li
-            class={`page-item ${noPage === currentPage ? "active" : ""}`}
+            className={`page-item ${noPage === currentPage ? "active" : ""}`}
             key={noPage}
           >
-            <a class="page-link" onClick={() => onSpecificPage(noPage)}>
+            <a className="page-link" onClick={() => onSpecificPage(noPage)}>
               {noPage}
             </a>
           </li>
         ))}
 
-        <li class="page-item">
+        <li className="page-item">
           <a
-            class={`page-link ${
+            className={`page-link ${
               currentPage === pageNumbers.length ? "disabled" : ""
             }`}
             aria-label="Next"

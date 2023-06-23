@@ -15,13 +15,14 @@ import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from "./pages/FavoritePage";
 import AboutUs from "./pages/AboutUs";
+import UserTable from "./pages/UserTable";
 //const productGrid = document.getElementById("product-grid");
 const url = "https://vestire.onrender.com/product";
-function App() {
+const App = () => {
   const [products, setProducts] = useState([]);
-  const [productsToShow, setProductsToShow] = useState([]);
   const [productsToShowAux, setProductsToShowAux] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [productsToShow, setProductsToShow] = useState([]);
   useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-products`;
@@ -31,6 +32,7 @@ function App() {
         setProductsToShow(data);
         setProductsToShowAux(data);
         setLoading(false);
+        setEstadoPrueba(["esto es una prueba"]);
       } catch (error) {
         console.log(error);
       }
@@ -43,6 +45,9 @@ function App() {
   const [priceCartItem, setPriceCartItem] = useState(0);
   const [totalCartPrice, setTotalCartPrice] = useState(0);
   const [totalCartItems, setTotalCartItems] = useState(0);
+  const [estadoPrueba, setEstadoPrueba] = useState([]);
+  const [gridTitle, setGridTitle] = useState("Nueva Colección");
+
   return (
     <>
       <NavBar
@@ -60,6 +65,7 @@ function App() {
         setProductsToShow={setProductsToShow}
         productsToShowAux={productsToShowAux}
         setProductsToShowAux={setProductsToShowAux}
+        setGridTitle={setGridTitle}
         //productGrid={productGrid}
       />
       <Routes>
@@ -73,12 +79,17 @@ function App() {
               productsToShow={productsToShow}
               setProductsToShow={setProductsToShow}
               loading={loading}
+              estadoPrueba={estadoPrueba}
+              setEstadoPrueba={estadoPrueba}
+              setGridTitle={setGridTitle}
+              gridTitle={gridTitle}
             />
           }
         />
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/product-table" element={<ProductTable />} />
         <Route path="/admin/product-form" element={<ProductForm />} />
+        <Route path="/admin/user-table" element={<UserTable />} />
         <Route path="/sobre-nosotros" element={<AboutUs />} />
         <Route
           path="/product-page/:id"
@@ -104,6 +115,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

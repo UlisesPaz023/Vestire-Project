@@ -31,7 +31,7 @@ const ProductPage = ({
     categoria,
     subCategoria,
   } = location.state;
-  const precioFormated = new Intl.NumberFormat("es-AR").format(precio);
+  //const precioFormated = precio.toLocaleString();
   const [talle, setTalle] = useState("");
   const [cantidad, setCantidad] = useState(0);
   const resumenDescripcionToCart = resumenDescripcion
@@ -45,7 +45,7 @@ const ProductPage = ({
     _id,
     imagen,
     resumenDescripcionToCart,
-    precioFormated,
+    precio,
     talle: talle,
     cantidad: cantidad,
   };
@@ -148,7 +148,6 @@ const ProductPage = ({
   //   }
   //   setProductsToCart((prevState) => [...prevState, initProductToCart]);
   // };
-
   return (
     <>
       <div className="container bg-warning  my-3">
@@ -167,7 +166,7 @@ const ProductPage = ({
                 {resumenDescripcion.toUpperCase()} | Marca: {marca}
               </p>
               <p className={`${styles.desc}`}>{descripcion}</p>
-              <h3 className="fw-bold">${precioFormated}</h3>
+              <h3 className="fw-bold">${precio.toLocaleString()}</h3>
             </div>
             <div className={`${styles.desContainer} pb-4 mb-4`}>
               <div className="d-flex align-items-center">

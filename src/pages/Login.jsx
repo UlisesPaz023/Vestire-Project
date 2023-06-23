@@ -10,6 +10,7 @@ const Login = () => {
         "https://vestire.onrender.com/users/login",
         body
       );
+      console.log(data.data);
       console.log(data.data.token);
       localStorage.setItem("userToken", data.data.token);
       localStorage.setItem("userName", document.getElementById("name").value);

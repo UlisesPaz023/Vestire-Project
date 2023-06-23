@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardSlider from "./CardSlider";
-import axios from "axios";
 import styles from "../card/card.module.css";
 
 const Slider = ({ products }) => {
   const productsSlider = products.filter(
     (product) => product.destacado === true
   );
-  console.log(productsSlider);
+
   const productGroups = [];
   for (let i = 0; i < productsSlider.length; i++) {
     if (i % 4 === 0) {
