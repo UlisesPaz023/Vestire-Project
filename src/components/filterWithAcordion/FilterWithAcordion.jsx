@@ -63,26 +63,24 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
             >
               <h5 className="text-center mt-4">Filtros</h5>
               {trueArrayClass.map((clase, index) => (
-                <>
-                  <Accordion.Item
-                    key={index}
-                    eventKey={index.toString()} // Asignar un eventKey único
-                    style={{ height: "auto" }}
-                  >
-                    <Accordion.Header onClick={handleClick}>
-                      {clase}
-                    </Accordion.Header>
-                    <Accordion.Body>
-                      <FilterCategory
-                        clase={clase}
-                        products={products}
-                        setProductsToShow={setProductsToShow}
-                        setGridTitle={setGridTitle}
-                        setShow={setShow}
-                      />
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </>
+                <Accordion.Item
+                  key={index}
+                  eventKey={index.toString()} // Asignar un eventKey único
+                  style={{ height: "auto" }}
+                >
+                  <Accordion.Header onClick={handleClick}>
+                    {clase}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <FilterCategory
+                      clase={clase}
+                      products={products}
+                      setProductsToShow={setProductsToShow}
+                      setGridTitle={setGridTitle}
+                      setShow={setShow}
+                    />
+                  </Accordion.Body>
+                </Accordion.Item>
               ))}
             </Accordion>
           </div>

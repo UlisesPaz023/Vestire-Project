@@ -16,9 +16,11 @@ const HomePage = ({
 }) => {
   //console.log(window.innerWidth);
   return loading ? (
-    <div className="row">
+    <div className="row justify-content-center align-items-center">
       <div className="col text-center">
+        <div style={{ height: "25vh" }}></div>
         <CircularProgress />
+        <div style={{ height: "25vh" }}></div>
       </div>
     </div>
   ) : (
@@ -32,7 +34,7 @@ const HomePage = ({
               setGridTitle={setGridTitle}
             />
           </div>
-          <div className="col-9 col-md-10">
+          <div className="col-7 col-md-8">
             <CustomSlider products={products} />
             <ProductGrid
               products={products}
@@ -41,6 +43,14 @@ const HomePage = ({
               setGridTitle={setGridTitle}
               gridTitle={gridTitle}
               estadoPrueba={estadoPrueba}
+            />
+          </div>
+          <div className="col-2 col-md-2 d-none d-lg-block d-xxl-block">
+            <img
+              class="img-fluid"
+              src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/4a66f333332919.56a84344447ec.jpg"
+              alt="publicidad"
+              style={{ width: "100%", height: "100%", objectFit: "fill" }}
             />
           </div>
         </div>

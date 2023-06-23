@@ -29,8 +29,9 @@ const FilterSubCategory = ({
   let uniqueSubCategories = [...new Set(subCategories)];
   return (
     <>
-      {uniqueSubCategories.map((subCategory) => (
+      {uniqueSubCategories.map((subCategory, idx) => (
         <p
+          key={idx}
           htmlFor={`idForFilter${subCategory}`}
           onClick={() => handleClick(subCategory)}
           style={{ cursor: "pointer" }}

@@ -17,7 +17,7 @@ const Cart = ({
   setTotalCartItems,
 }) => {
   const [show, setShow] = useState(false);
-  const { resumenDescripcion } = productsToCart;
+  //const { resumenDescripcion } = productsToCart;
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ const Cart = ({
     <>
       <div className="dropstart">
         <div
-          class="icon-container dropdown-toggle"
+          className="icon-container dropdown-toggle"
           style={{
             position: "relative",
             display: "inline-block",
@@ -91,7 +91,7 @@ const Cart = ({
           <BsFillCartFill className="fs-3" />
         </div>
         <div
-          class="number-circle"
+          className="number-circle"
           style={{
             position: "absolute",
             top: "-10px",
@@ -132,7 +132,7 @@ const Cart = ({
                     {productsToCart.map((product) => (
                       <tr
                         key={product._id + product.talle}
-                        class="align-middle"
+                        className="align-middle"
                       >
                         <td>{product.cantidad}</td>
                         <td>{product.resumenDescripcionToCart}</td>
@@ -145,8 +145,11 @@ const Cart = ({
                           />
                         </td>
                         <td>{product.talle.toUpperCase()}</td>
-                        <td>${product.precio}</td>
-                        <td>${product.precio * product.cantidad}</td>
+                        <td>${product.precio.toLocaleString()}</td>
+                        <td>
+                          $
+                          {(product.precio * product.cantidad).toLocaleString()}
+                        </td>
                         <td>
                           <button
                             style={{ border: "none", backgroundColor: "white" }}
@@ -157,7 +160,7 @@ const Cart = ({
                               width="16"
                               height="16"
                               fill="currentColor"
-                              class="bi bi-trash3-fill"
+                              className="bi bi-trash3-fill"
                               viewBox="0 0 16 16"
                             >
                               <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
@@ -171,7 +174,7 @@ const Cart = ({
               </div>
               <div className="row fw-bold mt-3 text-end me-3">
                 <p>
-                  TOTAL: <span>${totalCartPrice}</span>
+                  TOTAL: <span>${totalCartPrice.toLocaleString()}</span>
                 </p>
               </div>
             </>

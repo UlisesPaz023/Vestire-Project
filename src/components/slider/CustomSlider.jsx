@@ -37,9 +37,10 @@ const CustomSlider = ({ products }) => {
         modules={[Pagination]}
         className="mySwiper m-3"
       >
-        {productsSlider.map((productSlider, i) => (
-          <SwiperSlide>
-            <CardSliderItem x={productSlider} key={i} />
+        {productsSlider.map((productSlider, idx) => (
+          <SwiperSlide key={idx}>
+            <CardSliderItem x={productSlider} />
+            <div id="product-grid-section"></div>
           </SwiperSlide>
         ))}
       </Swiper>

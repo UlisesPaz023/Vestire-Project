@@ -15,6 +15,7 @@ import ProductTable from "./pages/ProductTable";
 import ContactPage from "./pages/ContactPage";
 import FavoritePage from "./pages/FavoritePage";
 import AboutUs from "./pages/AboutUs";
+import UserTable from "./pages/UserTable";
 //const productGrid = document.getElementById("product-grid");
 const url = "https://vestire.onrender.com/product";
 const App = () => {
@@ -88,6 +89,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/product-table" element={<ProductTable />} />
         <Route path="/admin/product-form" element={<ProductForm />} />
+        <Route path="/admin/user-table" element={<UserTable />} />
         <Route path="/sobre-nosotros" element={<AboutUs />} />
         <Route
           path="/product-page/:id"

@@ -33,7 +33,7 @@ const isAdmin = async () => {
     );
     setTimeout(() => {
       location.href = "/";
-    }, 3000);
+    }, 2000);
   }
 };
 

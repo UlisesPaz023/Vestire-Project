@@ -30,8 +30,8 @@ const FilterCategory = ({
   let uniqueCategories = [...new Set(categories)];
   return (
     <>
-      {uniqueCategories.map((categoria) => (
-        <Accordion>
+      {uniqueCategories.map((categoria, idx) => (
+        <Accordion key={idx}>
           <Accordion.Item eventKey={categoria}>
             <Accordion.Header onClick={() => handleClick(categoria)}>
               {categoria}
