@@ -9,9 +9,21 @@
   text-overflow: ellipsis;
 }
 
+.container{
+  overflow: hidden;
+}
+
 .title {
   font-family: "Mina", sans-serif;
-  /* font-size: 1.5rem; */
+  font-size: .8rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.truncate{
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .description {
@@ -21,6 +33,7 @@
 
 .button {
   width: 6rem;
+  height: 1.5rem;
   border: solid black 0.1rem;
   transition: width 0.25s ease-in-out;
 }
