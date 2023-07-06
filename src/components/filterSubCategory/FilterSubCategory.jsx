@@ -37,6 +37,7 @@ const FilterSubCategory = ({
           style={{ cursor: "pointer" }}
         >
           {subCategory}
+          <hr className="m-1"/>
         </p>
       ))}
     </>

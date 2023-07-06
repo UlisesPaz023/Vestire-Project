@@ -49,30 +49,38 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
         sticky="top"
         scroll={true}
       >
-        <Offcanvas.Header closeButton></Offcanvas.Header>
         <Offcanvas.Body>
-          <div className="container-fluid d-flex flex-column justify-content-between border">
+          <div className="container-fluid d-flex flex-column align-items-center w-100 border">
             <Accordion
-              className="my-accordion"
+              className="row px-3 m-0 p-0 col my-accordion"
               style={{
-                height: "50%",
                 position: "fixed",
-                left: "0",
                 overflowY: "auto",
               }}
             >
-              <h5 className="text-center mt-4">Filtros</h5>
+              <div className="position-relative">
+              <Offcanvas.Header className="my-1 position-absolute" closeButton></Offcanvas.Header>
+              <h5 className="text-center my-3">Filtros</h5>
+              </div>
+              <hr />
               {trueArrayClass.map((clase, index) => (
                 <Accordion.Item
+                  className="border-0 text-decoration-none"
                   key={index}
                   eventKey={index.toString()} // Asignar un eventKey único
                   style={{ height: "auto" }}
                 >
-                  <Accordion.Header onClick={handleClick}>
+                  <Accordion.Header 
+                    className="border-0"
+                    onClick={handleClick}
+                  >
                     {clase}
                   </Accordion.Header>
-                  <Accordion.Body>
+                  <Accordion.Body
+                    className="border-0"
+                  >
                     <FilterCategory
+                      className="border-0 text-decoration-none"
                       clase={clase}
                       products={products}
                       setProductsToShow={setProductsToShow}
@@ -80,6 +88,7 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
                       setShow={setShow}
                     />
                   </Accordion.Body>
+                  <hr className="m-0" />
                 </Accordion.Item>
               ))}
             </Accordion>

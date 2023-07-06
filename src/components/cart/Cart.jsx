@@ -193,10 +193,10 @@ const Cart = ({
                   ""
                 ) : (
                   <>
-                    <Button variant="outline-danger" onClick={handleClear}>
+                    <Button className="ms-2" variant="outline-danger" onClick={handleClear}>
                       Vaciar Carrito
                     </Button>
-                    <Button variant="outline-primary" onClick={handleBuy}>
+                    <Button className="ms-2" variant="outline-primary" onClick={handleBuy}>
                       Finalizar compra
                     </Button>
                   </>

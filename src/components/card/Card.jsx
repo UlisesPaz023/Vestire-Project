@@ -100,40 +100,34 @@ const Card = (props) => {
 
   return (
     <div
-      className={`card rounded-2 col-6 col-md-3 col-lg-2 p-0 my-3 mx-md-2 shadow `}
+      className={`${styles.container} card rounded-2 col-6 col-md-3 col-lg-2 p-0 my-3 mx-md-1 shadow `}
     >
       <button onClick={handleClick} className={`${styles.image}`}>
         <img src={imagen} className="card-img-top " alt={resumenDescripcion} />
       </button>
       <div
-        className={` card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-4 mb-lg-3 justify-content-between`}
+        className={`card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-2 justify-content-between`}
       >
-        <div className={`card-title m-2 fw-bolder ${styles.title}`}>
-          {resumenDescripcion}
+        <div className={`card-title my-0 mx-2 ps-2 ps-md-0 pe-2 mb-md-2 fw-bolder ${styles.title}`}>
+          <p className={`${styles.truncate} m-0`}>
+            {resumenDescripcion}
+          </p>
         </div>
-        <div className="card-text col-12 container">
-          <div className="row">
+        <div className={`card-text col-12 container`}>
+          <div className="row justify-content-between align-items-center">
             <button
               onClick={handleClick}
-              className={`${styles.button} d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
+              className={`${styles.button} col d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
             >
               <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
               <p className={`m-0 ${styles.text}`}>VER</p>
             </button>
-          </div>
-
-          <div className="row justify-content-center">
-            <div className="col">
-              <div className=" fs-6">${precioFormated}</div>
-            </div>
-            <div className="col">
-              <button
-                onClick={handleFavButton}
-                className={`${styles2.button} me-2 rounded-5 `}
-              >
-                <i className={`bi bi-heart${isActive ? "-fill" : ""}`}></i>
-              </button>
-            </div>
+            <button
+              onClick={handleFavButton}
+              className={`${styles2.button} p-1 me-2 rounded-5 `}
+            >
+              <i className={`bi bi-heart${isActive ? "-fill" : ""}`}></i>
+            </button>
           </div>
         </div>
       </div>

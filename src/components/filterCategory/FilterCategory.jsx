@@ -31,12 +31,15 @@ const FilterCategory = ({
   return (
     <>
       {uniqueCategories.map((categoria, idx) => (
-        <Accordion key={idx}>
-          <Accordion.Item eventKey={categoria}>
+        <Accordion className="border-0" key={idx}>
+          <Accordion.Item className="border-0" eventKey={categoria}>
             <Accordion.Header onClick={() => handleClick(categoria)}>
               {categoria}
             </Accordion.Header>
-            <Accordion.Body>
+            <hr className="m-0"/>
+            <Accordion.Body
+              className="m-0"
+            >
               <FilterSubCategory
                 products={products}
                 categoria={categoria}

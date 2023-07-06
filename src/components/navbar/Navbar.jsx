@@ -132,7 +132,7 @@ function NavBar({
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
-                  <Nav.Link href="/favorite-page">Favortios</Nav.Link>
+                  <Nav.Link href="/favorite-page">Favoritos</Nav.Link>
                   <Nav.Link href="/contact-page">Contacto</Nav.Link>
                   {userLoged ? (
                     <NavDropdown
