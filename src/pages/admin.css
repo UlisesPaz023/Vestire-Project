@@ -1,0 +1,12 @@
+.boton{
+  width: 20rem;
+  height: 20rem;
+  border-radius: 10rem;
+  background-color: #1b2638;
+  border: 0;
+}
+
+.boton:hover{
+  color: black;
+  background-color: #d4af37;;
+}

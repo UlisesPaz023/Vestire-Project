@@ -49,7 +49,7 @@ const App = () => {
   const [gridTitle, setGridTitle] = useState("Nueva Colección");
 
   return (
-    <>
+    <section className="d-flex flex-column" style={{minHeight:"100vh", overflow:"hidden"}}>
       <NavBar
         productsToCart={productsToCart}
         setProductsToCart={setProductsToCart}
@@ -68,52 +68,54 @@ const App = () => {
         setGridTitle={setGridTitle}
         //productGrid={productGrid}
       />
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <HomePage
-              products={products}
-              setProducts={setProducts}
-              productsToShow={productsToShow}
-              setProductsToShow={setProductsToShow}
-              loading={loading}
-              estadoPrueba={estadoPrueba}
-              setEstadoPrueba={estadoPrueba}
-              setGridTitle={setGridTitle}
-              gridTitle={gridTitle}
-            />
-          }
-        />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/product-table" element={<ProductTable />} />
-        <Route path="/admin/product-form" element={<ProductForm />} />
-        <Route path="/admin/user-table" element={<UserTable />} />
-        <Route path="/sobre-nosotros" element={<AboutUs />} />
-        <Route
-          path="/product-page/:id"
-          element={
-            <ProductPage
-              productsToCart={productsToCart}
-              setProductsToCart={setProductsToCart}
-              quantity={quantity}
-              setQuantity={setQuantity}
-              priceCartItem={priceCartItem}
-              setPriceCartItem={setPriceCartItem}
-              totalCartPrice={totalCartPrice}
-              setTotalCartPrice={setTotalCartPrice}
-              totalCartItems={totalCartItems}
-              setTotalCartItems={setTotalCartItems}
-            />
-          }
-        />
-        <Route path="/buying-page" element={<BuyingPage />} />
-        <Route path="/contact-page" element={<ContactPage />} />
-        <Route path="/favorite-page" element={<FavoritePage />} />
-      </Routes>
+      <section className="flex-grow-1">
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <HomePage
+                products={products}
+                setProducts={setProducts}
+                productsToShow={productsToShow}
+                setProductsToShow={setProductsToShow}
+                loading={loading}
+                estadoPrueba={estadoPrueba}
+                setEstadoPrueba={estadoPrueba}
+                setGridTitle={setGridTitle}
+                gridTitle={gridTitle}
+              />
+            }
+          />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/product-table" element={<ProductTable />} />
+          <Route path="/admin/product-form" element={<ProductForm />} />
+          <Route path="/admin/user-table" element={<UserTable />} />
+          <Route path="/sobre-nosotros" element={<AboutUs />} />
+          <Route
+            path="/product-page/:id"
+            element={
+              <ProductPage
+                productsToCart={productsToCart}
+                setProductsToCart={setProductsToCart}
+                quantity={quantity}
+                setQuantity={setQuantity}
+                priceCartItem={priceCartItem}
+                setPriceCartItem={setPriceCartItem}
+                totalCartPrice={totalCartPrice}
+                setTotalCartPrice={setTotalCartPrice}
+                totalCartItems={totalCartItems}
+                setTotalCartItems={setTotalCartItems}
+              />
+            }
+          />
+          <Route path="/buying-page" element={<BuyingPage />} />
+          <Route path="/contact-page" element={<ContactPage />} />
+          <Route path="/favorite-page" element={<FavoritePage />} />
+        </Routes>
+      </section>
       <Footer />
-    </>
+    </section>
   );
 };
 

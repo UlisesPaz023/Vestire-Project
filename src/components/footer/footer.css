@@ -1,5 +1,4 @@
 .section_padding {
-  /* padding: 0 4rem; */
   background-color: #1b2638;
   font-family: "Roboto", sans-serif;
 }
@@ -23,65 +22,21 @@
 
 .sb_footer-links {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   text-align: left;
-  margin-bottom: 0;
-  /* margin: 2rem; */
+  padding: 2rem 0 0 0;
 }
 
 .sb_footer-links_div {
-  width: 120px;
-  margin: 30px;
+  width: 100px;
+  margin: 30px 0;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   color: #fff;
-}
-
-.socialmedia .qr img {
-  width: 90px;
-  height: 90px;
-  border-radius: 0;
-  padding: 10px;
-
-  margin-top: 42px;
-  position: absolute;
-  right: 124px;
-}
-
-@media screen and (max-width: 915px) {
-  .socialmedia .qr img:nth-child() {
-    display: none;
-  }
-  .sb_footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .sb_footer-links_div {
-    flex-basis: 100%;
-    text-align: center;
-  }
-  .sb_footer-links_div:nth-child(4),
-  .sb_footer-links_div:nth-child(2),
-  .sb_footer-links_div:nth-child(3) {
-    display: none;
-  }
-  .socialmedia {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-  .sb_footer-below {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
 }
 
 p {
@@ -89,14 +44,14 @@ p {
 }
 
 a {
-  color: #fff;
+  color: gray;
   text-decoration: none;
-  font-family: "Lato", sans-serif;
 }
 
 .socialmedia {
   display: flex;
   margin-top: -15px;
+  justify-content: start;
 }
 
 .socialmedia img {
@@ -131,11 +86,14 @@ a {
   font-size: 20px;
   line-height: 17px;
   margin-bottom: 1rem;
+  white-space:nowrap;
+  margin-left: .25rem;
 }
 
 .v {
   text-decoration: none;
-  color: #fff;
+  color: gray;
+  white-space:nowrap;
 }
 
 .v:hover {
@@ -146,7 +104,6 @@ a {
   line-height: 15px;
   margin: 0.5rem 0;
   cursor: pointer;
-  font-family: "Lato", sans-serif;
   text-decoration: none;
 }
 
@@ -179,59 +136,79 @@ hr {
 .sb_footer-copyright p {
   font-size: 15px;
   line-height: 15px;
-  font-family: "Lato", sans-serif;
   justify-content: center;
 }
 
-@media screen and (max-width: 988px) {
+.qr{
+  width: 2rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .sb_footer-links {
+    padding: 0;
+  }
+
+  .img-logo {
+    width: 350px;
+    margin: -30px 26px -30px 0;
+  }
+
+  .socialmedia {
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .sb_footer-below {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .socialmedia img {
+    width: 60px;
+    margin: 6px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .img-logo {
+    width: 360px;
+    margin: -30px 23px -30px 0;
+  }
+  
+  .socialmedia {
+    justify-content: center;
+  }  
+
   .socialmedia .qr img {
     display: none;
   }
-  .sb_footer-links_div h1 {
-    font-size: 44px;
-    line-height: 50px;
-    font-family: "Roboto", sans-serif;
-  }
-}
 
-@media screen and (max-width: 550px) {
-  .sb_footer-links_div h1 {
-    font-size: 44px;
-    line-height: 50px;
-    font-family: "Roboto", sans-serif;
+  .socialmedia img {
+    width: 60px;
+    margin: 6px;
   }
 
-  .sb_footer-links div {
-    margin: 1rem;
-    justify-content: center;
-    align-items: center;
+  .sb_footer-links {
+    padding: 0;
   }
 
-  .sb_footer-btn {
-    font-size: 14px;
-    line-height: 20px;
+  .sb_footer-links_div {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 1.25rem 0;
   }
 
-  .sb_footer-below {
-    flex-direction: column;
-    justify-content: left;
+  .sb_footer-links_div {
+    flex-basis: 100%;
+    text-align: center;
+    margin: 1.25rem 0;
   }
 
-  .sb_footer-below-links {
-    flex-direction: column;
-  }
-
-  .sb_footer-below-links p {
-    margin-left: 0rem;
-    margin-top: 1rem;
-    font-family: "Lato", sans-serif;
-  }
-}
-
-@media screnn and (max-width: 400px) {
-  .sb_footer-padding h1 {
-    font-size: 27px;
-    line-height: 38px;
-    font-family: "Roboto", sans-serif;
-  }
+  .sb_footer-links_div:nth-child(1),
+  .sb_footer-links_div:nth-child(2),
+  .sb_footer-links_div:nth-child(3){
+    display: none;
+  } 
 }
