@@ -108,24 +108,22 @@ const Login = (props) => {
           />
           <div className="invalid-feedback">Debe ingresar una contraseña</div>
         </div>
+        <button type="submit" className="btn btn-dark mx-2">
+          Login
+        </button>
         <button
           onClick={() => {
             location.href = '/forgot-password'
           }}
           type="button"
-          className="btn btn-link"
+          className="btn btn-link mt-1"
         >
           Olvidaste la contraseña?
         </button>
-
-        <button type="submit" className="btn btn-dark mx-2">
-          Login
-        </button>
-
         <button
           onClick={() => props.onFormSwitch('register')}
           type="button"
-          className="btn btn-link"
+          className="btn btn-link my-0"
         >
           No estas registrado? Registrate aquí
         </button>

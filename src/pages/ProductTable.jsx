@@ -141,7 +141,8 @@ const ProductTable = () => {
 
   return (
     <>
-      <h2 className="text-center">Listado de Productos Registrados</h2>
+      <h2 className="text-center my-4">Listado de Productos Registrados</h2>
+      <hr />
       {loading ? (
         <div className="row">
           <div className="col text-center">
@@ -153,17 +154,18 @@ const ProductTable = () => {
           <div className="row mt-3">
             <div className="col-xs-3 px-0">
               <button
-                className="btn btn-primary ms-2"
+                className="agregarP fw-bolder px-4 py-2 btn btn-primary ms-2 rounded-0 border-0"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
-                Agregar Producto
+              AGREGAR PRODUCTO
               </button>
             </div>
           </div>
           {db[0] ? (
             <>
+              <hr />
               <TableByCategories
                 db={dbCamisas}
                 setDataToEdit={setDataToEdit}

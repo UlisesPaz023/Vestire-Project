@@ -58,9 +58,9 @@ const UserTable = () => {
   console.log(dbUsers);
   return (
     <>
-      <h2 className="text-center">Listado de Usuarios Registrados</h2>
+      <h2 className="text-center my-4">Listado de Usuarios Registrados</h2> <hr />
       <div className="container">
-        <div class="table-responsive">
+        <div className="table-responsive my-5">
           <table className="table table-striped table-bordered">
             <thead>
               <tr>
