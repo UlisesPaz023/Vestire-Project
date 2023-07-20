@@ -9,6 +9,16 @@
   transition: ease 0.3;
 }
 
+.agregarP{
+  background-color: #1b2638;
+  font-size: .8rem;
+}
+
+.agregarP:hover{
+  background-color: #d4af37;
+  color: black;
+}
+
 @keyframes resaltar {
   0% {
     background-color: greenyellow;

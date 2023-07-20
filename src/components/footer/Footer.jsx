@@ -9,11 +9,11 @@ const Footer = () => {
   return (
     <footer className="container-fluid px-0">
       <div className="sb_footer section_padding">
-        <div className="sb_footer-links">
-          <div className="logo">
+        <div className="sb_footer-links w-100">
+          <div className="logo col-10 col-lg-2 d-flex justify-content-center justify-content-lg-start">
             <img src={logo} alt="/" className="img-logo"></img>
           </div>
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>LEGAL</h4>
             <a className="v" href="/Privacidad">
               <p>Privacidad</p>
@@ -23,7 +23,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>ENLACES</h4>
             <a className="v" href="/Sobre-nosotros">
               <p>Sobre nosotros</p>
@@ -36,7 +36,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>CONTACTOS</h4>
             <a className="v" href="https://www.google.com/intl/es/gmail/about/">
               <p>info@vestire.com.ar</p>
@@ -52,8 +52,8 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
-            <h4>REDES SOCIALES</h4>
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
+            <h4>SÍGUENOS</h4>
             <div className="socialmedia">
               <p>
                 <a href="https://www.instagram.com/">
@@ -70,14 +70,14 @@ const Footer = () => {
                   <img src={wp} alt=""></img>
                 </a>
               </p>
-              <div className="qr">
-                <a href="afip"></a>
-                <img src={qr} alt="" />
-              </div>
             </div>
           </div>
         </div>
-        <hr></hr>
+        <div className="col d-flex justify-content-end">
+          <a href="afip"></a>
+          <img className="qr me-3" src={qr} alt="" />
+        </div>
+        <hr className="text-white"></hr>
         <div className="sb_footer-copyright">
           <div className="sb_footer-below">
             <p>
