@@ -1,18 +1,18 @@
-import { React, useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import Subcat from "../components/Subcat";
+import Subcat from '../components/Subcat'
 
 const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const initProduct = {
-    codigo: "",
+    codigo: '',
     clase: [],
-    categoria: "",
-    subCategoria: "",
-    marca: "",
-    resumenDescripcion: "",
-    descripcion: "",
-    imagen: "",
-    color: "",
+    categoria: '',
+    subCategoria: '',
+    marca: '',
+    resumenDescripcion: '',
+    descripcion: '',
+    imagen: '',
+    color: '',
     destacado: false,
     cantidadPorTalle: {
       xs: 0,
@@ -22,9 +22,9 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       xl: 0,
     },
     precio: 0,
-  };
+  }
 
-  const [product, setProduct] = useState(initProduct);
+  const [product, setProduct] = useState(initProduct)
   const {
     codigo,
     clase,
@@ -38,57 +38,57 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     imagen,
     cantidadPorTalle,
     precio,
-  } = product;
+  } = product
 
-  let [coleccion, sastreria, calzado, accesorios] = clase;
+  let [coleccion, sastreria, calzado, accesorios] = clase
 
   useEffect(() => {
-    if (dataToEdit) setProduct(dataToEdit);
-    else setProduct(initProduct);
-  }, [dataToEdit]);
+    if (dataToEdit) setProduct(dataToEdit)
+    else setProduct(initProduct)
+  }, [dataToEdit])
 
   const handleChangeInt = (e) => {
     setProduct({
       ...product,
       [e.target.name]: Number(e.target.value),
-    });
-  };
+    })
+  }
 
   const handleChecked = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.checked });
-  };
+    setProduct({ ...product, [e.target.name]: e.target.checked })
+  }
 
   const handleCheckedClase = (e) => {
     if (e.target.checked) {
-      if (!clase.includes(e.target.name)) clase.push(e.target.name);
+      if (!clase.includes(e.target.name)) clase.push(e.target.name)
     } else {
-      const index = clase.indexOf(e.target.name);
-      if (index > -1) clase.splice(index, 1);
+      const index = clase.indexOf(e.target.name)
+      if (index > -1) clase.splice(index, 1)
     }
-    setProduct({ ...product, ["clase"]: clase });
-  };
+    setProduct({ ...product, ['clase']: clase })
+  }
 
   const handleChange = (e) => {
-    if (e.target.name === "cantidadPorTalle") {
-      cantidadPorTalle[e.target.id] = Number(e.target.value);
-      setProduct({ ...product, cantidadPorTalle });
+    if (e.target.name === 'cantidadPorTalle') {
+      cantidadPorTalle[e.target.id] = Number(e.target.value)
+      setProduct({ ...product, cantidadPorTalle })
     } else {
-      console.log(e.target.name, e.target.value);
-      setProduct({ ...product, [e.target.name]: e.target.value });
+      console.log(e.target.name, e.target.value)
+      setProduct({ ...product, [e.target.name]: e.target.value })
     }
-  };
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!product._id) createData(product);
+    if (!product._id) createData(product)
     else {
-      console.log("por editar", product);
-      updateData(product);
+      console.log('por editar', product)
+      updateData(product)
     }
-    setProduct(initProduct);
-    setDataToEdit(null);
-  };
+    setProduct(initProduct)
+    setDataToEdit(null)
+  }
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -115,7 +115,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               type="checkbox"
               name="Coleccion"
               value={coleccion}
-              checked={clase.includes("Coleccion")}
+              checked={clase.includes('Coleccion')}
               id="coleccion"
               onChange={handleCheckedClase}
               required
@@ -128,7 +128,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               type="checkbox"
               name="Sastreria"
               value={sastreria}
-              checked={clase.includes("Sastreria")}
+              checked={clase.includes('Sastreria')}
               id="sastreria"
               onChange={handleCheckedClase}
             />
@@ -140,7 +140,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               type="checkbox"
               name="Accesorios"
               value={accesorios}
-              checked={clase.includes("Accesorios")}
+              checked={clase.includes('Accesorios')}
               id="accesorios"
               onChange={handleCheckedClase}
             />
@@ -212,7 +212,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             id="resumenDescripcion"
             name="resumenDescripcion"
             value={resumenDescripcion}
-            style={{ height: "50px" }}
+            style={{ height: '50px' }}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -226,7 +226,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             id="descripcion"
             name="descripcion"
             value={descripcion}
-            style={{ height: "100px" }}
+            style={{ height: '100px' }}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -360,7 +360,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
         </button>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default ProductForm;
+export default ProductForm
