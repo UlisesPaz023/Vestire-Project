@@ -1,15 +1,15 @@
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import logo from "../img/vestiree.png";
-import { useState, useEffect } from "react";
-import { FaUser } from "react-icons/fa";
-import ModalLogin from "../modal/ModalLogin";
-import Cart from "../cart/Cart";
-import { useNavigate } from "react-router-dom";
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import logo from '../img/vestiree.png'
+import { useState, useEffect } from 'react'
+import { FaUser } from 'react-icons/fa'
+import ModalLogin from '../modal/ModalLogin'
+import Cart from '../cart/Cart'
+import { useNavigate } from 'react-router-dom'
 
 function NavBar({
   allproducts,
@@ -28,96 +28,68 @@ function NavBar({
   productsToShowAux,
   setProductsToShowAux,
   setGridTitle,
-  //productGrid,
 }) {
-  const productGrid = document.getElementById("product-grid");
-  const [search, setSearch] = useState();
-  const [searchResault, setSearchResault] = useState();
-  const [show, setShow] = useState(false);
-  const [disableButton, setDisableButton] = useState(true);
-  const navigate = useNavigate();
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const productGrid = document.getElementById('product-grid')
+  const [search, setSearch] = useState()
+  const [searchResault, setSearchResault] = useState()
+  const [show, setShow] = useState(false)
+  const [disableButton, setDisableButton] = useState(true)
+  const navigate = useNavigate()
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const handleSearch = (e) => {
-    //console.log(e.target.value);
-    setSearch(e.target.value);
-    //console.log(search);
-    // let resault = productsToShow.filter(
-    //   (elem) =>
-    //     search.trim() ===
-    //     elem.resumenDescripcion.toString().toLowerCase().trim()
-    // );
-    //console.log(resault);
-    //searchFilter(e.target.value);
-    setDisableButton(false);
-    if (e.target.value === "") {
-      setDisableButton(true);
-      setProductsToShow(productsToShowAux);
-      setGridTitle("Nueva Colección");
+    setSearch(e.target.value)
+    setDisableButton(false)
+    if (e.target.value === '') {
+      setDisableButton(true)
+      setProductsToShow(productsToShowAux)
+      setGridTitle('Nueva Colección')
     }
-  };
-
-  // useEffect(() => {
-
-  //   let resault = productsToShow.filter((product) => product.includes(search));
-  //   console.log(resault);
-  // }, [search]);
-
-  // const searchFilter = (item) => {
-  //   let searchResault = productsToShowAux.filter((elem) => {
-  //     if (
-  //       elem.resumenDescripcion
-  //         .toString()
-  //         .toLowerCase()
-  //         .includes(item.toLowerCase().trim())
-  //     )
-  //       return elem;
-  //   });
-  //   setProductsToShow(searchResault);
-  // };
+  }
 
   const quitarTildes = (cadena) => {
     const tildes = {
-      á: "a",
-      é: "e",
-      í: "i",
-      ó: "o",
-      ú: "u",
-      Á: "A",
-      É: "E",
-      Í: "I",
-      Ó: "O",
-      Ú: "U",
-    };
+      á: 'a',
+      é: 'e',
+      í: 'i',
+      ó: 'o',
+      ú: 'u',
+      Á: 'A',
+      É: 'E',
+      Í: 'I',
+      Ó: 'O',
+      Ú: 'U',
+    }
 
-    return cadena.replace(/[áéíóúÁÉÍÓÚ]/g, (match) => tildes[match]);
-  };
+    return cadena.replace(/[áéíóúÁÉÍÓÚ]/g, (match) => tildes[match])
+  }
 
   const showSearch = () => {
     let resault = productsToShow.filter((product) =>
       quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
-    );
-    console.log(resault);
+    )
+    console.log(resault)
     if (resault.length > 0) {
-      setProductsToShow(resault);
-      setGridTitle("Resultados de su búsqueda");
+      setProductsToShow(resault)
+      setGridTitle('Resultados de su búsqueda')
     } else {
-      setGridTitle("Su búsqueda no produjo resultados");
-      setProductsToShow([]);
+      setGridTitle('Su búsqueda no produjo resultados')
+      setProductsToShow([])
     }
-  };
+  }
 
   const handleLogout = () => {
-    localStorage.removeItem("userName");
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("isAdmin");
-    navigate("/");
-  };
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userToken')
+    localStorage.removeItem('isAdmin')
+    navigate('/')
+  }
 
-  let userLoged = localStorage.getItem("userName");
+  let userLoged = localStorage.getItem('userName')
   return (
     <>
+      <ModalLogin show={show} handleClose={handleClose} />
       <Navbar bg="light" expand="lg" sticky="top">
         <Container fluid>
           <Navbar.Brand href="/">
@@ -129,7 +101,7 @@ function NavBar({
               <div className="row">
                 <Nav
                   className="me-auto my-2 my-lg-0"
-                  style={{ maxHeight: "100px" }}
+                  style={{ maxHeight: '100px' }}
                   navbarScroll
                 >
                   <Nav.Link href="/favorite-page">Favoritos</Nav.Link>
@@ -145,7 +117,7 @@ function NavBar({
                       }
                       id="navbarScrollingDropdown"
                     >
-                      {localStorage.getItem("isAdmin") ? (
+                      {localStorage.getItem('isAdmin') ? (
                         <>
                           <Nav.Link href="/admin">
                             Ir al sitio Administrador
@@ -209,7 +181,7 @@ function NavBar({
         handleClose={handleClose}
       />
     </>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar
