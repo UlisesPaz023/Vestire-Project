@@ -1,17 +1,16 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import styles2 from "../favoriteGrid/cardFavorite.module.css";
 import styles from "../card/card.module.css";
-import axios from 'axios';
+import axios from "axios";
 
 const url = "https://vestire.onrender.com/users";
 
 const CardFavorite = (props) => {
-  const { _id, resumenDescripcion, imagen } = props.product;
+  const { _id, resumenDescripcion, imagen, precio } = props.product;
   const usuario = props.user;
-  let setUsuario = props.setUser;
+  const precioFormated = new Intl.NumberFormat("es-AR").format(precio);
 
-  console.log(usuario)
   const cardAmount = (amount) => {
     if (amount <= 15) {
       if (amount > 10) {
@@ -26,21 +25,21 @@ const CardFavorite = (props) => {
     // }
   };
 
-
-
   const handleDeleteButton = async () => {
-    let endpoint = `${url}/edit-user/6457aacf12996dc64bfdc4d2`;
+    let endpoint = `${url}/edit-user/${usuario._id}`;
     try {
-      const updatedFavorites = usuario.favorites.filter(
-        favorite => favorite._id !== usuario._id
-        );
-        await axios.patch(endpoint, { favorites: updatedFavorites });
-        setUsuario = { ...usuario, favorites: updatedFavorites };
+      const updatedFavorites = [...usuario.favorites];
+      const index = updatedFavorites.findIndex(
+        (favorite) => favorite._id === _id
+      );
+      if (index !== -1) {
+        updatedFavorites.splice(index, 1);
+      }
+      await axios.patch(endpoint, { favorites: updatedFavorites });
     } catch (error) {
       console.log(error);
     }
-  }
-
+  };
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -59,22 +58,23 @@ const CardFavorite = (props) => {
       <div
         className={` card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-4 mb-lg-3 justify-content-between`}
       >
-        {/* <div className={`${styles.containerInfo}`}> */}
         <h6 className={`card-title m-2 fw-bolder ${styles.title}`}>
           {resumenDescripcion}
         </h6>
-        {/* </div> */}
-        {/* <a href="/#" className="btn p-0 fw-bold">COMPRAR AHORA</a> */}
         <div className="text-center d-flex col-12 justify-content-between">
           <button
             onClick={handleClick}
             className={`${styles.button} d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
           >
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
-            <p className={`m-0 ${styles.text}`}>EXPLORAR</p>
+            <p className={`m-0 ${styles.text} fs-6`}>Ver</p>
           </button>
-          <button onClick={handleDeleteButton} className={`${styles2.button} me-2 rounded-5`}>
-            <i class="bi bi-trash-fill"></i>
+          <div className="fs-5">${precioFormated}</div>
+          <button
+            onClick={handleDeleteButton}
+            className={`${styles2.button} me-2 rounded-5`}
+          >
+            <i className="bi bi-trash-fill"></i>
           </button>
         </div>
       </div>

@@ -1,91 +1,3 @@
-// import "./footer.css";
-// import insta from "../img/instagram.png";
-// import fb from "../img/facebook.png";
-// import wp from "../img/whatsapp.png";
-// import logo from "../img/LOGO.png";
-// import qr from "../img/QR.png";
-
-// const Footer = () => {
-//   return (
-//     <div className="container-fluid">
-//       <footer className="row">
-//         <div className="sb_footer section_padding">
-//           <div className="sb_footer-links">
-//             <div className="logo">
-//               <img src={logo} alt="/" className="img-logo"></img>
-//             </div>
-//             <div className="sb_footer-links_div">
-//               <h4>LEGAL</h4>
-//               <a href="/Privacidad">
-//                 <p>Privacidad</p>
-//               </a>
-//               <a href="/Terminos">
-//                 <p>Terminos</p>
-//               </a>
-//             </div>
-
-//             <div className="sb_footer-links_div">
-//               <h4>ENLACES</h4>
-//               <a href="/Sobre nosotros">
-//                 <p>Sobre nosotros</p>
-//               </a>
-//               <a href="/Contacto">
-//                 <p>Contacto</p>
-//               </a>
-//               <a href="/Informacion general">
-//                 <p>Informacion general</p>
-//               </a>
-//             </div>
-
-//             <div className="sb_footer-links_div">
-//               <h4>CONTACTOS</h4>
-//               <a href="/Gmail">
-//                 <p>info@vestire.com.ar</p>
-//               </a>
-//               <a href="/wp">
-//                 <p>+54 381 321 459</p>
-//               </a>
-//               <a href="/Ubicacion">
-//                 <p>Tucuman-25 de mayo 777</p>
-//               </a>
-//             </div>
-
-//             <div className="sb_footer-links_div">
-//               <h4>REDES SOCIALES</h4>
-//               <div className="socialmedia">
-//                 <a href="/"></a>
-//                 <p>
-//                   <img src={insta} alt=""></img>
-//                 </p>
-//                 <p>
-//                   <img src={fb} alt=""></img>
-//                 </p>
-//                 <p>
-//                   <img src={wp} alt=""></img>
-//                 </p>
-//                 <p>
-//                   <img src={qr} alt=""></img>
-//                 </p>
-//               </div>
-//             </div>
-//           </div>
-//           <hr></hr>
-//           <div className="sb_footer-copyright">
-//             <div className="sb_footer-below">
-//               <p>
-//                 {/* @{new Date().getFullYear()} */}
-//                 <b>Copyright</b> © <b>2023</b> vestire <b>S.R.L</b>
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// };
-
-// export default Footer;
-
 import "./footer.css";
 import insta from "../img/instagram.png";
 import fb from "../img/facebook.png";
@@ -95,14 +7,13 @@ import qr from "../img/data-fiscal.png";
 
 const Footer = () => {
   return (
-    // <div className="container-fluid">
-    <footer>
+    <footer className="container-fluid px-0">
       <div className="sb_footer section_padding">
-        <div className="sb_footer-links">
-          <div className="logo">
+        <div className="sb_footer-links w-100">
+          <div className="logo col-10 col-lg-2 d-flex justify-content-center justify-content-lg-start">
             <img src={logo} alt="/" className="img-logo"></img>
           </div>
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>LEGAL</h4>
             <a className="v" href="/Privacidad">
               <p>Privacidad</p>
@@ -112,7 +23,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>ENLACES</h4>
             <a className="v" href="/Sobre-nosotros">
               <p>Sobre nosotros</p>
@@ -125,7 +36,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
             <h4>CONTACTOS</h4>
             <a className="v" href="https://www.google.com/intl/es/gmail/about/">
               <p>info@vestire.com.ar</p>
@@ -141,8 +52,8 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="sb_footer-links_div">
-            <h4>REDES SOCIALES</h4>
+          <div className="sb_footer-links_div col-md-5 col-lg-2">
+            <h4>SÍGUENOS</h4>
             <div className="socialmedia">
               <p>
                 <a href="https://www.instagram.com/">
@@ -159,18 +70,17 @@ const Footer = () => {
                   <img src={wp} alt=""></img>
                 </a>
               </p>
-              <div className="qr">
-                <a href="afip"></a>
-                <img src={qr} alt="" />
-              </div>
             </div>
           </div>
         </div>
-        <hr></hr>
+        <div className="col d-flex justify-content-end">
+          <a href="afip"></a>
+          <img className="qr me-3" src={qr} alt="" />
+        </div>
+        <hr className="text-white"></hr>
         <div className="sb_footer-copyright">
           <div className="sb_footer-below">
             <p>
-              {/* @{new Date().getFullYear()} */}
               <b>Copyright</b> © <b>2023</b> Vestire <b>S.R.L</b>
             </p>
           </div>

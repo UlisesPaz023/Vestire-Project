@@ -1,0 +1,39 @@
+.buyingPageContainer{
+  background-color: #febd59;
+}
+
+.yourCartContainer{
+  max-height: 48.55rem;
+  overflow-y: scroll;
+  cursor: pointer;
+  user-select: none;
+}
+
+.yourCartContainer::-webkit-scrollbar{
+  width: 1rem;
+  padding: 1rem;
+}
+
+.yourCartContainer::-webkit-scrollbar-thumb{
+  background-color: #1b2638;
+}
+
+.yellowColor{
+  background-color: #d4af37;
+  color: #d4af37;
+}
+
+.input{
+  resize: none;
+}
+
+.button{
+  border: solid #1b2638 .1rem;
+  background-color: #febd59;
+  color:black;
+}
+
+.button:hover{
+  background-color: #1b2638;
+  color:#d4af37;
+}

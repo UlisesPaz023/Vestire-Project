@@ -1,36 +1,61 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Card from "../card/Card";
-import style from "../productGrid/productgrid.module.css";
 import Pagination from "../pagination/Pagination";
 import { useState } from "react";
+import useScreenSize from "../../hooks/useScreenSize";
 
-const ProductGrid = ({ products, productsToShow, setProductsToShow }) => {
+const ProductGrid = ({
+  products,
+  productsToShow,
+  setProductsToShow,
+  gridTitle,
+  estadoPrueba,
+}) => {
+  const { width } = useScreenSize();
+  let items;
+  useEffect(() => {
+    if (width >= 992) setProductsPerPage(15);
+    if (width < 992) setProductsPerPage(12);
+    if (width < 767) setProductsPerPage(10);
+    console.log(items);
+  }, [width]);
+
+  console.log(width);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productsPerPage, setProductsPerPage] = useState(15);
+  const [productsPerPage, setProductsPerPage] = useState(items);
   const totalProducts = productsToShow.length;
   const lastIndex = productsPerPage * currentPage;
   const firstIndex = lastIndex - productsPerPage;
-
   return (
     <div className="container-fluid">
-      <div className="row justify-content-center">
-        <div className="p-0">
-          <h1 className={`fs-2 fw-bold text-center col m-3 pb-1 border-bottom`}>
-            Nueva Colección
-          </h1>
+      <section>
+        <div className="row justify-content-center">
+          <div className="p-0">
+            <h2 className={`fs-2  text-center col m-3 pb-1 border-bottom`}>
+              {gridTitle}
+            </h2>
+          </div>
+          {productsToShow
+            .map((product) => (
+              <Card
+                product={product}
+                quantity={productsToShow.length}
+                key={product._id}
+              />
+            ))
+            .slice(firstIndex, lastIndex)}
         </div>
-        {productsToShow
-          .map((product) => (
-            <Card product={product} quantity={productsToShow.length} />
-          ))
-          .slice(firstIndex, lastIndex)}
-      </div>
-      <Pagination
-        totalProducts={totalProducts}
-        productsPerPage={productsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      </section>
+      {gridTitle !== "Su búsqueda no produjo resultados" ? (
+        <Pagination
+          totalProducts={totalProducts}
+          productsPerPage={productsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      ) : (
+        <br />
+      )}
     </div>
   );
 };

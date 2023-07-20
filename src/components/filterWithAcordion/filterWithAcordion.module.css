@@ -1,0 +1,9 @@
+.my-accordion {
+  height: 100vh;
+  background-color: red;
+}
+
+.my-accordion .acordionItem {
+  height: 100%;
+  background-color: red;
+}

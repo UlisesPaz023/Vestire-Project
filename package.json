@@ -25,6 +25,7 @@
     "react-router-dom": "^6.10.0",
     "styled-components": "^5.3.10",
     "sweetalert2": "^11.7.3",
+    "swiper": "^9.4.1",
     "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {

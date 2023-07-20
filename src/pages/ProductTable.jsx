@@ -33,7 +33,7 @@ const isAdmin = async () => {
     );
     setTimeout(() => {
       location.href = "/";
-    }, 3000);
+    }, 2000);
   }
 };
 
@@ -94,12 +94,15 @@ const ProductTable = () => {
 
   const updateData = async (data) => {
     try {
-      console.log(data._id);
+      console.log(data);
       let endpoint = `${url}/edit-product/${data._id}`;
-      let resp = await axios.patch(endpoint);
+      let resp = await axios.patch(endpoint, data);
+      //resp.data.headers["Content-Type"];
+      console.log(resp);
       if (!resp.err) {
         let newProduct = db.map((el) => (el._id === data._id ? data : el));
         modalForm.hide();
+        console.log(newProduct);
         setDb(newProduct);
         Swal.fire("Éxito", "El registro se editó correctamente", "success");
       }
@@ -138,7 +141,8 @@ const ProductTable = () => {
 
   return (
     <>
-      <h2 className="text-center">Listado de Productos Registrados</h2>
+      <h2 className="text-center my-4">Listado de Productos Registrados</h2>
+      <hr />
       {loading ? (
         <div className="row">
           <div className="col text-center">
@@ -150,17 +154,18 @@ const ProductTable = () => {
           <div className="row mt-3">
             <div className="col-xs-3 px-0">
               <button
-                className="btn btn-primary ms-2"
+                className="agregarP fw-bolder px-4 py-2 btn btn-primary ms-2 rounded-0 border-0"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
-                Agregar Producto
+              AGREGAR PRODUCTO
               </button>
             </div>
           </div>
           {db[0] ? (
             <>
+              <hr />
               <TableByCategories
                 db={dbCamisas}
                 setDataToEdit={setDataToEdit}

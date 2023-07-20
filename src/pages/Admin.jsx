@@ -6,6 +6,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 // import { CircularProgress } from "@mui/material";
 // import LoadProductForm from "./components/LoadProductForm";
+import './admin.css';
 
 const isAdmin = async () => {
   if (localStorage.getItem("userToken")) {
@@ -20,6 +21,7 @@ const isAdmin = async () => {
       );
       // if(resp)
       console.log(resp);
+      localStorage.setItem("isAdmin", resp.data);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +33,7 @@ const isAdmin = async () => {
     );
     setTimeout(() => {
       location.href = "/";
-    }, 3000);
+    }, 2000);
   }
 };
 
@@ -40,25 +42,31 @@ const Admin = () => {
     isAdmin();
   }, []);
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <h2 className="text-center">
-            Bienvenido al sitio Administrador de VESTIRE
+    <section className="container">
+      <div className="row m-5 text-center">
+        <div className="mb-5 row justify-content-center">
+          <h2 className="text-center  fs-2 p-0">
+            ¡Bienvenido al sitio Administrador de <span style={{letterSpacing : "5px"}} className="fw-bold">VESTIR<span style={{color:"#d4af37"}}>E</span>!</span>
           </h2>
         </div>
-        <div className="row text-center mt-5">
-          <div className="col">
-            <Link to="/admin/product-table">
-              <button className="btn btn-primary">ADMINISTRAR PRODUCTOS</button>
-            </Link>
-          </div>
-          <div className="col">
-            <button className="btn btn-primary">ADMINISTRAR USUARIOS</button>
-          </div>
+        <div className="col">
+          <Link to="/admin/product-table">
+            <button className="mb-5 mb-lg-0 boton fw-bold btn btn-primary mt-1">
+              ADMINISTRAR <br />
+              PRODUCTOS
+            </button>
+          </Link>
+        </div>
+        <div className="col">
+          <Link to="/admin/user-table">
+            <button className="mb-5 mb-lg-0 boton fw-bold btn btn-primary mt-1">
+              ADMINISTRAR <br />
+              USUARIOS
+            </button>
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

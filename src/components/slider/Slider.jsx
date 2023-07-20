@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import CardSlider from "./CardSlider";
-import axios from "axios";
 import styles from "../card/card.module.css";
 
 const Slider = ({ products }) => {
   const productsSlider = products.filter(
     (product) => product.destacado === true
   );
-  console.log(productsSlider);
+
   const productGroups = [];
   for (let i = 0; i < productsSlider.length; i++) {
     if (i % 4 === 0) {
@@ -17,7 +16,7 @@ const Slider = ({ products }) => {
 
   return (
     <>
-      <h3 className="text-center">DESTACADOS DEL MES</h3>
+      <h3 className="text-center mt-4">DESTACADOS DEL MES</h3>
       <div className="container-flex my-3">
         <div className="row col-12 m-0">
           <div
@@ -36,6 +35,7 @@ const Slider = ({ products }) => {
                 <CardSlider x={x} i={i} key={i} />
               ))}
             </div>
+            <section id="product-grid"></section>
             <div
               className={`col d-flex carousel-indicators position-static ${styles.sliderBtns}`}
             >
