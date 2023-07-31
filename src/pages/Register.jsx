@@ -43,54 +43,68 @@ const Register = (props) => {
   }
 
   return (
-    <div className="container row d-flex justify-content-center align-items-center">
+    <div className="container m-0 row d-flex justify-content-center align-items-center">
       <form
         onSubmit={handleRegister}
-        className="row col-lg-8 col-12 g-3 mt-0 needs-validation"
+        className="row col-lg-11 col-12 g-3 mt-0 needs-validation justify-content-center"
       >
-        <div className="col-md-12 ">
-          <label htmlFor="firstname" className="form-label fw-bold">
-            Nombre
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="firstname"
-            id="firstname"
-            placeholder="Nombre"
-          />
+        <div className="d-flex justify-content-between p-0">
+          <div className="col me-1">
+            <label htmlFor="firstname" className="form-label fw-bold">
+              Nombre
+            </label>
+            <input
+              type="text"
+              style = {{
+                backgroundColor : "#e3e3e1"
+              }}
+              className="form-control rounded-0"
+              name="firstname"
+              id="firstname"
+              placeholder="Ingresa tu nombre"
+            />
+          </div>
+          <div className="col ms-1">
+            <label htmlFor="lastname" className="form-label fw-bold">
+              Apellido
+            </label>
+            <input
+              type="text"
+              style = {{
+                backgroundColor : "#e3e3e1"
+              }}
+              className="form-control rounded-0"
+              name="lastname"
+              id="lastname"
+              placeholder="Ingresa tu apellido"
+            />
+          </div>
         </div>
-        <div className="col-md-12">
-          <label htmlFor="lastname" className="form-label fw-bold">
-            Apellido
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="lastname"
-            id="lastname"
-            placeholder="Apellido"
-          />
-        </div>
-        <div className="col-md-12">
+        <div className="col-md-12 p-0">
           <label htmlFor="username" className="form-label fw-bold">
             Nombre de usuario
           </label>
           <input
             type="text"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             name="username"
             id="username"
             placeholder="Nombre de usuario"
           />
         </div>
-        <div className="col-md-12">
+        <div className="col-md-12 p-0">
           <label htmlFor="correo" className="form-label fw-bold">
             Correo electrónico
           </label>
           <input
             type="email"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             id="email"
             placeholder="Ingresa tu correo electrónico"
             pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
@@ -98,42 +112,48 @@ const Register = (props) => {
           <div className="invalid-feedback">ingrese un mail correcto</div>
         </div>
 
-        <div className="col-md-12">
+        <div className="col-md-12 p-0">
           <label htmlFor="password" className="form-label fw-bold">
             Contraseña
           </label>
           <input
             type="password"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             id="password"
             placeholder="Ingresa tu contraseña"
           />
           <div className="invalid-feedback">Debe ingresar una contraseña</div>
         </div>
 
-        <div className="col-md-12">
+        <div className="col-md-12 p-0">
           <label htmlFor="repass" className="form-label fw-bold">
             Repetir contraseña
           </label>
           <input
             type="password"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             id="repass"
-            placeholder="Repita contraseña"
+            placeholder="Repita la contraseña"
           />
           <div className="invalid-feedback">Debe repetir la contraseña</div>
         </div>
 
-        <button type="submit" className="btn btn-dark mx-2">
-          Registrarse
+        <button type="submit" className="fw-bolder btn btn-dark mx-2 py-3 mt-4 rounded-0">
+          REGISTRAR
         </button>
 
         <button
           onClick={() => props.onFormSwitch('login')}
           type="button"
-          className="btn btn-link"
+          className="btn btn-link mt-0 mb-4"
         >
-          Ya estas registrado? Ingresa aquí
+          ¿Ya estás registrado? Ingresa aquí.
         </button>
       </form>
     </div>

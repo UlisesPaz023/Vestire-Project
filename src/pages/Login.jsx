@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import ForgotPassword from './ForgotPassword'
 
 const Login = (props) => {
   const loginIn = async (body) => {
@@ -44,7 +42,7 @@ const Login = (props) => {
       const verErrores = response.data.errors
       let msgErrors = ''
       verErrores.map((err, index) => {
-        msgErrors = msgErrors + verErrores[index].msg + '\n'
+        msgErrors = verErrores[index].msg + '\n'
       })
       Swal.fire({
         icon: 'error',
@@ -65,68 +63,82 @@ const Login = (props) => {
   }
 
   return (
-    <div className="container row d-flex justify-content-center align-items-center">
+    <div 
+      className="container m-0 row d-flex justify-content-center align-items-center"
+    >
       <form
         onSubmit={handleLogin}
-        className="row col-lg-8 col-12 g-4 needs-validation"
+        className="row col-lg-11 col-12 g-4 justify-content-center needs-validation"
       >
-        <div className="col-md-12 mb-3">
+        <div className="col-md-12 mb-1 p-0">
           <label htmlfor="name" className="form-label fw-bold">
             Nombre de usuario
           </label>
           <input
             type="text"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             name="name"
             id="name"
             placeholder="Nombre de usuario"
           />
         </div>
-        <div className="col-md-12 mb-3">
+        <div className="col-md-12 mb-1 p-0">
           <label htmlFor="correo" className="form-label fw-bold">
             Correo electrónico
           </label>
           <input
             type="email"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             id="email"
             placeholder="Ingresa tu correo electrónico"
             pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
           />
-          <div className="invalid-feedback">ingrese un mail correcto</div>
+          <div className="invalid-feedback">Ingrese un mail válido</div>
         </div>
 
-        <div className="col-md-12 mb-3">
+        <div className="col-md-12 mb-3 p-0">
           <label htmlFor="password" className="form-label fw-bold">
             Contraseña
           </label>
           <input
             type="password"
-            className="form-control"
+            style = {{
+              backgroundColor : "#e3e3e1"
+            }}
+            className="form-control rounded-0"
             id="password"
             placeholder="Ingresa tu contraseña"
           />
           <div className="invalid-feedback">Debe ingresar una contraseña</div>
         </div>
-        <button type="submit" className="btn btn-dark mx-2">
-          Login
+        <button type="submit" className="fw-bolder btn btn-dark mx-2 py-3 rounded-0">
+          INGRESAR
         </button>
         <button
           onClick={() => {
             location.href = '/forgot-password'
           }}
           type="button"
-          className="btn btn-link mt-1"
+          className="btn btn-link mt-1 mb-0"
         >
-          Olvidaste la contraseña?
+          ¿Olvidaste la contraseña?
         </button>
-        <button
+        <p className='text-center p-0 mt-0 mb-5'>
+          ¿No estás registrado? 
+          <button
           onClick={() => props.onFormSwitch('register')}
           type="button"
-          className="btn btn-link my-0"
-        >
-          No estas registrado? Registrate aquí
-        </button>
+          className="btn btn-link m-0 p-0"
+          >
+            Registrate aquí.
+          </button>
+          </p>
       </form>
     </div>
   )
