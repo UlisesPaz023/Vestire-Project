@@ -42,7 +42,7 @@ const Login = (props) => {
       const verErrores = response.data.errors
       let msgErrors = ''
       verErrores.map((err, index) => {
-        msgErrors = verErrores[index].msg + '\n'
+        msgErrors = verErrores[0].msg + '\n'
       })
       Swal.fire({
         icon: 'error',
@@ -90,16 +90,15 @@ const Login = (props) => {
             Correo electrónico
           </label>
           <input
-            type="email"
+            type="text"
             style = {{
               backgroundColor : "#e3e3e1"
             }}
             className="form-control rounded-0"
             id="email"
             placeholder="Ingresa tu correo electrónico"
-            pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
+            required
           />
-          <div className="invalid-feedback">Ingrese un mail válido</div>
         </div>
 
         <div className="col-md-12 mb-3 p-0">
@@ -114,6 +113,7 @@ const Login = (props) => {
             className="form-control rounded-0"
             id="password"
             placeholder="Ingresa tu contraseña"
+            required
           />
           <div className="invalid-feedback">Debe ingresar una contraseña</div>
         </div>

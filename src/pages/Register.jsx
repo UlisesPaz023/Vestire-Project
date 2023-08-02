@@ -10,7 +10,16 @@ const Register = (props) => {
     const username = e.target.username.value
     const email = e.target.email.value
     const password = e.target.password.value
+    const repass = e.target.repass.value
     const body = { firstname, lastname, username, email, password }
+    if(repass !== password){
+      return Swal.fire({
+        icon: 'error',
+        title: 'Las contraseñas no coinciden.',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+    }
     try {
       const { data } = await axios.post(
         'https://vestire.onrender.com/users/create-user',
@@ -29,7 +38,7 @@ const Register = (props) => {
       let msgErrors = ''
       if (verErrores) {
         verErrores.map((error, index) => {
-          msgErrors = msgErrors + verErrores[index].msg + '\n'
+          msgErrors = verErrores[0].msg + '\n'
         })
       } else {
         msgErrors = response.data
@@ -100,14 +109,13 @@ const Register = (props) => {
             Correo electrónico
           </label>
           <input
-            type="email"
+            type="text"
             style = {{
               backgroundColor : "#e3e3e1"
             }}
             className="form-control rounded-0"
             id="email"
             placeholder="Ingresa tu correo electrónico"
-            pattern="^[^@]+@[^@]+\.[a-zA-Z]{2,}$"
           />
           <div className="invalid-feedback">ingrese un mail correcto</div>
         </div>
@@ -124,8 +132,9 @@ const Register = (props) => {
             className="form-control rounded-0"
             id="password"
             placeholder="Ingresa tu contraseña"
+            required
           />
-          <div className="invalid-feedback">Debe ingresar una contraseña</div>
+          <p className='m-0 fw-light' style={{fontSize : ".75rem"}}>Debe contener mayúsculas, minúsculas, números, y mínimo 5 carácteres.</p>
         </div>
 
         <div className="col-md-12 p-0">
@@ -140,6 +149,7 @@ const Register = (props) => {
             className="form-control rounded-0"
             id="repass"
             placeholder="Repita la contraseña"
+            required
           />
           <div className="invalid-feedback">Debe repetir la contraseña</div>
         </div>
