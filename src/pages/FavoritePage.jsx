@@ -52,14 +52,37 @@ const FavoritePage = () => {
   }, [userFavorites.favorites]);
 
   return (
-    <section>
-      {userFavorites !== undefined && (
-        <FavoriteGrid
-          userFavorites={userFavorites}
-          setUserFavorites={setUserFavorites}
-        />
-      )}
-    </section>
+    <div>
+      {
+        userFavorites.favorites.length === 0 ? (
+        <div
+          className="d-flex flex-column justify-content-center align-items-center"
+        >
+          <div>
+            <h3 className="mt-3 mb-4"> No hay favoritos para mostrar.</h3>
+          </div>
+          <button
+            className="col-2 btn btn-dark rounded-0 fw-bolder px-5 py-2"
+            onClick={() => {
+              location.href = '/'
+            }}
+          >
+            VOLVER ATRÁS
+          </button>
+        </div>
+      ) :
+      (
+        userFavorites !== undefined && (
+          <FavoriteGrid
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}
+          />
+  
+  
+        )
+      )
+      }
+    </div>
   );
 };
 

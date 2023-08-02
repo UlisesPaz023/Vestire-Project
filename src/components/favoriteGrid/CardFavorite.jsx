@@ -61,18 +61,17 @@ const CardFavorite = (props) => {
         <h6 className={`card-title m-2 fw-bolder ${styles.title}`}>
           {resumenDescripcion}
         </h6>
-        <div className="text-center d-flex col-12 justify-content-between">
+        <div className="text-center d-flex col-12 justify-content-between align-items-center">
           <button
             onClick={handleClick}
-            className={`${styles.button} d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
+            className={`${styles.button} col d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
           >
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
-            <p className={`m-0 ${styles.text} fs-6`}>Ver</p>
+            <p className={`m-0 ${styles.text}`}>Ver</p>
           </button>
-          <div className="fs-5">${precioFormated}</div>
           <button
             onClick={handleDeleteButton}
-            className={`${styles2.button} me-2 rounded-5`}
+            className={`${styles2.button} p-1 me-2 rounded-5`}
           >
             <i className="bi bi-trash-fill"></i>
           </button>
