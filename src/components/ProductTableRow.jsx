@@ -1,11 +1,10 @@
-import { React, useEffect, useState } from "react";
+import { React } from 'react'
 
 const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
   const {
     _id,
     codigo,
     clase,
-    categoria,
     subCategoria,
     marca,
     resumenDescripcion,
@@ -14,15 +13,19 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
     color,
     destacado,
     cantidadPorTalle,
-  } = el;
-  const { xs, s, m, l, xl } = cantidadPorTalle;
+  } = el
+  const { xs, s, m, l, xl } = cantidadPorTalle
 
   return (
-    <tr id={_id ? _id : ""}>
+    <tr id={_id ? _id : ''}>
       <td>{codigo}</td>
       <td>
         {clase.map((text, idx) =>
-          idx !== clase.length - 1 ? <div>{text}-</div> : <div>{text}</div>
+          idx !== clase.length - 1 ? (
+            <div key={idx}>{text}-</div>
+          ) : (
+            <div key={idx}>{text}</div>
+          )
         )}
       </td>
       <td>{subCategoria}</td>
@@ -50,7 +53,7 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
           <button
             className="btn btn-warning btn-sm me-2"
             onClick={() => {
-              setDataToEdit(el), modalForm.show(), console.log(el);
+              setDataToEdit(el), modalForm.show()
             }}
           >
             Editar
@@ -64,7 +67,7 @@ const ProductTableRow = ({ el, setDataToEdit, modalForm, deleteData }) => {
         </div>
       </td>
     </tr>
-  );
-};
+  )
+}
 
-export default ProductTableRow;
+export default ProductTableRow

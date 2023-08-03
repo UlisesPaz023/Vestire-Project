@@ -1,102 +1,96 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "../card/card.module.css";
-import styles2 from "../favoriteGrid/cardFavorite.module.css";
-import axios from "axios";
-import Swal from "sweetalert2";
-
-const url = "https://vestire.onrender.com/users";
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styles from '../card/card.module.css'
+import styles2 from '../favoriteGrid/cardFavorite.module.css'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const Card = (props) => {
-  const { _id, resumenDescripcion, imagen, precio } = props.product;
-  const precioFormated = new Intl.NumberFormat("es-AR").format(precio);
+  const url = import.meta.env.VITE_BACKEND_USERS_URL
+  const { _id, resumenDescripcion, imagen } = props.product
 
-  const [isActive, setIsActive] = useState(false);
-  const [user, setUser] = useState({ favorites: [] });
+  const [isActive, setIsActive] = useState(false)
+  const [user, setUser] = useState({ favorites: [] })
 
   useEffect(() => {
     const getData = async () => {
-      let endpoint = `${url}/get-user-by-token`;
-      if (localStorage.getItem("userToken")) {
-        const token = localStorage.getItem("userToken");
-        const headers = { Authorization: `Bearer ${token}` };
+      let endpoint = `${url}/get-user-by-token`
+      if (localStorage.getItem('userToken')) {
+        const token = localStorage.getItem('userToken')
+        const headers = { Authorization: `Bearer ${token}` }
         try {
           const resp = await axios.get(endpoint, {
             headers,
-          });
-          setUser(resp.data);
-          // if(resp)
+          })
+          setUser(resp.data)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       }
-    };
-    getData();
-  }, [user.favorites]);
+    }
+    getData()
+  }, [user.favorites])
 
   useEffect(() => {
     if (user && user.favorites !== undefined) {
       if (user.favorites.some((favorite) => favorite._id === _id)) {
-        setIsActive(true);
+        setIsActive(true)
       } else {
-        setIsActive(false);
+        setIsActive(false)
       }
     }
-  }, [user.favorites, props.product]);
+  }, [user.favorites, props.product])
 
   const removeDuplicates = (favorites) => {
-    const uniqueFavorites = [];
-    const idTracker = {};
+    const uniqueFavorites = []
+    const idTracker = {}
 
     for (const favorite of favorites) {
       if (!idTracker[favorite._id]) {
-        idTracker[favorite._id] = true;
-        uniqueFavorites.push(favorite);
+        idTracker[favorite._id] = true
+        uniqueFavorites.push(favorite)
       }
     }
-    return uniqueFavorites;
-  };
+    return uniqueFavorites
+  }
 
   const handleFavButton = async () => {
-    if (localStorage.getItem("userName")) {
-      const addToFavorites = !isActive;
-      setIsActive(!isActive);
-      let endpoint = `${url}/edit-user/${user._id}`;
-
+    if (localStorage.getItem('userName')) {
+      const addToFavorites = !isActive
+      setIsActive(!isActive)
+      let endpoint = `${url}/edit-user/${user._id}`
       try {
-        const updatedFavorites = [...user.favorites];
+        const updatedFavorites = [...user.favorites]
         if (addToFavorites) {
-          updatedFavorites.push(props.product);
+          updatedFavorites.push(props.product)
         } else {
           const index = updatedFavorites.findIndex(
             (favorite) => favorite._id === _id
-          );
+          )
           if (index !== -1) {
-            updatedFavorites.splice(index, 1);
+            updatedFavorites.splice(index, 1)
           }
         }
-
-        const uniqueFavorites = removeDuplicates(updatedFavorites);
-
-        await axios.patch(endpoint, { favorites: uniqueFavorites });
-        setUser({ ...user, favorites: uniqueFavorites });
-        setIsActive(addToFavorites);
+        const uniqueFavorites = removeDuplicates(updatedFavorites)
+        await axios.patch(endpoint, { favorites: uniqueFavorites })
+        setUser({ ...user, favorites: uniqueFavorites })
+        setIsActive(addToFavorites)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     } else {
       Swal.fire({
-        icon: "warning",
-        title: "¡Atención!",
-        text: "Debe iniciar seseión para poder guardar favoritos",
-      });
+        icon: 'warning',
+        title: '¡Atención!',
+        text: 'Debe iniciar sesión para poder guardar favoritos',
+      })
     }
-  };
+  }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleClick = () => {
-    navigate(`/product-page/${_id}`, { state: props.product });
-  };
+    navigate(`/product-page/${_id}`, { state: props.product })
+  }
 
   return (
     <div
@@ -108,10 +102,10 @@ const Card = (props) => {
       <div
         className={`card-body d-flex flex-column align-items-center align-items-md-start p-0 mt-2 mb-2 justify-content-between`}
       >
-        <div className={`card-title my-0 mx-2 ps-2 ps-md-0 pe-2 mb-md-2 fw-bolder ${styles.title}`}>
-          <p className={`${styles.truncate} m-0`}>
-            {resumenDescripcion}
-          </p>
+        <div
+          className={`card-title my-0 mx-2 ps-2 ps-md-0 pe-2 mb-md-2 fw-bolder ${styles.title}`}
+        >
+          <p className={`${styles.truncate} m-0`}>{resumenDescripcion}</p>
         </div>
         <div className={`card-text col-12 container`}>
           <div className="row justify-content-between align-items-center">
@@ -126,13 +120,13 @@ const Card = (props) => {
               onClick={handleFavButton}
               className={`${styles2.button} p-1 me-2 rounded-5 `}
             >
-              <i className={`bi bi-heart${isActive ? "-fill" : ""}`}></i>
+              <i className={`bi bi-heart${isActive ? '-fill' : ''}`}></i>
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Toast from "react-bootstrap/Toast";
+import React, { useState } from 'react'
+import Row from 'react-bootstrap/Row'
+import Toast from 'react-bootstrap/Toast'
 
 const ToastButtonCart = ({ show, setShowToast }) => {
   return (
@@ -21,7 +20,7 @@ const ToastButtonCart = ({ show, setShowToast }) => {
         </Toast.Body>
       </Toast>
     </Row>
-  );
-};
+  )
+}
 
-export default ToastButtonCart;
+export default ToastButtonCart

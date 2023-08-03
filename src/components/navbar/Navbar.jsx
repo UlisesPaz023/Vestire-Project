@@ -5,20 +5,15 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import logo from '../img/vestiree.png'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import ModalLogin from '../modal/ModalLogin'
 import Cart from '../cart/Cart'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function NavBar({
-  allproducts,
   productsToCart,
   setProductsToCart,
-  quantity,
-  setQuantity,
-  priceCartItem,
-  setPriceCartItem,
   totalCartPrice,
   setTotalCartPrice,
   totalCartItems,
@@ -26,12 +21,9 @@ function NavBar({
   productsToShow,
   setProductsToShow,
   productsToShowAux,
-  setProductsToShowAux,
   setGridTitle,
 }) {
-  const productGrid = document.getElementById('product-grid')
-  const [search, setSearch] = useState()
-  const [searchResault, setSearchResault] = useState()
+  const [search, setSearch] = useState('')
   const [show, setShow] = useState(false)
   const [disableButton, setDisableButton] = useState(true)
   const navigate = useNavigate()
@@ -69,7 +61,6 @@ function NavBar({
     let resault = productsToShow.filter((product) =>
       quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
     )
-    console.log(resault)
     if (resault.length > 0) {
       setProductsToShow(resault)
       setGridTitle('Resultados de su búsqueda')
@@ -89,11 +80,10 @@ function NavBar({
   let userLoged = localStorage.getItem('userName')
   return (
     <>
-      <ModalLogin show={show} handleClose={handleClose} />
-      <Navbar bg="light" expand="lg" sticky="top">
+      <Navbar bg="light" expand="lg" fixed="top" className="p-1">
         <Container fluid>
           <Navbar.Brand href="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="logo vestire" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -104,8 +94,12 @@ function NavBar({
                   style={{ maxHeight: '100px' }}
                   navbarScroll
                 >
-                  <Nav.Link href="/favorite-page">Favoritos</Nav.Link>
-                  <Nav.Link href="/contact-page">Contacto</Nav.Link>
+                  <Nav.Link as={Link} to="/favorite-page">
+                    Favoritos
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/contact-page">
+                    Contacto
+                  </Nav.Link>
                   {userLoged ? (
                     <NavDropdown
                       className="me-auto"
@@ -162,10 +156,6 @@ function NavBar({
               <Cart
                 productsToCart={productsToCart}
                 setProductsToCart={setProductsToCart}
-                quantity={quantity}
-                setQuantity={setQuantity}
-                priceCartItem={priceCartItem}
-                setPriceCartItem={setPriceCartItem}
                 totalCartPrice={totalCartPrice}
                 setTotalCartPrice={setTotalCartPrice}
                 totalCartItems={totalCartItems}

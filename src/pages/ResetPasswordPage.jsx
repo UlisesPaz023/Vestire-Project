@@ -1,59 +1,58 @@
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import ModalLogin from "../components/modal/ModalLogin";
+import React, { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
+import { useNavigate, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 const ResetPasswordPage = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [token, setToken] = useState("");
-  console.log("token:", token);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [token, setToken] = useState('')
+  console.log('token:', token)
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const token = searchParams.get("token");
-    setToken(token);
-  }, [location.search]);
+    const searchParams = new URLSearchParams(location.search)
+    const token = searchParams.get('token')
+    setToken(token)
+  }, [location.search])
 
   const handleResetPassword = async (e) => {
     // Lógica para restablecer la contraseña utilizando el token
-    e.preventDefault();
-    const password = e.target.password.value;
-    const repassword = e.target.repassword.value;
+    e.preventDefault()
+    const password = e.target.passwordReq1.value
+    const repassword = e.target.repasswordReq2.value
     if (password === repassword) {
       //envia peticion al backend
-      const headers = { Authorization: `Bearer ${token}` };
-      const urlBase = "https://vestire.onrender.com/users/reset-password";
-      // const urlLocal = "http://localhost:5000/users/reset-password";
+      const headers = { Authorization: `Bearer ${token}` }
+      const url = import.meta.env.VITE_BACKEND_USERS_URL
       try {
-        const resp = await axios.post(urlBase, { password }, { headers });
+        let endpoint = `${url}/reset-password`
+        const resp = await axios.post(endpoint, { password }, { headers })
         Swal.fire({
-          icon: "success",
-          title: "Restablecimiento exitoso. Ingresar al Login",
+          icon: 'success',
+          title: 'Restablecimiento exitoso. Ingresar al Login',
           showConfirmButton: false,
-          timer: 1500,
-        });
+          timer: 2500,
+        })
         //navigate("/login");
-        navigate("/");
+        navigate('/')
       } catch (error) {
-        const { response } = error;
-        const { message } = response.data;
+        const { response } = error
+        const { message } = response.data
         Swal.fire({
-          icon: "error",
-          title: "Opps..",
+          icon: 'error',
+          title: 'Opps..',
           text: message,
-        });
+        })
       }
     } else {
       //error no coinciden la contresña ingresada
       Swal.fire({
-        icon: "error",
-        title: "Contraseña",
-        text: "No coinciden las contraseñas ingresadas.",
-      });
+        icon: 'error',
+        title: 'Contraseña',
+        text: 'No coinciden las contraseñas ingresadas.',
+      })
     }
-  };
+  }
 
   return (
     <div className="container d-flex justify-content-center align-items-center mt-5 mb-5">
@@ -63,13 +62,13 @@ const ResetPasswordPage = () => {
       >
         <h2>Restablecer contraseña</h2>
         <div className="col-md-12 mb-3">
-          <label for="password" className="form-label fw-bold">
+          <label htmlFor="passwordReq1" className="form-label fw-bold">
             Nueva Contraseña
           </label>
           <input
             type="password"
             className="form-control"
-            id="password"
+            id="passwordReq1"
             placeholder="Ingresa tu nueva contraseña"
             required
           />
@@ -77,13 +76,13 @@ const ResetPasswordPage = () => {
         </div>
 
         <div className="col-md-12 mb-3">
-          <label for="repassword" className="form-label fw-bold">
+          <label htmlFor="repasswordReq2" className="form-label fw-bold">
             Confirma Contraseña
           </label>
           <input
             type="password"
             className="form-control"
-            id="repassword"
+            id="repasswordReq2"
             placeholder="Repite tu nueva contraseña"
             required
           />
@@ -95,7 +94,7 @@ const ResetPasswordPage = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ResetPasswordPage;
+export default ResetPasswordPage
