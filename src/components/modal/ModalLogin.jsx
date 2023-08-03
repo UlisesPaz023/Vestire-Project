@@ -16,12 +16,15 @@ const ModalLogin = ({ show, handleClose }) => {
   return (
     <>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{currentForm.toUpperCase()}</Modal.Title>
+        <Modal.Header closeButton className="position-relative">
+          <Modal.Title className="position-absolute"></Modal.Title>
+          <h3 className="my-1 w-100 text-center">
+            {currentForm.toUpperCase()}
+          </h3>
         </Modal.Header>
         <Modal.Body className="p-0">
           {currentForm === 'login' ? (
-            <Login onFormSwitch={toggleForm} />
+            <Login onFormSwitch={toggleForm} handleClose={handleClose} />
           ) : (
             <Register onFormSwitch={toggleForm} />
           )}

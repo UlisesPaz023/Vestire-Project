@@ -1,25 +1,13 @@
-import { React, useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import styles from "../pages/productPage.module.css";
-import "./styles/productPage.css";
-import Swal from "sweetalert2";
-import Toast from "../components/toast/ToastButtonCart";
-const url = "https://vestire.onrender.com/product";
-const ProductPage = ({
-  productsToCart,
-  setProductsToCart,
-  quantity,
-  setQuantity,
-  priceCartItem,
-  setPriceCartItem,
-  totalCartPrice,
-  setTotalCartPrice,
-  totalCartItems,
-  setTotalCartItems,
-}) => {
-  const location = useLocation();
+import { React, useState, useRef, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import styles from '../pages/productPage.module.css'
+import './styles/productPage.css'
+import Swal from 'sweetalert2'
+import Toast from '../components/toast/ToastButtonCart'
+
+const ProductPage = ({ productsToCart, setProductsToCart }) => {
+  const location = useLocation()
   const {
-    codigo,
     _id,
     marca,
     descripcion,
@@ -30,16 +18,15 @@ const ProductPage = ({
     cantidadPorTalle,
     categoria,
     subCategoria,
-  } = location.state;
-  //const precioFormated = precio.toLocaleString();
-  const [talle, setTalle] = useState("");
-  const [cantidad, setCantidad] = useState(0);
+  } = location.state
+  const [talle, setTalle] = useState('')
+  const [cantidad, setCantidad] = useState(0)
   const resumenDescripcionToCart = resumenDescripcion
-    .split(" ")
+    .split(' ')
     .map((palabra) => {
-      return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase();
+      return palabra.charAt(0).toUpperCase() + palabra.slice(1).toLowerCase()
     })
-    .join(" ");
+    .join(' ')
 
   const initProductToCart = {
     _id,
@@ -48,44 +35,43 @@ const ProductPage = ({
     precio,
     talle: talle,
     cantidad: cantidad,
-  };
-  const { xs, s, m, l, xl } = cantidadPorTalle;
+  }
+  const { xs, s, m, l, xl } = cantidadPorTalle
 
-  let sizeArray = [];
-  if (xs !== 0) sizeArray.push("xS");
-  if (s !== 0) sizeArray.push("S");
-  if (m !== 0) sizeArray.push("M");
-  if (l !== 0) sizeArray.push("L");
-  if (xl !== 0) sizeArray.push("xL");
+  let sizeArray = []
+  if (xs !== 0) sizeArray.push('xS')
+  if (s !== 0) sizeArray.push('S')
+  if (m !== 0) sizeArray.push('M')
+  if (l !== 0) sizeArray.push('L')
+  if (xl !== 0) sizeArray.push('xL')
 
-  const [array, setArray] = useState([]);
+  const [array, setArray] = useState([])
 
-  const [showToast, setShowToast] = useState(false);
+  const [showToast, setShowToast] = useState(false)
 
-  const [disableCartButton, setDisableCartButton] = useState(false);
+  const [disableCartButton, setDisableCartButton] = useState(false)
 
-  const [addLocalStorage, setAddLocalStorage] = useState(false);
+  const [addLocalStorage, setAddLocalStorage] = useState(false)
 
   const handleChangeSize = (e) => {
-    setTalle(e.target.value.toLowerCase());
-  };
+    setTalle(e.target.value.toLowerCase())
+  }
 
   const handleChangeQuantity = (e) => {
-    setCantidad(parseInt(e.target.value));
-    setDisableCartButton(true);
-  };
+    setCantidad(parseInt(e.target.value))
+    setDisableCartButton(true)
+  }
 
   useEffect(() => {
-    setArray([]);
+    setArray([])
     for (let i = 1; i <= cantidadPorTalle[talle]; i++) {
-      setArray((prev) => [...prev, i]);
+      setArray((prev) => [...prev, i])
     }
-    console.log(array);
-  }, [talle]);
+  }, [talle])
 
   const handleShowToast = () => {
-    if (!disableCartButton) setShowToast(!showToast);
-  };
+    if (!disableCartButton) setShowToast(!showToast)
+  }
 
   const hanldeAddToCart = () => {
     if (
@@ -95,62 +81,48 @@ const ProductPage = ({
         item.talle === talle
           ? { ...item, cantidad: item.cantidad + cantidad }
           : item
-      );
-      console.log(products);
+      )
       return (
         setProductsToCart([...products]),
         setAddLocalStorage(true),
         Swal.fire({
-          icon: "success",
-          title: "Producto añadido con exito.",
+          icon: 'success',
+          title: 'Producto añadido con exito.',
           showConfirmButton: false,
           timer: 1500,
         })
-      );
+      )
     }
-    setProductsToCart((prevState) => [...prevState, initProductToCart]);
-    setAddLocalStorage(true);
+    setProductsToCart((prevState) => [...prevState, initProductToCart])
+    setAddLocalStorage(true)
     Swal.fire({
-      icon: "success",
-      title: "Producto añadido con exito.",
+      icon: 'success',
+      title: 'Producto añadido con exito.',
       showConfirmButton: false,
       timer: 1500,
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    console.log(productsToCart);
-    setAddLocalStorage(false);
-  }, [productsToCart]);
+    setAddLocalStorage(false)
+  }, [productsToCart])
 
   useEffect(() => {
     if (addLocalStorage === true)
-      localStorage.setItem("cart", JSON.stringify(productsToCart));
-  }, [addLocalStorage]);
+      localStorage.setItem('cart', JSON.stringify(productsToCart))
+  }, [addLocalStorage])
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    if (localStorage.getItem("cart")) {
-      const cartOnLocalStorage = JSON.parse(localStorage.getItem("cart"));
-      console.log(cartOnLocalStorage);
-      setProductsToCart(cartOnLocalStorage);
+    window.scrollTo(0, 0)
+    if (localStorage.getItem('cart')) {
+      const cartOnLocalStorage = JSON.parse(localStorage.getItem('cart'))
+      setProductsToCart(cartOnLocalStorage)
     }
-  }, []);
+  }, [])
 
-  // const hanldeAddToCart = () => {
-  //   if (productsToCart.find((item) => item.talle === talle.current)) {
-  //     const products = productsToCart.map((item) =>
-  //       item.talle === talle.current
-  //         ? { ...item, cantidad: item.cantidad + quantity }
-  //         : item
-  //     );
-  //     return setProductsToCart([...products]);
-  //   }
-  //   setProductsToCart((prevState) => [...prevState, initProductToCart]);
-  // };
   return (
     <>
-      <div className="container bg-warning  my-3">
+      <div className="container bg-warning  my-5 pt-1">
         <div className={`${styles.desc} row p-0 `}>
           <div className="col">
             {categoria} / {subCategoria} / {resumenDescripcion}
@@ -179,7 +151,7 @@ const ProductPage = ({
                 <div className="col-10 col-sm-8 col-md-8 col-lg-6  d-flex flex-row justify-content-start align-items-center">
                   <p
                     className={`${styles.desc} fw-bold mt-3`}
-                    style={{ display: "inline" }}
+                    style={{ display: 'inline' }}
                   >
                     Talle:
                   </p>
@@ -189,13 +161,12 @@ const ProductPage = ({
                       aria-label="Default select example"
                       onChange={handleChangeSize}
                       style={{
-                        //width: "200px",
-                        height: "30px",
-                        backgroundColor: "black",
-                        color: "white",
+                        height: '30px',
+                        backgroundColor: 'black',
+                        color: 'white',
                       }}
                     >
-                      <option>Elija talle</option>
+                      <option defaultValue={'Elija talle'}>Elija talle</option>
                       {sizeArray &&
                         sizeArray.map((el) => (
                           <option key={el} value={el}>
@@ -212,7 +183,7 @@ const ProductPage = ({
                     <div className="col-10 col-sm-8 col-md-8 col-lg-6  d-flex flex-row justify-content-start align-items-center">
                       <p
                         className={`${styles.desc} fw-bold mt-3`}
-                        style={{ display: "inline" }}
+                        style={{ display: 'inline' }}
                       >
                         Cantidad:
                       </p>
@@ -221,13 +192,14 @@ const ProductPage = ({
                         aria-label="Default select example"
                         onChange={handleChangeQuantity}
                         style={{
-                          //width: "200px",
-                          height: "30px",
-                          backgroundColor: "black",
-                          color: "white",
+                          height: '30px',
+                          backgroundColor: 'black',
+                          color: 'white',
                         }}
                       >
-                        <option selected>Elija cantidad</option>
+                        <option defaultValue={'Elija cantidad'}>
+                          Elija cantidad
+                        </option>
                         {array &&
                           array.map((el) => (
                             <option key={el} value={el}>
@@ -261,7 +233,7 @@ const ProductPage = ({
                   {showToast ? (
                     <Toast showToast={showToast} setShowToast={setShowToast} />
                   ) : (
-                    ""
+                    ''
                   )}
                 </div>
               </div>
@@ -270,7 +242,7 @@ const ProductPage = ({
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProductPage;
+export default ProductPage

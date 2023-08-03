@@ -1,50 +1,47 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styles2 from "../favoriteGrid/cardFavorite.module.css";
-import styles from "../card/card.module.css";
-import axios from "axios";
-
-const url = "https://vestire.onrender.com/users";
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import styles2 from '../favoriteGrid/cardFavorite.module.css'
+import styles from '../card/card.module.css'
+import axios from 'axios'
 
 const CardFavorite = (props) => {
-  const { _id, resumenDescripcion, imagen, precio } = props.product;
-  const usuario = props.user;
-  const precioFormated = new Intl.NumberFormat("es-AR").format(precio);
+  const url = import.meta.env.VITE_BACKEND_USERS_URL
+  const { _id, resumenDescripcion, imagen } = props.product
+  const { setUser } = props
+  const usuario = props.user
 
   const cardAmount = (amount) => {
     if (amount <= 15) {
       if (amount > 10) {
         if (amount > 12) {
-          return `d-none d-lg-flex`;
+          return `d-none d-lg-flex`
         }
-        return `d-none d-md-flex`;
+        return `d-none d-md-flex`
       }
     }
-    // } else {
-    //   return `d-none`;
-    // }
-  };
+  }
 
   const handleDeleteButton = async () => {
-    let endpoint = `${url}/edit-user/${usuario._id}`;
+    let endpoint = `${url}/edit-user/${usuario._id}`
     try {
-      const updatedFavorites = [...usuario.favorites];
+      const updatedFavorites = [...usuario.favorites]
       const index = updatedFavorites.findIndex(
         (favorite) => favorite._id === _id
-      );
+      )
       if (index !== -1) {
-        updatedFavorites.splice(index, 1);
+        updatedFavorites.splice(index, 1)
       }
-      await axios.patch(endpoint, { favorites: updatedFavorites });
+      const resp = await axios.patch(endpoint, { favorites: updatedFavorites })
+      setUser(resp.data)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleClick = () => {
-    navigate(`/product-page/${_id}`, { state: props.product });
-  };
+    navigate(`/product-page/${_id}`, { state: props.product })
+  }
 
   return (
     <div
@@ -61,25 +58,24 @@ const CardFavorite = (props) => {
         <h6 className={`card-title m-2 fw-bolder ${styles.title}`}>
           {resumenDescripcion}
         </h6>
-        <div className="text-center d-flex col-12 justify-content-between">
+        <div className="text-center d-flex col-12 justify-content-between align-items-center">
           <button
             onClick={handleClick}
-            className={`${styles.button} d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
+            className={`${styles.button} col d-flex align-items-center justify-content-center btn btn-black rounded-5 p-0 ms-2`}
           >
             <div className={`${styles.buttonPoint} rounded-5 me-2`}></div>
-            <p className={`m-0 ${styles.text} fs-6`}>Ver</p>
+            <p className={`m-0 ${styles.text}`}>Ver</p>
           </button>
-          <div className="fs-5">${precioFormated}</div>
           <button
             onClick={handleDeleteButton}
-            className={`${styles2.button} me-2 rounded-5`}
+            className={`${styles2.button} p-1 me-2 rounded-5`}
           >
             <i className="bi bi-trash-fill"></i>
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardFavorite;
+export default CardFavorite

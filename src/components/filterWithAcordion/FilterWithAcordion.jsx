@@ -1,30 +1,30 @@
-import { useState } from "react";
-import { Button, Offcanvas } from "react-bootstrap";
-import Accordion from "react-bootstrap/Accordion";
-import "./filterWithAcordion.module.css";
-import { BsFilterSquareFill } from "react-icons/bs";
-import FilterCategory from "../filterCategory/FilterCategory";
+import { useState } from 'react'
+import { Button, Offcanvas } from 'react-bootstrap'
+import Accordion from 'react-bootstrap/Accordion'
+import './filterWithAcordion.module.css'
+import { BsFilterSquareFill } from 'react-icons/bs'
+import FilterCategory from '../filterCategory/FilterCategory'
 
 const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
   const handleClick = () => {
-    setProductsToShow(products);
-    setGridTitle("Nueva Colección");
-  };
+    setProductsToShow(products)
+    setGridTitle('Nueva Colección')
+  }
 
   const arrayClass = products.reduce((stack, prod) => {
-    return stack.concat(prod.clase);
-  }, []);
+    return stack.concat(prod.clase)
+  }, [])
   let trueArrayClass = arrayClass.filter((x, i) => {
-    return arrayClass.indexOf(x) === i;
-  });
-  const [show, setShow] = useState(false);
+    return arrayClass.indexOf(x) === i
+  })
+  const [show, setShow] = useState(false)
 
   const handleClose = () => {
-    setShow(false);
-  };
+    setShow(false)
+  }
   const handleShow = () => {
-    setShow(true);
-  };
+    setShow(true)
+  }
   return (
     <>
       <Button
@@ -32,11 +32,11 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
         className="d-lg-none"
         onClick={handleShow}
         style={{
-          position: "fixed",
-          borderRadius: "50%",
-          top: "30vh",
-          border: "none",
-          fontSize: "2.5rem",
+          position: 'fixed',
+          borderRadius: '50%',
+          top: '30vh',
+          border: 'none',
+          fontSize: '2.5rem',
         }}
       >
         <BsFilterSquareFill />
@@ -46,7 +46,7 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
         onHide={handleClose}
         responsive="lg"
         restoreFocus={true}
-        sticky="top"
+        //sticky="top"
         scroll={true}
       >
         <Offcanvas.Body>
@@ -54,13 +54,16 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
             <Accordion
               className="row px-3 m-0 p-0 col my-accordion"
               style={{
-                position: "fixed",
-                overflowY: "auto",
+                position: 'fixed',
+                overflowY: 'auto',
               }}
             >
-              <div className="position-relative">
-              <Offcanvas.Header className="my-1 position-absolute" closeButton></Offcanvas.Header>
-              <h5 className="text-center my-3">Filtros</h5>
+              <div className="">
+                <Offcanvas.Header
+                  className="my-1 "
+                  closeButton
+                ></Offcanvas.Header>
+                <h5 className="text-center my-3">Filtros</h5>
               </div>
               <hr />
               {trueArrayClass.map((clase, index) => (
@@ -68,17 +71,12 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
                   className="border-0 text-decoration-none"
                   key={index}
                   eventKey={index.toString()} // Asignar un eventKey único
-                  style={{ height: "auto" }}
+                  style={{ height: 'auto' }}
                 >
-                  <Accordion.Header 
-                    className="border-0"
-                    onClick={handleClick}
-                  >
+                  <Accordion.Header className="border-0" onClick={handleClick}>
                     {clase}
                   </Accordion.Header>
-                  <Accordion.Body
-                    className="border-0"
-                  >
+                  <Accordion.Body className="border-0">
                     <FilterCategory
                       className="border-0 text-decoration-none"
                       clase={clase}
@@ -96,7 +94,7 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
         </Offcanvas.Body>
       </Offcanvas>
     </>
-  );
-};
+  )
+}
 
-export default FilterWithAcordion;
+export default FilterWithAcordion

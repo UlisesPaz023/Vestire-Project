@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const FilterSubCategory = ({
   products,
@@ -8,40 +8,39 @@ const FilterSubCategory = ({
   setShow,
 }) => {
   const handleClick = (subCategory) => {
-    console.log(subCategory);
-    const categoryToFilter = localStorage.getItem("category");
-    const subCategoryToFilter = subCategory;
+    const categoryToFilter = localStorage.getItem('category')
+    const subCategoryToFilter = subCategory
     const filteredProducts = products.filter(
       (product) =>
         product.subCategoria === subCategoryToFilter &&
         product.categoria === categoryToFilter
-    );
-    setProductsToShow(filteredProducts);
+    )
+    setProductsToShow(filteredProducts)
     setGridTitle(
       `${filteredProducts[0].categoria} | ${filteredProducts[0].subCategoria}`
-    );
-    setShow(false);
-  };
+    )
+    setShow(false)
+  }
   let categoryProducts = products.filter(
     (product) => product.categoria === categoria
-  );
-  let subCategories = categoryProducts.map((product) => product.subCategoria);
-  let uniqueSubCategories = [...new Set(subCategories)];
+  )
+  let subCategories = categoryProducts.map((product) => product.subCategoria)
+  let uniqueSubCategories = [...new Set(subCategories)]
   return (
     <>
       {uniqueSubCategories.map((subCategory, idx) => (
-        <p
+        <div
           key={idx}
           htmlFor={`idForFilter${subCategory}`}
           onClick={() => handleClick(subCategory)}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
         >
           {subCategory}
-          <hr className="m-1"/>
-        </p>
+          <hr className="m-1" />
+        </div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default FilterSubCategory;
+export default FilterSubCategory

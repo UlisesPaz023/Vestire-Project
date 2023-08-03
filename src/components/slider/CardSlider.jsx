@@ -1,11 +1,11 @@
-import React from "react";
-import CardSliderItem from "./CardSliderItem";
+import React from 'react'
+import CardSliderItem from './CardSliderItem'
 
 const CardSlider = (props) => {
-  const { x, key, i } = props;
+  const { x, i } = props
   return (
     <>
-      <div className={`carousel-item ${i === 0 ? "active" : ""}`}>
+      <div className={`carousel-item ${i === 0 ? 'active' : ''}`}>
         <div className="cards-wrapper d-md-flex justify-content-evenly">
           {Array.isArray(x) ? (
             x.map((x, i) => <CardSliderItem key={x.id} x={x} />)
@@ -15,7 +15,7 @@ const CardSlider = (props) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CardSlider;
+export default CardSlider

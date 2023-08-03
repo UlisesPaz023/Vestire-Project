@@ -1,66 +1,80 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import FavoriteGrid from "../components/favoriteGrid/FavoriteGrid";
-import axios from "axios";
-import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import FavoriteGrid from '../components/favoriteGrid/FavoriteGrid'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import { CircularProgress } from '@mui/material'
 
-const url = "https://vestire.onrender.com/users";
+const url = import.meta.env.VITE_BACKEND_USERS_URL
 
 const FavoritePage = () => {
-  const navigate = useNavigate();
-  const [userFavorites, setUserFavorites] = useState({ favorites: [] });
-  if (!localStorage.getItem("userName")) {
-    Swal.fire({
-      title: "¡Atención!",
-      text: "Debe iniciar sesión para ver los favoritos",
-      icon: "warning",
-      confirmButtonColor: "#3085d6",
-      confirmButtonText: "Ok",
-    }).then((result) => {
-      if (result.isConfirmed) navigate("/");
-    });
-  }
+  const navigate = useNavigate()
+  const [userFavorites, setUserFavorites] = useState({ favorites: [] })
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!localStorage.getItem('userName')) {
+      Swal.fire({
+        title: '¡Atención!',
+        text: 'Debe iniciar sesión para ver los favoritos',
+        icon: 'warning',
+        timer: 2000,
+      })
+    }
+  }, [])
 
   useEffect(() => {
     const getData = async () => {
-      let endpoint = `${url}/get-user-by-token`;
-      if (localStorage.getItem("userToken")) {
-        const token = localStorage.getItem("userToken");
-        const headers = { Authorization: `Bearer ${token}` };
+      let endpoint = `${url}/get-user-by-token`
+      if (localStorage.getItem('userToken')) {
+        const token = localStorage.getItem('userToken')
+        const headers = { Authorization: `Bearer ${token}` }
         try {
+          setLoading(true)
           const { data } = await axios.get(endpoint, {
             headers,
-          });
-          setUserFavorites(data);
-          // if(resp)
+          })
+          setUserFavorites(data)
+          setLoading(false)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       }
-      // } else {
-      //   Swal.fire(
-      //     "Acceso denegado",
-      //     "Debe ser administrador para ingresar",
-      //     "error"
-      //   );
-      //   setTimeout(() => {
-      //     location.href = "/";
-      //   }, 3000);
-      // }
-    };
-    getData();
-  }, [userFavorites.favorites]);
-
+    }
+    getData()
+  }, [])
   return (
-    <section>
-      {userFavorites !== undefined && (
-        <FavoriteGrid
-          userFavorites={userFavorites}
-          setUserFavorites={setUserFavorites}
-        />
+    <div>
+      {loading ? (
+        <div className="row h-100 justify-content-center align-items-center">
+          <div className="text-center" style={{ paddingTop: '13rem' }}>
+            <CircularProgress />
+          </div>
+        </div>
+      ) : userFavorites.favorites.length === 0 ? (
+        <div className="d-flex flex-column justify-content-center align-items-center mt-5">
+          <div>
+            <h3 className="mt-3 mb-4"> No hay favoritos para mostrar.</h3>
+          </div>
+          <button
+            className="col-2 btn btn-dark rounded-0 fw-bolder px-5 py-2"
+            onClick={() => {
+              navigate('/')
+            }}
+          >
+            VOLVER ATRÁS
+          </button>
+        </div>
+      ) : (
+        userFavorites !== undefined && (
+          <FavoriteGrid
+            userFavorites={userFavorites}
+            setUserFavorites={setUserFavorites}
+          />
+        )
       )}
-    </section>
-  );
-};
+    </div>
+  )
+}
 
-export default FavoritePage;
+export default FavoritePage

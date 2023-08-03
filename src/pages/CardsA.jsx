@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
-import "./styles/cards.css";
+import './styles/cards.css'
 
 const CardsA = (props) => {
-  const { member } = props;
-  const { img, name, description } = member;
+  const { member } = props
+  const { img, name, description } = member
 
   return (
     <div className="cards">
@@ -25,7 +24,7 @@ const CardsA = (props) => {
         </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CardsA;
+export default CardsA

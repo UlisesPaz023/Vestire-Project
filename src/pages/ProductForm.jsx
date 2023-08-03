@@ -40,7 +40,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     precio,
   } = product
 
-  let [coleccion, sastreria, calzado, accesorios] = clase
+  let [coleccion, sastreria, accesorios] = clase
 
   useEffect(() => {
     if (dataToEdit) setProduct(dataToEdit)
@@ -73,7 +73,6 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       cantidadPorTalle[e.target.id] = Number(e.target.value)
       setProduct({ ...product, cantidadPorTalle })
     } else {
-      console.log(e.target.name, e.target.value)
       setProduct({ ...product, [e.target.name]: e.target.value })
     }
   }
@@ -83,7 +82,6 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
 
     if (!product._id) createData(product)
     else {
-      console.log('por editar', product)
       updateData(product)
     }
     setProduct(initProduct)
@@ -91,7 +89,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   }
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="d-flex flex-column">
         <div className="row mb-2">
           <label htmlFor="codigo" className="form-label">
             Código
@@ -110,43 +108,48 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
         <div className="row ">
           <span className="mb-1">Seleccione la/s clase/s del producto</span>
           <div className="card card-body mb-3">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              name="Coleccion"
-              value={coleccion}
-              checked={clase.includes('Coleccion')}
-              id="coleccion"
-              onChange={handleCheckedClase}
-              required
-            />
-            <label className="form-check-label" htmlFor="coleccion">
-              Colección
-            </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              name="Sastreria"
-              value={sastreria}
-              checked={clase.includes('Sastreria')}
-              id="sastreria"
-              onChange={handleCheckedClase}
-            />
-            <label className="form-check-label" htmlFor="sastreria">
-              Sastrería
-            </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              name="Accesorios"
-              value={accesorios}
-              checked={clase.includes('Accesorios')}
-              id="accesorios"
-              onChange={handleCheckedClase}
-            />
-            <label className="form-check-label" htmlFor="accesorios">
-              Accesorios
-            </label>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="Coleccion"
+                value={coleccion}
+                checked={clase.includes('Coleccion')}
+                id="coleccion"
+                onChange={handleCheckedClase}
+              />
+              <label className="form-check-label" htmlFor="coleccion">
+                Colección
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="Sastreria"
+                value={sastreria}
+                checked={clase.includes('Sastreria')}
+                id="sastreria"
+                onChange={handleCheckedClase}
+              />
+              <label className="form-check-label" htmlFor="sastreria">
+                Sastrería
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                name="Accesorios"
+                value={accesorios}
+                checked={clase.includes('Accesorios')}
+                id="accesorios"
+                onChange={handleCheckedClase}
+              />
+              <label className="form-check-label" htmlFor="accesorios">
+                Accesorios
+              </label>
+            </div>
           </div>
         </div>
         <div className="row">
@@ -156,8 +159,9 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             name="categoria"
             value={categoria}
             onChange={handleChange}
+            required
           >
-            <option selected>Categoria</option>
+            <option defaultValue={'Categoria'}>Categoria</option>
             <option value="Camisa">Camisa</option>
             <option value="Pantalon">Pantalon</option>
             <option value="Ambo">Ambo</option>
@@ -186,7 +190,8 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             name="marca"
             value={marca}
             onChange={handleChange}
-          ></input>
+            required
+          />
         </div>
         <div className="row mb-2">
           <label htmlFor="imagen" className="form-label">
@@ -200,7 +205,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             name="imagen"
             value={imagen}
             onChange={handleChange}
-          ></input>
+          />
         </div>
         <div className="row mb-2">
           <label htmlFor="resumenDescripcion" className="mb-2">
@@ -214,7 +219,8 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             value={resumenDescripcion}
             style={{ height: '50px' }}
             onChange={handleChange}
-          ></textarea>
+            required
+          />
         </div>
         <div className="row mb-2">
           <label htmlFor="descripcion" className="mb-2">
@@ -228,7 +234,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             value={descripcion}
             style={{ height: '100px' }}
             onChange={handleChange}
-          ></textarea>
+          />
         </div>
         <div className="row">
           <select
@@ -238,7 +244,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             value={color}
             onChange={handleChange}
           >
-            <option selected>Color</option>
+            <option defaultValue={'Color'}>Color</option>
             <option value="Negro">Negro</option>
             <option value="Blanco">Blanco</option>
             <option value="Gris">Gris</option>
@@ -263,7 +269,8 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             name="precio"
             value={precio}
             onChange={handleChangeInt}
-          ></input>
+            required
+          />
         </div>
 
         <div className="row">
@@ -280,7 +287,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               name="cantidadPorTalle"
               value={cantidadPorTalle.xs}
               onChange={handleChange}
-            ></input>
+            />
           </div>
           <div className="col">
             <label htmlFor="s" className="form-label">
@@ -294,7 +301,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               name="cantidadPorTalle"
               value={cantidadPorTalle.s}
               onChange={handleChange}
-            ></input>
+            />
           </div>
           <div className="col">
             <label htmlFor="m" className="form-label">
@@ -308,7 +315,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               name="cantidadPorTalle"
               value={cantidadPorTalle.m}
               onChange={handleChange}
-            ></input>
+            />
           </div>
           <div className="col">
             <label htmlFor="l" className="form-label">
@@ -322,7 +329,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               name="cantidadPorTalle"
               value={cantidadPorTalle.l}
               onChange={handleChange}
-            ></input>
+            />
           </div>
           <div className="col">
             <label htmlFor="xL" className="form-label">
@@ -336,7 +343,7 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               name="cantidadPorTalle"
               value={cantidadPorTalle.xl}
               onChange={handleChange}
-            ></input>
+            />
           </div>
         </div>
         <div className="row my-2">
@@ -355,7 +362,11 @@ const ProductForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             </label>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          className="btn btn-primary ms-auto"
+          style={{ width: '100px' }}
+        >
           Guardar
         </button>
       </form>
