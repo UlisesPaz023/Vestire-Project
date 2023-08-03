@@ -1,80 +1,71 @@
-import { useState, useEffect } from "react";
-import "./cart.module.css";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Swal from "sweetalert2";
-import { BsFillCartFill } from "react-icons/bs";
+import { useState, useEffect } from 'react'
+import './cart.module.css'
+import Button from 'react-bootstrap/Button'
+import Modal from 'react-bootstrap/Modal'
+import Swal from 'sweetalert2'
+import { BsFillCartFill } from 'react-icons/bs'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 const Cart = ({
   productsToCart,
   setProductsToCart,
-  priceCartItem,
-  setPriceCartItem,
   totalCartPrice,
   setTotalCartPrice,
   totalCartItems,
   setTotalCartItems,
 }) => {
-  const [show, setShow] = useState(false);
-  //const { resumenDescripcion } = productsToCart;
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const navigate = useNavigate();
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if (localStorage.getItem("cart")) {
-      const cartOnLocalStorage = JSON.parse(localStorage.getItem("cart"));
-      console.log(cartOnLocalStorage);
-      setProductsToCart(cartOnLocalStorage);
+    if (localStorage.getItem('cart')) {
+      const cartOnLocalStorage = JSON.parse(localStorage.getItem('cart'))
+      setProductsToCart(cartOnLocalStorage)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    let total = 0;
-    let precioTotal = 0;
+    let total = 0
+    let precioTotal = 0
     productsToCart.map((product) => {
-      console.log(product.cantidad);
-      total += product.cantidad;
-      precioTotal = precioTotal + product.precio * product.cantidad;
-    });
+      total += product.cantidad
+      precioTotal = precioTotal + product.precio * product.cantidad
+    })
 
-    setTotalCartPrice(precioTotal);
-    setTotalCartItems(total);
-  }, [productsToCart]);
+    setTotalCartPrice(precioTotal)
+    setTotalCartItems(total)
+  }, [productsToCart])
 
   const deleteItem = (product) => {
     const noDeletedItems = productsToCart.filter(
       (item) => item._id + item.talle !== product._id + product.talle
-    );
-    setProductsToCart([...noDeletedItems]);
-    localStorage.setItem("cart", JSON.stringify(noDeletedItems));
-
-    // localStorage.setItem("cart", JSON.stringify(productsToCart));
-    // if (productsToCart.length === 0) localStorage.clear("cart");
-  };
+    )
+    setProductsToCart([...noDeletedItems])
+    localStorage.setItem('cart', JSON.stringify(noDeletedItems))
+  }
 
   const handleBuy = () => {
-    // localStorage.setItem("cart", JSON.stringify(productsToCart));
-    setShow(false);
-    navigate(`/buying-page`);
-  };
+    setShow(false)
+    navigate(`/buying-page`)
+  }
 
   const handleClear = () => {
     Swal.fire({
-      title: "Advertencia",
+      title: 'Advertencia',
       text: `¿Está seguro que desea vaciar el carrito?`,
-      icon: "error",
+      icon: 'error',
       showDenyButton: true,
-      denyButtonText: "No",
-      confirmButtonText: "Sí",
+      denyButtonText: 'No',
+      confirmButtonText: 'Sí',
     }).then((res) => {
       if (res.isConfirmed) {
-        setProductsToCart([]);
-        localStorage.clear("cart");
+        setProductsToCart([])
+        localStorage.clear('cart')
       }
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -82,9 +73,9 @@ const Cart = ({
         <div
           className="icon-container dropdown-toggle"
           style={{
-            position: "relative",
-            display: "inline-block",
-            cursor: "pointer",
+            position: 'relative',
+            display: 'inline-block',
+            cursor: 'pointer',
           }}
           onClick={handleShow}
         >
@@ -93,16 +84,16 @@ const Cart = ({
         <div
           className="number-circle"
           style={{
-            position: "absolute",
-            top: "-10px",
-            right: "-10px",
-            width: "20px",
-            height: "20px",
-            borderRadius: "50%",
-            backgroundColor: "#ffc107",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            position: 'absolute',
+            top: '-5px',
+            right: '-7px',
+            width: '20px',
+            height: '20px',
+            borderRadius: '50%',
+            backgroundColor: '#ffc107',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <span>{totalCartItems}</span>
@@ -140,8 +131,8 @@ const Cart = ({
                           <img
                             src={product.imagen}
                             alt=""
-                            width={"50px"}
-                            height={"auto"}
+                            width={'50px'}
+                            height={'auto'}
                           />
                         </td>
                         <td>{product.talle.toUpperCase()}</td>
@@ -152,7 +143,7 @@ const Cart = ({
                         </td>
                         <td>
                           <button
-                            style={{ border: "none", backgroundColor: "white" }}
+                            style={{ border: 'none', backgroundColor: 'white' }}
                             onClick={() => deleteItem(product)}
                           >
                             <svg
@@ -190,13 +181,21 @@ const Cart = ({
                   Seguir comprando
                 </Button>
                 {!totalCartItems ? (
-                  ""
+                  ''
                 ) : (
                   <>
-                    <Button className="ms-2" variant="outline-danger" onClick={handleClear}>
+                    <Button
+                      className="ms-2"
+                      variant="outline-danger"
+                      onClick={handleClear}
+                    >
                       Vaciar Carrito
                     </Button>
-                    <Button className="ms-2" variant="outline-primary" onClick={handleBuy}>
+                    <Button
+                      className="ms-2"
+                      variant="outline-primary"
+                      onClick={handleBuy}
+                    >
                       Finalizar compra
                     </Button>
                   </>
@@ -207,7 +206,7 @@ const Cart = ({
         </Modal.Footer>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

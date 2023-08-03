@@ -3,6 +3,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const Register = (props) => {
+  const url = import.meta.env.VITE_BACKEND_USERS_URL
   const handleRegister = async (e) => {
     e.preventDefault()
     const firstname = e.target.firstname.value
@@ -12,7 +13,7 @@ const Register = (props) => {
     const password = e.target.password.value
     const repass = e.target.repass.value
     const body = { firstname, lastname, username, email, password }
-    if(repass !== password){
+    if (repass !== password) {
       return Swal.fire({
         icon: 'error',
         title: 'Las contraseñas no coinciden.',
@@ -21,10 +22,8 @@ const Register = (props) => {
       })
     }
     try {
-      const { data } = await axios.post(
-        'https://vestire.onrender.com/users/create-user',
-        body
-      )
+      let endpoint = `${url}/create-user`
+      const { data } = await axios.post(endpoint, body)
       Swal.fire({
         icon: 'success',
         title: 'Usuario registrado con exito. Ingrese al Login para continuar',
@@ -64,8 +63,8 @@ const Register = (props) => {
             </label>
             <input
               type="text"
-              style = {{
-                backgroundColor : "#e3e3e1"
+              style={{
+                backgroundColor: '#e3e3e1',
               }}
               className="form-control rounded-0"
               name="firstname"
@@ -79,8 +78,8 @@ const Register = (props) => {
             </label>
             <input
               type="text"
-              style = {{
-                backgroundColor : "#e3e3e1"
+              style={{
+                backgroundColor: '#e3e3e1',
               }}
               className="form-control rounded-0"
               name="lastname"
@@ -95,8 +94,8 @@ const Register = (props) => {
           </label>
           <input
             type="text"
-            style = {{
-              backgroundColor : "#e3e3e1"
+            style={{
+              backgroundColor: '#e3e3e1',
             }}
             className="form-control rounded-0"
             name="username"
@@ -110,8 +109,8 @@ const Register = (props) => {
           </label>
           <input
             type="text"
-            style = {{
-              backgroundColor : "#e3e3e1"
+            style={{
+              backgroundColor: '#e3e3e1',
             }}
             className="form-control rounded-0"
             id="email"
@@ -126,15 +125,18 @@ const Register = (props) => {
           </label>
           <input
             type="password"
-            style = {{
-              backgroundColor : "#e3e3e1"
+            style={{
+              backgroundColor: '#e3e3e1',
             }}
             className="form-control rounded-0"
             id="password"
             placeholder="Ingresa tu contraseña"
             required
           />
-          <p className='m-0 fw-light' style={{fontSize : ".75rem"}}>Debe contener mayúsculas, minúsculas, números, y mínimo 5 carácteres.</p>
+          <p className="m-0 fw-light" style={{ fontSize: '.75rem' }}>
+            Debe contener mayúsculas, minúsculas, números, un caracter especial,
+            y mínimo 5 carácteres.
+          </p>
         </div>
 
         <div className="col-md-12 p-0">
@@ -143,8 +145,8 @@ const Register = (props) => {
           </label>
           <input
             type="password"
-            style = {{
-              backgroundColor : "#e3e3e1"
+            style={{
+              backgroundColor: '#e3e3e1',
             }}
             className="form-control rounded-0"
             id="repass"
@@ -154,7 +156,10 @@ const Register = (props) => {
           <div className="invalid-feedback">Debe repetir la contraseña</div>
         </div>
 
-        <button type="submit" className="fw-bolder btn btn-dark mx-2 py-3 mt-4 rounded-0">
+        <button
+          type="submit"
+          className="fw-bolder btn btn-dark mx-2 py-3 mt-4 rounded-0"
+        >
           REGISTRAR
         </button>
 

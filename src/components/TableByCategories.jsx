@@ -1,13 +1,13 @@
-import React from "react";
-import ProductTableRow from "./ProductTableRow";
+import React from 'react'
+import ProductTableRow from './ProductTableRow'
 
 const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
   return (
-    <div>
+    <>
       {db[0] ? (
         <>
           <h4>Categoria: {db[0].categoria}</h4>
-          <div class="table-responsive">
+          <div className="table-responsive">
             <table className="table table-striped table-bordered">
               <thead>
                 <tr>
@@ -47,7 +47,7 @@ const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
                 {db ? (
                   db.map((el) => (
                     <ProductTableRow
-                      key={el.id}
+                      key={el._id}
                       el={el}
                       setDataToEdit={setDataToEdit}
                       deleteData={deleteData}
@@ -66,8 +66,8 @@ const TableByCategories = ({ db, setDataToEdit, deleteData, modalForm }) => {
       ) : (
         <h3>Sin productos para mostrar</h3>
       )}
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default TableByCategories;
+export default TableByCategories

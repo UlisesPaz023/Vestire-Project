@@ -1,147 +1,142 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ProductTableRow from "../components/ProductTableRow";
-import ProductForm from "./ProductForm";
-import Swal from "sweetalert2";
-import TableByCategories from "../components/TableByCategories";
-import { CircularProgress } from "@mui/material";
-import "./styles/productTable.css";
-import ScrollButton from "../components/scrollbutton/ScrollButton";
+import React from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import ProductForm from './ProductForm'
+import Swal from 'sweetalert2'
+import TableByCategories from '../components/TableByCategories'
+import { CircularProgress } from '@mui/material'
+import './styles/productTable.css'
+import ScrollButton from '../components/scrollbutton/ScrollButton'
+import { useNavigate } from 'react-router-dom'
 
 const isAdmin = async () => {
-  if (localStorage.getItem("userToken")) {
-    const token = localStorage.getItem("userToken");
-    const headers = { Authorization: `Bearer ${token}` };
+  const url = import.meta.env.VITE_BACKEND_USERS_URL
+
+  if (localStorage.getItem('userToken')) {
+    const token = localStorage.getItem('userToken')
+    const headers = { Authorization: `Bearer ${token}` }
     try {
-      const resp = await axios.get(
-        "https://vestire.onrender.com/users/check-user-admin",
-        {
-          headers,
-        }
-      );
-      // if(resp)
-      console.log(resp);
+      let endpoint = `${url}/check-user-admin`
+      const resp = await axios.get(endpoint, {
+        headers,
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   } else {
     Swal.fire(
-      "Acceso denegado",
-      "Debe ser administrador para ingresar",
-      "error"
-    );
+      'Acceso denegado',
+      'Debe ser administrador para ingresar',
+      'error'
+    )
     setTimeout(() => {
-      location.href = "/";
-    }, 2000);
+      navigate('/')
+    }, 2000)
   }
-};
+}
 
 const ProductTable = () => {
+  const navigate = useNavigate()
   useEffect(() => {
-    isAdmin();
-  }, []);
-  const [db, setDb] = useState([]);
-  const [dataToEdit, setDataToEdit] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [modalForm, setModalForm] = useState(null);
-  const url = "https://vestire.onrender.com/product";
+    isAdmin()
+  }, [])
+  const [db, setDb] = useState([])
+  const [dataToEdit, setDataToEdit] = useState(null)
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [modalForm, setModalForm] = useState(null)
+  const url = import.meta.env.VITE_BACKEND_PRODUCTS_URL
 
   useEffect(() => {
-    setModalForm(new bootstrap.Modal(document.getElementById("exampleModal")));
-    setLoading(true);
+    setModalForm(new bootstrap.Modal(document.getElementById('exampleModal')))
+    setLoading(true)
     const getData = async () => {
       try {
-        let endpoint = `${url}/get-products`;
-        const resp = await axios.get(endpoint);
-        setDb(resp.data);
-        setError("");
-        setLoading(false);
+        let endpoint = `${url}/get-products`
+        const resp = await axios.get(endpoint)
+        setDb(resp.data)
+        setError('')
+        setLoading(false)
       } catch (error) {
-        console.log(error.message);
-        setLoading(false);
-        setError("Ha ocurrido un error, intente más tarde");
+        console.log(error.message)
+        setLoading(false)
+        setError('Ha ocurrido un error, intente más tarde')
       }
-    };
-    getData();
-  }, []);
+    }
+    getData()
+  }, [])
 
   const createData = async (data) => {
     try {
-      let endpoint = `${url}/create-product`;
-      let resp = await axios.post(endpoint, data);
-      modalForm.hide();
-      setDb([...db, resp.data]);
-      Swal.fire("Éxito", "El registro se creó correctamente", "success");
-      console.log(resp.data._id);
-      let idNewRow = resp.data._id;
+      let endpoint = `${url}/create-product`
+      let resp = await axios.post(endpoint, data)
+      modalForm.hide()
+      setDb([...db, resp.data])
+      Swal.fire('Éxito', 'El registro se creó correctamente', 'success')
+      let idNewRow = resp.data._id
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
-    let fila = await axios.get(`${url}/get-products`);
-    let newRow = document.getElementById(fila.data[fila.data.length - 1]._id);
+    let fila = await axios.get(`${url}/get-products`)
+    let newRow = document.getElementById(fila.data[fila.data.length - 1]._id)
     newRow.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-    newRow.classList.add("resaltada");
+      behavior: 'smooth',
+      block: 'center',
+    })
+    newRow.classList.add('resaltada')
     setTimeout(() => {
-      newRow.classList.remove("resaltada");
-    }, 4000);
-    //location.reload();
-  };
+      newRow.classList.remove('resaltada')
+    }, 4000)
+  }
 
   const updateData = async (data) => {
     try {
-      console.log(data);
-      let endpoint = `${url}/edit-product/${data._id}`;
-      let resp = await axios.patch(endpoint, data);
-      //resp.data.headers["Content-Type"];
-      console.log(resp);
+      let endpoint = `${url}/edit-product/${data._id}`
+      let resp = await axios.patch(endpoint, data)
       if (!resp.err) {
-        let newProduct = db.map((el) => (el._id === data._id ? data : el));
-        modalForm.hide();
-        console.log(newProduct);
-        setDb(newProduct);
-        Swal.fire("Éxito", "El registro se editó correctamente", "success");
+        let newProduct = db.map((el) => (el._id === data._id ? data : el))
+        modalForm.hide()
+        setDb(newProduct)
+        Swal.fire('Éxito', 'El registro se editó correctamente', 'success')
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const deleteData = async (_id) => {
     Swal.fire({
-      title: "Advertencia",
+      title: 'Advertencia',
       text: `¿Está seguro que desea eliminar el producto con el id ${_id}?`,
-      icon: "error",
+      icon: 'error',
       showDenyButton: true,
-      denyButtonText: "No",
-      confirmButtonText: "Sí",
+      denyButtonText: 'No',
+      confirmButtonText: 'Sí',
     }).then((res) => {
       if (res.isConfirmed) {
-        let endpoint = `${url}/delete-product/${_id}`;
-        let resp = axios.delete(endpoint);
+        let endpoint = `${url}/delete-product/${_id}`
+        let resp = axios.delete(endpoint)
         if (!resp.err) {
-          let newData = db.filter((el) => el._id !== _id);
-          setDb(newData);
-          Swal.fire("Éxito", "El registro se eliminó correctamente", "success");
+          let newData = db.filter((el) => el._id !== _id)
+          setDb(newData)
+          Swal.fire('Éxito', 'El registro se eliminó correctamente', 'success')
         } else {
-          setError(resp);
+          setError(resp)
         }
       }
-    });
-  };
+    })
+  }
 
-  let dbCamisas = db.filter((el) => el.categoria === "Camisa");
-  let dbPantalones = db.filter((el) => el.categoria === "Pantalon");
-  let dbAmbos = db.filter((el) => el.categoria === "Ambo");
-  let dbAccesorios = db.filter((el) => el.categoria === "Accesorios");
+  let dbCamisas = db.filter((el) => el.categoria === 'Camisa')
+  let dbPantalones = db.filter((el) => el.categoria === 'Pantalon')
+  let dbAmbos = db.filter((el) => el.categoria === 'Ambo')
+  let dbAccesorios = db.filter((el) => el.categoria === 'Accesorios')
 
   return (
     <>
-      <h2 className="text-center my-4">Listado de Productos Registrados</h2>
+      <h2 className="text-center my-5 pt-2">
+        Listado de Productos Registrados
+      </h2>
       <hr />
       {loading ? (
         <div className="row">
@@ -159,7 +154,7 @@ const ProductTable = () => {
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
               >
-              AGREGAR PRODUCTO
+                AGREGAR PRODUCTO
               </button>
             </div>
           </div>
@@ -210,7 +205,7 @@ const ProductTable = () => {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                {dataToEdit ? "Editar producto" : "Cargar Producto"}
+                {dataToEdit ? 'Editar producto' : 'Cargar Producto'}
               </h1>
               <button
                 type="button"
@@ -218,7 +213,7 @@ const ProductTable = () => {
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={() => {
-                  setDataToEdit(null);
+                  setDataToEdit(null)
                 }}
               ></button>
             </div>
@@ -232,24 +227,12 @@ const ProductTable = () => {
                 />
               </div>
             </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-                onClick={() => {
-                  setDataToEdit(null);
-                }}
-              >
-                Close
-              </button>
-            </div>
           </div>
         </div>
       </div>
       <ScrollButton />
     </>
-  );
-};
+  )
+}
 
-export default ProductTable;
+export default ProductTable

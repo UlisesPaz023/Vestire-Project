@@ -1,26 +1,26 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect } from 'react'
 
 const Subcat = ({ categoria, handleChange, subCategoria }) => {
-  const [subcat, setSubcat] = useState([]);
+  const [subcat, setSubcat] = useState([])
   useEffect(() => {
-    setSubcat(categoria);
+    setSubcat(categoria)
     switch (categoria) {
-      case "Camisa":
-        setSubcat(["Mangas cortas", "Vestir", "Casual"]);
-        break;
-      case "Pantalon":
-        setSubcat(["Vestir", "Jeans"]);
-        break;
-      case "Ambo":
-        setSubcat(["Clasico", "Slim Fit"]);
-        break;
-      case "Accesorios":
-        setSubcat(["Corbatas", "Cinturones"]);
-        break;
+      case 'Camisa':
+        setSubcat(['Mangas cortas', 'Vestir', 'Casual'])
+        break
+      case 'Pantalon':
+        setSubcat(['Vestir', 'Jeans'])
+        break
+      case 'Ambo':
+        setSubcat(['Clasico', 'Slim Fit'])
+        break
+      case 'Accesorios':
+        setSubcat(['Corbatas', 'Cinturones'])
+        break
       default:
-        break;
+        break
     }
-  }, [categoria]);
+  }, [categoria])
 
   return (
     <>
@@ -31,7 +31,7 @@ const Subcat = ({ categoria, handleChange, subCategoria }) => {
         onChange={handleChange}
         value={subCategoria}
       >
-        <option selected>Sub-categoria</option>
+        <option defaultValue={'Sub-categoria'}>Sub-categoria</option>
         {subcat &&
           subcat.map((el) => (
             <option key={el} value={el}>
@@ -40,7 +40,7 @@ const Subcat = ({ categoria, handleChange, subCategoria }) => {
           ))}
       </select>
     </>
-  );
-};
+  )
+}
 
-export default Subcat;
+export default Subcat

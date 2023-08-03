@@ -1,6 +1,6 @@
-import React from "react";
-import { Accordion } from "react-bootstrap";
-import FilterSubCategory from "../filterSubCategory/FilterSubCategory";
+import React from 'react'
+import { Accordion } from 'react-bootstrap'
+import FilterSubCategory from '../filterSubCategory/FilterSubCategory'
 
 const FilterCategory = ({
   clase,
@@ -10,24 +10,23 @@ const FilterCategory = ({
   setShow,
 }) => {
   const handleClick = (categoria) => {
-    console.log(categoria);
     const categoryToFilter =
-      categoria[0] + categoria.slice(1, categoria.length).toLowerCase();
-    localStorage.setItem("category", categoryToFilter);
+      categoria[0] + categoria.slice(1, categoria.length).toLowerCase()
+    localStorage.setItem('category', categoryToFilter)
     setGridTitle(
       categoria[0] + categoria.slice(1, categoria.length).toLowerCase()
-    );
+    )
     const filteredProducts = products.filter(
       (product) => product.categoria === categoryToFilter
-    );
-    setProductsToShow(filteredProducts);
-  };
+    )
+    setProductsToShow(filteredProducts)
+  }
 
   let categoryProducts = products.filter((product) =>
     product.clase.includes(clase)
-  );
-  let categories = categoryProducts.map((product) => product.categoria);
-  let uniqueCategories = [...new Set(categories)];
+  )
+  let categories = categoryProducts.map((product) => product.categoria)
+  let uniqueCategories = [...new Set(categories)]
   return (
     <>
       {uniqueCategories.map((categoria, idx) => (
@@ -36,10 +35,8 @@ const FilterCategory = ({
             <Accordion.Header onClick={() => handleClick(categoria)}>
               {categoria}
             </Accordion.Header>
-            <hr className="m-0"/>
-            <Accordion.Body
-              className="m-0"
-            >
+            <hr className="m-0" />
+            <Accordion.Body className="m-0">
               <FilterSubCategory
                 products={products}
                 categoria={categoria}
@@ -52,7 +49,7 @@ const FilterCategory = ({
         </Accordion>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default FilterCategory;
+export default FilterCategory
