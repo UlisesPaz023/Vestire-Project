@@ -36,8 +36,8 @@ const Admin = () => {
     isAdmin()
   }, [])
   return (
-    <section className="container">
-      <div className="row m-5 text-center">
+    <section className="container text-center">
+      <div className="row m-5 ">
         <h2 className="text-center  fs-2 p-0">
           ¡Bienvenido al sitio Administrador de
           <span style={{ letterSpacing: '5px' }} className="fw-bold">
