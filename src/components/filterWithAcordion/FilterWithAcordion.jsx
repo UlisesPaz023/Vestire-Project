@@ -46,7 +46,6 @@ const FilterWithAcordion = ({ products, setProductsToShow, setGridTitle }) => {
         onHide={handleClose}
         responsive="lg"
         restoreFocus={true}
-        //sticky="top"
         scroll={true}
       >
         <Offcanvas.Body>

@@ -38,14 +38,14 @@ const Admin = () => {
   return (
     <section className="container">
       <div className="row m-5 text-center">
-        <div className="mb-5 row justify-content-center">
-          <h2 className="text-center  fs-2 p-0">
-            ¡Bienvenido al sitio Administrador de{' '}
-            <span style={{ letterSpacing: '5px' }} className="fw-bold">
-              VESTIR<span style={{ color: '#d4af37' }}>E</span>!
-            </span>
-          </h2>
-        </div>
+        <h2 className="text-center  fs-2 p-0">
+          ¡Bienvenido al sitio Administrador de
+          <span style={{ letterSpacing: '5px' }} className="fw-bold">
+            VESTIR<span style={{ color: '#d4af37' }}>E</span>!
+          </span>
+        </h2>
+      </div>
+      <div className="row d-flex justify-content-center">
         <div className="col">
           <Link to="/admin/product-table">
             <button className="mb-5 mb-lg-0 boton fw-bold btn btn-primary mt-1">

@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination } from "swiper";
-import CardSliderItem from "./CardSliderItem";
+import React, { useEffect, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination } from 'swiper'
+import CardSliderItem from './CardSliderItem'
 
 const CustomSlider = ({ products }) => {
   const productsSlider = products.filter(
     (product) => product.destacado === true
-  );
-  const [width, setWidth] = useState(0);
+  )
+  const [width, setWidth] = useState(0)
 
   const updateWindowDimensions = () => {
-    setWidth(window.innerWidth);
-  };
+    setWidth(window.innerWidth)
+  }
 
   useEffect(() => {
-    updateWindowDimensions();
-    addEventListener("resize", updateWindowDimensions);
-    return () => window.removeEventListener("resize", updateWindowDimensions);
-  }, []);
+    updateWindowDimensions()
+    addEventListener('resize', updateWindowDimensions)
+    return () => window.removeEventListener('resize', updateWindowDimensions)
+  }, [])
 
-  const slidesPerView = width <= 767 ? 1 : 4;
+  const slidesPerView = width <= 767 ? 1 : 4
 
   return (
     <>
-      <h2 className={`fs-2 text-center col mt-2 pb-1 border-bottom`}>
+      <h2 className={`fs-2 text-center col mt-5 pb-1 border-bottom`}>
         DESTACADOS DEL MES
       </h2>
       <Swiper
@@ -45,7 +45,7 @@ const CustomSlider = ({ products }) => {
         ))}
       </Swiper>
     </>
-  );
-};
+  )
+}
 
-export default CustomSlider;
+export default CustomSlider

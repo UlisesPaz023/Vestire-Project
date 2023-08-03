@@ -1,26 +1,26 @@
-.title{
-  font-size: 4rem;
+.title {
+  font-size: 2.5rem;
 }
 
-.input{
+.input {
   background-color: #e3e3e1 !important;
   resize: none;
 }
 
-@media screen and (min-width: 1024px){
-  .info{
+@media screen and (min-width: 1024px) {
+  .info {
     margin: 10rem 0 !important;
   }
-  .font{
+  .font {
     font-size: 2rem;
   }
 }
 
-@media screen and (max-width: 1023px){
-  .info{
+@media screen and (max-width: 1023px) {
+  .info {
     margin: 2rem 0 !important;
   }
-  .font{
+  .font {
     font-size: 3rem;
   }
 }
