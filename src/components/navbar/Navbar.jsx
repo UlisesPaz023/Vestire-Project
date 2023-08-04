@@ -58,8 +58,14 @@ function NavBar({
   }
 
   const showSearch = () => {
-    let resault = productsToShow.filter((product) =>
-      quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
+    let resault = productsToShow.filter(
+      (product) =>
+        quitarTildes(product.resumenDescripcion)
+          .toLowerCase()
+          .includes(search.toLowerCase().trim()) ||
+        quitarTildes(search.toLowerCase().trim())
+          .toLowerCase()
+          .includes(product.resumenDescripcion.toLowerCase().split(' ')[0])
     )
     if (resault.length > 0) {
       setProductsToShow(resault)
