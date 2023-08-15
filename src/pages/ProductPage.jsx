@@ -33,6 +33,7 @@ const ProductPage = ({ productsToCart, setProductsToCart }) => {
     imagen,
     resumenDescripcionToCart,
     precio,
+    cantidadPorTalle: cantidadPorTalle[talle],
     talle: talle,
     cantidad: cantidad,
   }
@@ -82,6 +83,22 @@ const ProductPage = ({ productsToCart, setProductsToCart }) => {
           ? { ...item, cantidad: item.cantidad + cantidad }
           : item
       )
+      let hasStock = true
+      products.forEach((product) => {
+        if (product.cantidad > product.cantidadPorTalle) {
+          hasStock = false
+          return
+        }
+      })
+      if (!hasStock) {
+        Swal.fire({
+          icon: 'error',
+          title: '¡No hay suficiente stock de este producto!',
+          showConfirmButton: false,
+          timer: 2000,
+        })
+        return
+      }
       return (
         setProductsToCart([...products]),
         setAddLocalStorage(true),

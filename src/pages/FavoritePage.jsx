@@ -13,17 +13,6 @@ const FavoritePage = () => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    if (!localStorage.getItem('userName')) {
-      Swal.fire({
-        title: '¡Atención!',
-        text: 'Debe iniciar sesión para ver los favoritos',
-        icon: 'warning',
-        timer: 2000,
-      })
-    }
-  }, [])
-
-  useEffect(() => {
     const getData = async () => {
       let endpoint = `${url}/get-user-by-token`
       if (localStorage.getItem('userToken')) {
