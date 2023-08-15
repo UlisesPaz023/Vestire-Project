@@ -1,18 +1,18 @@
-import React from "react";
-import styles from "../pages/contactPage.module.css";
-import Swal from "sweetalert2";
+import React from 'react'
+import styles from '../pages/contactPage.module.css'
+import Swal from 'sweetalert2'
 
 const handleClick = (e) => {
-  e.preventDefault();
+  e.preventDefault()
   Swal.fire(
-    "Mensaje enviado",
-    "Muchas gracias por sus comentarios, le responderemos a la brevedad.",
-    "success"
-  );
+    'Mensaje enviado',
+    'Muchas gracias por sus comentarios, le responderemos a la brevedad.',
+    'success'
+  )
   setTimeout(() => {
-    location.href = "/";
-  }, 3000);
-};
+    location.href = '/'
+  }, 3000)
+}
 const ContactPage = () => {
   return (
     <div className="container-fluid">
@@ -20,7 +20,7 @@ const ContactPage = () => {
         <div
           className={`col-lg-5 d-flex d-lg-block flex-column flex-lg-row text-center text-lg-start ${styles.info}`}
         >
-          <h1 className={`${styles.title} fw-light lg-4 mb-4`}>Contáctenos</h1>
+          <h2 className={`${styles.title} fw-light mb-4`}>Contáctenos</h2>
           <p className="fw-bold m-0">Nuestra dirección postal es:</p>
           <p>T4000, San Miguel de Tucumán.</p>
           <p>
@@ -73,7 +73,7 @@ const ContactPage = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage

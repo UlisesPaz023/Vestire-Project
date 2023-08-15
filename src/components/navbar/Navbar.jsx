@@ -58,8 +58,16 @@ function NavBar({
   }
 
   const showSearch = () => {
-    let resault = productsToShow.filter((product) =>
-      quitarTildes(product.resumenDescripcion).toLowerCase().includes(search)
+    let resault = productsToShow.filter(
+      (product) =>
+        quitarTildes(product.resumenDescripcion)
+          .toLowerCase()
+          .includes(search.toLowerCase().trim()) ||
+        quitarTildes(search.toLowerCase().trim())
+          .toLowerCase()
+          .includes(
+            quitarTildes(product.resumenDescripcion.toLowerCase().split(' ')[0])
+          )
     )
     if (resault.length > 0) {
       setProductsToShow(resault)
@@ -80,7 +88,13 @@ function NavBar({
   let userLoged = localStorage.getItem('userName')
   return (
     <>
-      <Navbar bg="light" expand="lg" fixed="top" className="p-1">
+      <Navbar
+        bg="light"
+        expand="lg"
+        fixed="top"
+        className="p-1"
+        collapseOnSelect
+      >
         <Container fluid>
           <Navbar.Brand href="/">
             <img src={logo} alt="logo vestire" />
@@ -94,10 +108,10 @@ function NavBar({
                   style={{ maxHeight: '100px' }}
                   navbarScroll
                 >
-                  <Nav.Link as={Link} to="/favorite-page">
+                  <Nav.Link as={Link} to="/favorite-page" eventKey="1">
                     Favoritos
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/contact-page">
+                  <Nav.Link as={Link} to="/contact-page" eventKey="2">
                     Contacto
                   </Nav.Link>
                   {userLoged ? (
@@ -113,23 +127,35 @@ function NavBar({
                     >
                       {localStorage.getItem('isAdmin') ? (
                         <>
-                          <Nav.Link href="/admin">
+                          <Nav.Link eventKey="3" href="/admin">
                             Ir al sitio Administrador
                           </Nav.Link>
 
                           <NavDropdown.Divider />
-                          <NavDropdown.Item onClick={handleLogout}>
+                          <NavDropdown.Item
+                            eventKey="4"
+                            onClick={() => {
+                              handleLogout()
+                              navigate('/')
+                            }}
+                          >
                             Cerrar sesión
                           </NavDropdown.Item>
                         </>
                       ) : (
-                        <NavDropdown.Item onClick={handleLogout}>
+                        <NavDropdown.Item
+                          eventKey="5"
+                          onClick={() => {
+                            handleLogout()
+                            navigate('/')
+                          }}
+                        >
                           Cerrar sesión
                         </NavDropdown.Item>
                       )}
                     </NavDropdown>
                   ) : (
-                    <Nav.Link href="" onClick={handleShow}>
+                    <Nav.Link href="" onClick={handleShow} eventKey="6">
                       Login | Registrarse
                     </Nav.Link>
                   )}

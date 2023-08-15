@@ -57,7 +57,7 @@ const FavoritePage = () => {
             <h3 className="mt-3 mb-4"> No hay favoritos para mostrar.</h3>
           </div>
           <button
-            className="col-2 btn btn-dark rounded-0 fw-bolder px-5 py-2"
+            className="col-2 btn btn-dark rounded-0 fw-bolder px-5 py-2 d-flex justify-content-center mb-5"
             onClick={() => {
               navigate('/')
             }}
