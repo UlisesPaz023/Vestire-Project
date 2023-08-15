@@ -21,6 +21,15 @@ import TermsPage from './pages/TermsPage'
 import Error from './components/error404/Error'
 const url = import.meta.env.VITE_BACKEND_PRODUCTS_URL
 const App = () => {
+  // const initProductToCart = {
+  //   _id,
+  //   imagen,
+  //   resumenDescripcionToCart,
+  //   precio,
+  //   cantidadPorTalle,
+  //   talle,
+  //   cantidad,
+  // }
   const [products, setProducts] = useState([])
   const [productsToShowAux, setProductsToShowAux] = useState([])
   const [loading, setLoading] = useState(true)
