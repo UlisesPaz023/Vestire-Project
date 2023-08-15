@@ -93,7 +93,7 @@ const ProductPage = ({ productsToCart, setProductsToCart }) => {
       if (!hasStock) {
         Swal.fire({
           icon: 'error',
-          title: 'No hay suficiente stock de este producto',
+          title: '¡No hay suficiente stock de este producto!',
           showConfirmButton: false,
           timer: 2000,
         })

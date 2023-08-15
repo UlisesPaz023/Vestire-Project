@@ -10,6 +10,7 @@ import { FaUser } from 'react-icons/fa'
 import ModalLogin from '../modal/ModalLogin'
 import Cart from '../cart/Cart'
 import { useNavigate, Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function NavBar({
   productsToCart,
@@ -86,6 +87,20 @@ function NavBar({
   }
 
   let userLoged = localStorage.getItem('userName')
+
+  const showFav = () => {
+    if (localStorage.getItem('userToken')) navigate('/favorite-page')
+    else {
+      Swal.fire({
+        title: '¡Atención!',
+        text: 'Debe iniciar sesión para ver los favoritos',
+        icon: 'warning',
+        timer: 2000,
+      })
+      return
+    }
+  }
+
   return (
     <>
       <Navbar
@@ -108,9 +123,14 @@ function NavBar({
                   style={{ maxHeight: '100px' }}
                   navbarScroll
                 >
-                  <Nav.Link as={Link} to="/favorite-page" eventKey="1">
+                  <Nav.Link
+                    eventKey="1"
+                    onClick={() => showFav()}
+                    style={{ color: 'gray' }}
+                  >
                     Favoritos
                   </Nav.Link>
+
                   <Nav.Link as={Link} to="/contact-page" eventKey="2">
                     Contacto
                   </Nav.Link>
