@@ -8,6 +8,9 @@ let totalToPay = 0
 
 const BuyingPage = () => {
   const navigate = useNavigate()
+  const [errors, setErrors] = useState(Array(4).fill(false))
+  const [expiryDate, setExpiryDate] = useState('')
+  const [isValid, setIsValid] = useState(true)
   if (localStorage.getItem('cart')) {
     finalCart = localStorage.getItem('cart')
     finalCart = JSON.parse(finalCart)
@@ -50,6 +53,21 @@ const BuyingPage = () => {
     }, 3000)
   }
 
+  const handleInputChange = (index, value) => {
+    const newErrors = [...errors]
+    if (!/^[0-9]*$/.test(value)) {
+      newErrors[index] = true
+    } else {
+      newErrors[index] = false
+    }
+    setErrors(newErrors)
+  }
+
+  const handleDateChange = (value) => {
+    setExpiryDate(value)
+    setIsValid(/^(0[1-9]|1[0-2])\/\d{2}$/.test(value))
+  }
+
   return (
     <div className="container-fluid container-lg buyingPageContainer p-0 py-5">
       <div className="row px-2 px-md-0 m-0">
@@ -89,7 +107,6 @@ const BuyingPage = () => {
                 />
               </div>
             </div>
-
             <div className="mb-3">
               <label htmlFor="usuario">Usuario</label>
               <div className="input-group">
@@ -106,7 +123,6 @@ const BuyingPage = () => {
                 />
               </div>
             </div>
-
             <div className="mb-3">
               <label htmlFor="correo">Correo</label>
               <input
@@ -118,7 +134,6 @@ const BuyingPage = () => {
                 required
               />
             </div>
-
             <div className="mb-3">
               <label htmlFor="direccion">Dirección</label>
               <input
@@ -130,7 +145,6 @@ const BuyingPage = () => {
                 required
               />
             </div>
-
             <div className="mb-3">
               <label htmlFor="direccion2">
                 Dirección 2 <span className="text-muted">(Opcional)</span>
@@ -143,7 +157,6 @@ const BuyingPage = () => {
                 id="direccion2"
               />
             </div>
-
             <div className="row">
               <div className="col-12 col-sm-4 mb-3">
                 <label htmlFor="pais">País</label>
@@ -175,7 +188,8 @@ const BuyingPage = () => {
                   <option defaultValue={'Seleccionar Estado'}>
                     Seleccionar Estado
                   </option>
-                  <option value="caba">Ciudad Autónoma de Buenos Aires</option>
+                  <option value="tucuman">Tucuman</option>
+                  <option value="bsas">Ciudad Autónoma de Buenos Aires</option>
                   <option value="bsas">Buenos Aires</option>
                   <option value="cordoba">Córdoba</option>
                   <option value="mendoza">Mendoza</option>
@@ -193,9 +207,7 @@ const BuyingPage = () => {
                 />
               </div>
             </div>
-
             <hr className="mb-4" />
-
             <div className="d-block mb-3">
               <div className="custom-control custom-radio">
                 <input
@@ -244,26 +256,54 @@ const BuyingPage = () => {
 
               <div className="col-12 col-sm-6 mb-3">
                 <label htmlFor="numero-tarjeta">Número de tarjeta</label>
-                <input
-                  type="text"
-                  id="numero-tarjeta"
-                  className="form-control input rounded-0"
-                  pattern="^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$"
-                  required
-                />
+                <div className="d-flex">
+                  {[0, 1, 2, 3].map((index) => (
+                    <div key={index} className="w-25 me-1">
+                      <input
+                        type="text"
+                        className={`form-control input rounded-0 ${
+                          errors[index] ? 'is-invalid' : ''
+                        }`}
+                        maxLength="4"
+                        required
+                        onInput={(e) =>
+                          handleInputChange(index, e.target.value)
+                        }
+                      />
+                      {errors[index] && (
+                        <small className="invalid-feedback">
+                          Ingrese solo números válidos.
+                        </small>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <small className="text-muted">
+                  Ingrese los 16 dígitos de su tarjeta
+                </small>
               </div>
             </div>
-
             <div className="row">
               <div className="col-6 col-sm-4 mb-3">
-                <label htmlFor="tarjeta-expiracion">Expiración</label>
+                <label htmlFor="expiry-date" className="form-label m-0">
+                  Fecha de Expiración
+                </label>
                 <input
                   type="text"
-                  id="tarjeta-expiracion"
-                  className="form-control input rounded-0"
-                  pattern="^(0[1-9]|1[0-2])\/(2[2-9]|[3-9]\d|[1-9]\d{2})$"
-                  required
+                  className={`form-control input rounded-0 ${
+                    isValid ? '' : 'is-invalid'
+                  }`}
+                  id="expiry-date"
+                  maxLength="5"
+                  placeholder="MM/AA"
+                  value={expiryDate}
+                  onChange={(e) => handleDateChange(e.target.value)}
                 />
+                {!isValid && (
+                  <div className="invalid-feedback">
+                    Ingrese una fecha válida (MM/AA).
+                  </div>
+                )}
               </div>
 
               <div className="col-6 col-sm-4 mb-3">
@@ -272,13 +312,16 @@ const BuyingPage = () => {
                   type="text"
                   id="tarjeta-cvv"
                   className="form-control input rounded-0"
+                  maxLength="3"
                   required
                 />
+                <small className="text-muted" style={{ lineHeight: '0.5' }}>
+                  Ingrese el código de 3 dígitos ubicados en el dorso de su
+                  tarjeta
+                </small>
               </div>
             </div>
-
             <hr className="mb-4" />
-
             <input
               type="submit"
               value="Continuar al pago"
